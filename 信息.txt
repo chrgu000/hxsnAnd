@@ -1,0 +1,164 @@
+测试反馈网址：http://192.168.200.251   songlijie 123456
+
+
+2016-12-15  现将随时看、枣知道应用的后台登录密码统一修改为 hxsn2193151,测试账号不对
+
+
+1.随时看 鸡温宝
+username=shouji userid=4028818f4973e66e01497466adb4361d
+随时看项目管理网页：http://192.168.200.251   songlijie 123456
+ssk后台：http://192.168.12.94:7990/ssk/      admin   hxsn2193151
+随时看签名密码  sskjiely
+下载 http://msc.fweb.cn:7990/ssk/sskapp/app/apk/ssk.apk
+
+2.测土配方
+更新数据的服务器地址 http://192.168.12.94:8998    用户名：administrator  key:Win2008
+
+3.庄络农场物联网2.0
+ http://192.168.12.16:7700/aiot2/      yanshi 123456					admin SNWLW12579
+
+4.OA:		http://192.168.12.174/c6   songlj  hxsn2015  密码已修改  个人事务 工作计划
+
+5.廊坊气象局账户分配:
+
+访问地址：http://60.10.151.28:7700/aiot2/index.do
+用户名：lfqxssk 密码：lfqx1234
+http://msc.fweb.cn:7990/ssk/index.do
+用户名：lfxyyg 密码：123456
+
+ pop.fweb.cn
+ smtp.fweb.cn
+
+5栆知道
+远程桌面 115.28.140.121
+密码：hxsnswb1234
+ 替换D:\AiotServerDL\root\aiot2\app
+外网地址：
+http://115.28.140.121:8480/aiot2/zzd.html
+
+外网下载地址：
+http://115.28.140.121:8480/aiot2/app/zzd.apk
+
+内网地址：
+http://192.168.12.121:8480/aiot2/zzd.html
+
+内网下载地址：
+http://192.168.12.121:8480/aiot2/app/zzd.apk
+
+测试账号  wdnyj  123456
+
+6.庄络物联网后台
+user:dahxsn@126.com    hxsn1234
+
+7.请复制以下地址备份：
+
+\\192.168.12.94\软件部门
+\\192.168.12.94\硬件部门
+\\192.168.12.94\生产部门
+\\192.168.12.94\销售部门
+\\192.168.12.94\质检部门
+\\192.168.12.94\后勤部门
+\\192.168.12.94\市场部门
+\\192.168.12.94\售后部门
+\\192.168.12.94\庄络
+\\192.168.12.94\其他
+
+用户名：administrator
+密码：Win2008（注意：W是大写）
+
+
+
+1.新的
+智慧作业测试账号  zuoyeceshi  123456
+
+掌上农场 智慧作业 农场管理
+测试账号   malq  123456
+
+物联网2.0：http://192.168.12.16:7700/aiot2/
+用户名密码：admin SNWLW12579
+			yanshi 123456
+
+
+svn:	内网：http://192.168.10.250/svn/phone/trunk          songlijie hxsn1234
+	      http://192.168.10.250/svn/phone/trunk/
+	本机:https://192.168.12.97:8443/svn/ssk/branches
+
+
+
+共享电脑 	\\192.168.12.144\     \\192.168.10.250
+
+邮箱地址：       songlj@fweb.cn   hxsn1234
+
+3大工程对照
+工程名称-APP名称-项目名称-新的项目名称-新的APP名称
+农场管理-FarmManage
+掌上农场-掌上农场-HandRarm
+智慧作业 - 智慧工作 - Intelliwork- sn-ssk-v1.0 - 随时看
+
+
+sn-ssk-1.0
+android studio HTTP Proxy Server mirrors.neusoft.edu.cn
+
+android sdk location should not contain whitespace
+
+svn   guset09
+
+
+2.打包
+nky123
+-------
+snk.keystore
+snk123
+\\192.168.10.250  用户名：svn  密码：guest09
+
+
+67895668  5667
+
+
+http://runjs.cn/code/ydp3it7b
+
+http://www.mindmeister.com/demo/279018414?t=BUqBoDwEGk
+
+http://www.ctdisk.com/file  //资料下载前缀
+
+3.路由
+Apple_ID:
+zhengjx@fweb.cn      Yh123456
+
+ID 22606672@qq.com
+password: Aa123456
+
+路由密码：
+yfzx123
+
+wifi
+1 SNRGB  12345678
+IP:192.168.12.213  网关：192.168.12.254  DNS:8.8.8.8
+2 YXZX05  yxzx05ps
+
+苹果电脑
+用户名：AppleMac
+密码：123456
+
+路由密码：
+yfzx123
+
+YDXMZ无线密码
+12345678
+
+以前ip
+192.168.12.42
+
+255.255.255.0
+192.168.12.254
+dns：202.99.166.4
+
+
+1.优化测土配方
+2.编写APP规划文档
+3.整合华夏神农APP
+
+
+开源项目开发
+
+
