@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_light"
+    tools:ignore="HardcodedText">
+
+    <include
+        android:id="@+id/in_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        layout="@layout/in_title"/>
+
+    <LinearLayout
+        android:id="@+id/line_text"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="25dp"
+        android:orientation="horizontal"
+        android:background="@color/gray_light_n"
+        android:layout_below="@+id/in_title">
+
+    </LinearLayout>
+
+    <!--<com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/in_title"
+        android:layout_marginBottom="65dp"
+        android:layout_marginTop="10dp"/>-->
+
+    <com.andbase.chartlibrary.view.LineChartView
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line_text"
+        android:layout_marginBottom="55dp"
+        android:layout_marginTop="10dp"/>
+
+
+
+    <LinearLayout
+        android:id="@+id/line_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/txt_today"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@color/orange"
+            android:textColor="@color/white_light"
+            android:text="今天"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/txt_yesterday"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@color/sky_blue"
+            android:textColor="@color/white_light"
+            android:text="昨天"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/txt_pre_day"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@color/sky_blue"
+            android:textColor="@color/white_light"
+            android:text="前天"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

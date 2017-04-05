@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:ignore="HardcodedText">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginRight="100dp"
+            android:gravity="center"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text="警情信息列表"/>
+
+        <Button
+            android:id="@+id/btn_view_all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:background="@color/sky_blue"
+            android:textColor="@color/white"
+            android:text="查看所有鸡舍"/>
+
+    </RelativeLayout>
+
+
+
+
+    <com.andbase.library.view.refresh.AbPullToRefreshView
+        android:id="@+id/mPullRefreshView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/rl_title">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/gray_light_n"
+            android:scrollbars="none"
+            android:dividerHeight="0.5dp"
+            />
+
+
+    </com.andbase.library.view.refresh.AbPullToRefreshView>
+
+
+    <include
+        android:id="@+id/in_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/in_refresh"
+        android:layout_below="@+id/rl_title"
+        android:visibility="gone"/>
+
+</RelativeLayout>
+

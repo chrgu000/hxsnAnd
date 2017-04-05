@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_light"
+    tools:ignore="HardcodedText"
+    android:orientation="vertical"
+    tools:context="com.hxsn.jwb.activity.SelectHomeActivity">
+
+    <include
+        android:id="@+id/in_title"
+        android:layout_width="360dp"
+        android:layout_height="48dip"
+        layout="@layout/in_title"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:text="当前鸡舍为：鸡舍1"/>
+
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/gray_light_n"
+        android:scrollbars="none"
+        android:dividerHeight="0.5dp"/>
+
+</LinearLayout>

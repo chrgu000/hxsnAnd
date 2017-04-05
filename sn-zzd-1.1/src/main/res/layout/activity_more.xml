@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_more"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sky_blue"
+    tools:ignore="HardcodedText"
+    tools:context="com.hxsn.zzd.activity.MoreActivity">
+
+    <include
+        android:id="@+id/in_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        layout="@layout/in_title"/>
+
+    <ExpandableListView
+
+        android:id="@+id/expanded_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="70dp"
+        android:groupIndicator="@null"
+        android:childDivider="@drawable/child_divider"
+        android:clickable="true"
+        android:contentDescription="fuck !!!"
+        android:scrollbarAlwaysDrawHorizontalTrack="true">
+
+    </ExpandableListView>
+
+</RelativeLayout>

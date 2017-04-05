@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">廊坊气象</string>
+    <string name="site_name1">润宝农业合作社5号棚</string>
+    <string name="site_name2">润宝农业合作社6号棚</string>
+    <string name="site_name3">润宝农业合作社9号棚</string>
+    <string name="site_name4">润宝农业合作社11号棚</string>
+    <string name="site_name5">永清海泽田A3-1</string>
+    <string name="site_name6">永清海泽田A3-2</string>
+    <string name="site_name7">永清海泽田A3-7</string>
+    <string name="site_name8">永清新苑阳光C09</string>
+    <string name="site_name9">永清新苑阳光A01</string>
+    <string name="site_name10">永清新苑阳光C18</string>
+</resources>

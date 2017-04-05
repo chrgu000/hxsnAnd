@@ -1,0 +1,4 @@
+<resources>
+    <string name="title_activity_auto_wifi_net_config">AutoWifiNetConfigActivity</string>
+    <string name="title_activity_series_num_search">SeriesNumSearchActivity</string>
+</resources>

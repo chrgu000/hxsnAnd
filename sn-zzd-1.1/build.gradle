@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.hxsn.zzd"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.1.8"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            res.srcDirs =
+                    [
+                            'src/main/res/layout/veodo',
+                            'src/main/res/layout',
+                            'src/main/res'
+                    ]
+        }
+
+        useLibrary 'org.apache.http.legacy'
+    }
+
+    packagingOptions{
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/dependencies'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/notice'
+        exclude 'META-INF/license'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/maven/javax.jmdns/jmdns/pom.xml'
+        exclude 'META-INF/maven/javax.jmdns/jmdns/pom.properties'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile project(':andbase')
+    compile files('libs/EZOpenSDK.jar')
+    compile files('libs/jmdns-3.4.1.jar')
+    compile files('libs/zxing.jar')
+}

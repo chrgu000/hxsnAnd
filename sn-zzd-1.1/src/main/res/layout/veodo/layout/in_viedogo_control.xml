@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ezopen_realplay_operate_bar"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:gravity="center"
+    android:background="#e0e0e0"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/realplay_previously_btn_ly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <ImageButton
+            android:id="@+id/realplay_previously_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/play_previously_selector"
+            android:onClick="onClick" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="截图"
+            android:layout_gravity="center"
+            android:textColor="#888888"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/realplay_video_container_ly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:orientation="vertical" >
+        <FrameLayout
+            android:id="@+id/realplay_video_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/realplay_video_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/play_video_selector"
+                android:onClick="onClick" />
+
+            <ImageButton
+                android:id="@+id/realplay_video_start_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/play_video_sel"
+                android:onClick="onClick"
+                android:visibility="gone" />
+        </FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="录像"
+            android:layout_gravity="center"
+            android:textColor="#888888"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

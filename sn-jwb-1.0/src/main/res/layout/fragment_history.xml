@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:text="鸡舍1"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/bg_text_sky"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/table_title"
+            layout="@layout/item_history"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="#B4B3B3"/>
+
+
+        <com.andbase.library.view.refresh.AbPullToRefreshView
+            android:id="@+id/mPullRefreshView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/txt_title">
+
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@color/gray_light_n"
+                android:scrollbars="none"
+                android:dividerHeight="0.5dp"
+                />
+
+
+        </com.andbase.library.view.refresh.AbPullToRefreshView>
+
+
+    </LinearLayout>
+
+
+    <include
+        android:id="@+id/in_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/in_refresh"
+        android:layout_below="@+id/txt_title"
+        android:visibility="gone"/>
+
+</LinearLayout>
+

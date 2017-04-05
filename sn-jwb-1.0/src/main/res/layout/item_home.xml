@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/green_black"
+    tools:ignore="HardcodedText">
+
+
+    <ImageView
+        android:id="@+id/img_ring"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/icon_help"/>
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:text="鸡舍1"
+        android:textSize="13sp"
+        android:textColor="@color/blue_dark"/>
+
+    <TextView
+        android:id="@+id/txt_temperate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="25℃"
+        android:textSize="20sp"
+        android:textColor="@color/blue_dark"/>
+
+    <TextView
+        android:id="@+id/txt_day_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_centerVertical="true"
+        android:text="鸡龄：15天"
+        android:textSize="13sp"
+        android:textColor="@color/blue_dark"/>
+
+</RelativeLayout>
+

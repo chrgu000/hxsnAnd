@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="normal">#3A9C36</color>
+    <color name="high">#EB6100</color>
+    <color name="low">#00CAEE</color>
+
+    <color name="color_31">#eeeeaa</color>
+
+    <color name="tr_green">#661ba158</color>
+</resources>
