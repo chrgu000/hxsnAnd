@@ -3,6 +3,7 @@ package com.hxsn.zzd.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,12 +15,7 @@ import com.andbase.ssk.utils.AndJsonUtils;
 import com.andbase.ssk.utils.AndShared;
 import com.hxsn.zzd.R;
 import com.hxsn.zzd.TApplication;
-import com.hxsn.zzd.model.Gardening;
 import com.hxsn.zzd.utils.Const;
-import com.hxsn.zzd.utils.JsonUtils;
-import com.hxsn.zzd.utils.Shared;
-
-import java.util.List;
 
 
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -87,21 +83,16 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     TApplication.user = user;
                     AndShared.saveUser(user);
                     AndShared.setValue("login","1");
-                    //获取棚室列表
-                    new AndHttpRequest(LoginActivity.this) {
-                        @Override
-                        public void getResponse(String response) {
-                            List<Gardening> gardeningList = JsonUtils.getGardeningList(response);
-                            if(gardeningList.size() > 0 && gardeningList.get(0).getGreenHouseList().size()>0){
-                                TApplication.defaultGreenHouse = gardeningList.get(0).getGreenHouseList().get(0);
-                                Shared.saveGreenHouse(TApplication.defaultGreenHouse);
-
-                                Shared.saveGardingList(gardeningList);
-                            }
-
-                            startHomeActivity();
-                        }
-                    }.doPost(Const.URL_GET_HOUSE_LIST + user.getUserId(),null);
+                    Intent intent = new Intent();
+                    // TApplication.defaultGreenHouse = Shared.getGreenHouse();
+                    if(TextUtils.isEmpty(TApplication.defaultGreenHouse.getId()) ){
+                        intent.setClass(LoginActivity.this, MoreActivity.class);
+                        startActivity(intent);
+                    }else {
+                        intent.setClass(LoginActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }else if(code.equals("301")){
                     AbToastUtil.showToast(LoginActivity.this,"用户名不存在或密码错误");
                 }else if(code.equals("302")){
@@ -111,14 +102,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 }
             }
         }.doPost(url,null);
-    }
-
-
-    public void startHomeActivity(){
-        Intent intent = new Intent();
-        intent.setClass(LoginActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
     }
 
 

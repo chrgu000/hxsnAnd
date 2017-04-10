@@ -53,8 +53,8 @@ public class Shared {
     public static List getGardingList() {
         String json = shared.getString(Gardening.class.getSimpleName()+"list", "");
         Gson gson = new Gson();
-        List<Gardening> warningList = gson.fromJson(json, new TypeToken<List<Gardening>>(){}.getType());
-        return warningList;
+        List<Gardening> gardeningList = gson.fromJson(json, new TypeToken<List<Gardening>>(){}.getType());
+        return gardeningList;
     }
 
 }

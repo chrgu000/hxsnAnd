@@ -1,13 +1,13 @@
 
 package com.andbase.library.util;
 
-import java.util.Calendar;
-import java.util.Locale;
-
 import android.content.Context;
 import android.util.Log;
 
 import com.andbase.library.config.AbAppConfig;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 
 /**
@@ -48,8 +48,13 @@ public class AbLogUtil {
 	 * @param message
 	 */
 	public static void d(Context context,String message) {
-		String tag = context.getClass().getSimpleName();
-		d(tag, message);
+		if(context != null){
+			String tag = context.getClass().getSimpleName();
+			d(tag, message);
+		}else {
+			d("context=null", message);
+		}
+
 	}
 	
 	/**
@@ -69,8 +74,12 @@ public class AbLogUtil {
 	 * @param args
 	 */
 	public static void d(Context context,String format, Object... args) {
-		String tag = context.getClass().getSimpleName();
-        d(tag, buildMessage(format, args));
+		if(context != null){
+			String tag = context.getClass().getSimpleName();
+			d(tag, buildMessage(format, args));
+		}else {
+			d("context=null", buildMessage(format, args));
+		}
     }
 	
 	/**
@@ -99,8 +108,12 @@ public class AbLogUtil {
 	 * @param message
 	 */
 	public static void i(Context context,String message) {
-		String tag = context.getClass().getSimpleName();
-		i(tag, message);
+		if(context != null){
+			String tag = context.getClass().getSimpleName();
+			i(tag, message);
+		}else {
+			i("context=null", message);
+		}
 	}
 	
 	/**
@@ -120,8 +133,12 @@ public class AbLogUtil {
 	 * @param args
 	 */
 	public static void i(Context context,String format, Object... args) {
-		String tag = context.getClass().getSimpleName();
-        i(tag, buildMessage(format, args));
+		if(context != null){
+			String tag = context.getClass().getSimpleName();
+			i(tag, buildMessage(format, args));
+		}else {
+			i("context=null", buildMessage(format, args));
+		}
     }
 	
 	/**
@@ -152,8 +169,13 @@ public class AbLogUtil {
 	 * @param message
 	 */
 	public static void e(Context context,String message) {
-		String tag = context.getClass().getSimpleName();
-		e(tag, message);
+		if(context != null){
+			String tag = context.getClass().getSimpleName();
+			e(tag, message);
+		}else {
+			e("context=null", message);
+		}
+
 	}
 	
 	/**
@@ -174,8 +196,12 @@ public class AbLogUtil {
 	 * @param args
 	 */
 	public static void e(Context context,String format, Object... args) {
-		String tag = context.getClass().getSimpleName();
-        e(tag, buildMessage(format, args));
+		if(context != null){
+			String tag = context.getClass().getSimpleName();
+			e(tag, buildMessage(format, args));
+		}else {
+			e("context=null", buildMessage(format, args));
+		}
     }
 	
 	/**
@@ -239,8 +265,12 @@ public class AbLogUtil {
 	 * @param printTime 是否打印时间
 	 */
 	public static void d(Context context,String message,boolean printTime) {
-		String tag = context.getClass().getSimpleName();
-	    d(tag,message,printTime);
+		if(context != null){
+			String tag = context.getClass().getSimpleName();
+			d(tag,message,printTime);
+		}else {
+			d("context=null",message,printTime);
+		}
 	}
 	
 	/**

@@ -107,7 +107,9 @@
             android:name=".activity.SetTextActivity"
             android:screenOrientation="portrait" />
 
-
+        <activity
+            android:name=".activity.SystemSettingActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.NewsActivity"
             android:exported="true"

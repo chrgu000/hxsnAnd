@@ -21,6 +21,7 @@ import com.hxsn.zzd.utils.Const;
 import com.hxsn.zzd.utils.JsonUtils;
 import com.hxsn.zzd.utils.Shared;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,9 +29,9 @@ import java.util.List;
  */
 public class MoreActivity extends Activity {
 
-    private List<Gardening> departList;
+    private List<Gardening> gardeningList;
     private ExpandableListView listView;
-    private DepartListAdapter adapter;
+    private gardeningListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +53,13 @@ public class MoreActivity extends Activity {
         new AndHttpRequest(this) {
             @Override
             public void getResponse(String response) {
-                List<Gardening> tempDepartList = JsonUtils.getGardeningList(response);
-                if(tempDepartList.size()>0){
-                    departList.clear();
-                    departList.addAll(tempDepartList);
-                    TApplication.defaultGreenHouse = departList.get(0).getGreenHouseList().get(0);
+                List<Gardening> tempgardeningList = JsonUtils.getGardeningList(response);
+                if(tempgardeningList.size()>0){
+                    gardeningList.clear();
+                    gardeningList.addAll(tempgardeningList);
+                    TApplication.defaultGreenHouse = gardeningList.get(0).getGreenHouseList().get(0);
                     Shared.saveGreenHouse(TApplication.defaultGreenHouse);
-                    Shared.saveGardingList(departList);
+                    Shared.saveGardingList(gardeningList);
                     adapter.notifyDataSetChanged();
                 }
 
@@ -67,7 +68,7 @@ public class MoreActivity extends Activity {
     }
 
     private void addAdapter() {
-        adapter = new DepartListAdapter(MoreActivity.this);
+        adapter = new gardeningListAdapter(MoreActivity.this);
 
         listView.setAdapter(adapter);
 
@@ -75,41 +76,50 @@ public class MoreActivity extends Activity {
         listView.expandGroup(0);
     }
 
-    class DepartListAdapter extends BaseExpandableListAdapter {
+    class gardeningListAdapter extends BaseExpandableListAdapter {
 
         private LayoutInflater inflater;
 
-        public DepartListAdapter(Context context){
+        public gardeningListAdapter(Context context){
             this.inflater = LayoutInflater.from(context);
         }
 
         @Override
         public int getGroupCount() {
-            return departList.size();
+            return gardeningList==null?0:gardeningList.size();
         }
 
         @Override
         public int getChildrenCount(int groupPosition) {
-            if(departList.size() == 0){
+
+            if(gardeningList==null){
                 return 0;
             }
-            return departList.get(groupPosition).getGreenHouseList().size();
+
+            if(gardeningList.size() == 0){
+                return 0;
+            }
+            List greenHouseList = gardeningList.get(groupPosition).getGreenHouseList();
+            if(greenHouseList == null){
+                return 0;
+            }
+            return greenHouseList.size();
         }
 
         @Override
         public Object getGroup(int groupPosition) {
-            if(departList.size() == 0){
+            if(gardeningList.size() == 0){
                 return null;
             }
-            return departList.get(groupPosition);
+            return gardeningList.get(groupPosition);
         }
 
         @Override
         public Object getChild(int groupPosition, int childPosition) {
-            if(departList.size() == 0){
+            if(gardeningList.size() == 0){
                 return null;
             }
-            return departList.get(groupPosition).getGreenHouseList().get(childPosition);
+            return gardeningList.get(groupPosition).getGreenHouseList().get(childPosition);
         }
 
         @Override
@@ -146,7 +156,7 @@ public class MoreActivity extends Activity {
 
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-            final GreenHouse house = departList.get(groupPosition).getGreenHouseList().get(childPosition);
+            final GreenHouse house = gardeningList.get(groupPosition).getGreenHouseList().get(childPosition);
 
             HouseHolder houseViewHolder;
             if(convertView == null){
@@ -190,6 +200,9 @@ public class MoreActivity extends Activity {
     }
 
     private void addData(){
-      departList = Shared.getGardingList();
+        gardeningList = Shared.getGardingList();
+        if(gardeningList == null){
+            gardeningList = new ArrayList();
+        }
     }
 }

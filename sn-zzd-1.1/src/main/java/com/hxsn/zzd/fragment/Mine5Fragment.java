@@ -19,6 +19,7 @@ import com.hxsn.zzd.activity.AboutUsActivity;
 import com.hxsn.zzd.activity.LoginActivity;
 import com.hxsn.zzd.activity.PasswordEditActivity;
 import com.hxsn.zzd.activity.SettingActivity;
+import com.hxsn.zzd.activity.SystemSettingActivity;
 import com.hxsn.zzd.utils.Const;
 import com.hxsn.zzd.utils.UpdateUtil;
 
@@ -134,7 +135,10 @@ public class Mine5Fragment extends Fragment implements View.OnClickListener {
                 TApplication.mode = 1;
                 getActivity().finish();
                 break;
-
+            case R.id.txt_system_setting:
+                intent.setClass(context, SystemSettingActivity.class);
+                intent.putExtra("version",version);
+                startActivity(intent);
         }
     }
 }

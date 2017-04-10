@@ -62,8 +62,10 @@ public class TApplication extends Application {
         resources = getResources();
         defaultGreenHouse = new GreenHouse();
 
+
         Shared.init(getApplicationContext(),"zzd_dic");
         AndShared.init(getApplicationContext(),"zzd_dic");
+        defaultGreenHouse = Shared.getGreenHouse();
         activities = new ArrayList<>();
         //initSDK();
 

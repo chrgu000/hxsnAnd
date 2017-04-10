@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.andbase.ssk.utils.AndShared;
 import com.baidu.android.pushservice.CustomPushNotificationBuilder;
@@ -12,6 +13,7 @@ import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 import com.hxsn.zzd.activity.HomeActivity;
 import com.hxsn.zzd.activity.LoginActivity;
+import com.hxsn.zzd.activity.MoreActivity;
 import com.hxsn.zzd.activity.WelcomeActivity;
 import com.hxsn.zzd.utils.CheckPermission;
 
@@ -45,14 +47,17 @@ public class MainActivity extends Activity {
             intent.setClass(this, WelcomeActivity.class);
         } else {
             if (isLogin.equals("1")) {
-                intent.setClass(this, HomeActivity.class);
+                if(TextUtils.isEmpty(TApplication.defaultGreenHouse.getId()) ){
+                    intent.setClass(this, MoreActivity.class);
+                }else {
+                    intent.setClass(this, HomeActivity.class);
+                }
             } else {
                 intent.setClass(this, LoginActivity.class);
             }
         }
         startActivity(intent);
         finish();
-
     }
 
 

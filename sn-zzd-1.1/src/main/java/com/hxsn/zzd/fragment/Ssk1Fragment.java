@@ -54,8 +54,8 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener{
 
     private RelativeLayout layout1, layout2, layout3, layout4, layout5;
     private ImageView img1, img2, img3, img4, img5;
-    private TextView txt1, txt2, txt3, txt4, txt5;
-    private ImageView imgPoint;//报警预警的圆点
+    private TextView txt1, txt2, txt3, txt4, txt5,txtLookAll;
+    private ImageView imgPoint;//,imgSetting;//报警预警的圆点
     private WebView webView;
     private String urlWebView;//webView地址
     private Fragment controlFragment;
@@ -206,6 +206,8 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener{
         layout3.setOnClickListener(this);
         layout4.setOnClickListener(this);
         layout5.setOnClickListener(this);
+       // imgSetting.setOnClickListener(this);
+        txtLookAll.setOnClickListener(this);
     }
 
     private void addView(View view) {
@@ -224,12 +226,14 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener{
         layout5 = (RelativeLayout) view.findViewById(R.id.layout5);
         img5 = (ImageView) view.findViewById(R.id.img5);
         txt5 = (TextView) view.findViewById(R.id.txt5);
+        txtLookAll = (TextView) view.findViewById(R.id.txt_look_all);
 
         webView = (WebView)view.findViewById(R.id.webView);
         frameLayout = (FrameLayout)view.findViewById(R.id.framelayout);
         lineTitle = (LinearLayout)view.findViewById(R.id.line_title);
 
         imgPoint = (ImageView)view.findViewById(R.id.img_red_point);
+        //imgSetting = (ImageView)view.findViewById(R.id.img_setting);
     }
 
     //设置webView
@@ -275,6 +279,8 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener{
             case 3://报警预警
                 img3.setBackgroundResource(R.drawable.worn_s);
                 txt3.setTextColor(getResources().getColor(R.color.green));
+              //  imgSetting.setVisibility(View.VISIBLE);
+                txtLookAll.setVisibility(View.VISIBLE);
                 //urlWebView = "http://192.168.12.97:8080/dyTable.html";
                 if(TApplication.user == null || TApplication.defaultGreenHouse == null){
                     break;
@@ -316,6 +322,8 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener{
         img5.setBackgroundResource(R.drawable.more_n);
         txt5.setTextColor(getResources().getColor(R.color.gray));
         lineTitle.setVisibility(View.VISIBLE);
+       // imgSetting.setVisibility(View.GONE);
+        txtLookAll.setVisibility(View.GONE);
         if(TApplication.mode != 1){
             HomeActivity.imgLeft.setVisibility(View.VISIBLE);
         }else {
@@ -338,7 +346,8 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        clearClickView();
+
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.layout1:
                 if(TApplication.mode != 1){
@@ -371,9 +380,17 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener{
                 }
                 break;
             case R.id.layout5:
-                Intent intent = new Intent();
                 intent.setClass(getActivity(), MoreActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.txt_look_all:
+                txtLookAll.setVisibility(View.GONE);
+                if(TApplication.user == null || TApplication.defaultGreenHouse == null){
+                    break;
+                }
+                urlWebView = Const.URL_WARNING_WEB+ TApplication.user.getUserId()+"&dyid=";
+                setWebView();
                 break;
             default:
                 if(TApplication.mode != 1){
