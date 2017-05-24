@@ -3,6 +3,7 @@ package com.hxsn.jwb.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,14 +28,17 @@ import java.util.List;
 public class SelectHomeActivity extends Activity {
 
     private List<ChickHome> chickHomeList;
+    private String intentStr;
      
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_home);
 
-        BaseTitle.getInstance(this).setTitle("关于我们");
+        BaseTitle.getInstance(this).setTitle("选择鸡舍");
         obtainChickHomeList();
+
+        intentStr = getIntent().getStringExtra("intent");
 
     }
 
@@ -68,6 +72,9 @@ public class SelectHomeActivity extends Activity {
                 Shared.saveChickHome(chickHomeList.get(position));
                 //Shared.setValue("homeId",chickHomeList.get(position).getId());
                 Intent intent = new Intent(SelectHomeActivity.this,HomeActivity.class);
+                if(TextUtils.isEmpty(intentStr)){
+                    intent = new Intent(SelectHomeActivity.this,SystemSettingActivity.class);
+                }
                 
                 startActivity(intent);
             }

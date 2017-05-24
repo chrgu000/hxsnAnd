@@ -1,6 +1,9 @@
+
+
+
 sn-ssk-lfqx V1.1.2
-1.曲线变漂亮了
-2.
+1.曲线变漂亮了，用helloChart来实现，已集成到AndBase中
+2.添加国家突发事件预警信息http://www.12379.cn
 
 
 sn-ssk-lfqx V1.1.1

@@ -24,12 +24,15 @@ import com.hxsn.zzd.utils.UpdateUtil;
 
 import java.io.File;
 
+/**
+ * 提问题页面
+ */
 public class SendQuestActivity extends Activity implements View.OnClickListener{
     private EditText edtInfo;
     private TextView txtSend;
     private TextView txtPhotograph, txtPicture, txtCancel;
     private ImageView imgAdd;
-    private BasePicAdd basePicAdd;
+    private BasePicAdd basePicAdd;//上传照片的类
     //private boolean isAddPic = false;//图片是否已添加
     private String imgPath="";//添加活动图片的路径
     private String fileName="";//添加活动图片的文件名
@@ -72,7 +75,7 @@ public class SendQuestActivity extends Activity implements View.OnClickListener{
         }
 
         switch (v.getId()){
-            case R.id.txt_send:
+            case R.id.txt_send://提问题上传网络
 
                 final String info = edtInfo.getText().toString();
                 if(info.length() == 0){
@@ -108,7 +111,7 @@ public class SendQuestActivity extends Activity implements View.OnClickListener{
                 }.doPost(url,params);
 
                 break;
-            case R.id.img_add_pic:
+            case R.id.img_add_pic://加号添加图片
                 if(basePicAdd == null){
                     basePicAdd = new BasePicAdd(this);
                 }
@@ -119,6 +122,9 @@ public class SendQuestActivity extends Activity implements View.OnClickListener{
 
 
     @Override
+    /**
+     * 选择图片
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(basePicAdd != null){

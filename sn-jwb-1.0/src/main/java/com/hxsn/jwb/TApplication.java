@@ -46,13 +46,14 @@ public class TApplication extends Application {
     public static boolean sskCanGoback = false;
     public static List<ChickHome> homeList;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         AbLogUtil.setVerbose(false,false,true);
-        LogUtil.closeLog();
-
+       // LogUtil.closeLog();
+        LogUtil.openLog();
         activityList = new ArrayList<>();
 
         context = getApplicationContext();

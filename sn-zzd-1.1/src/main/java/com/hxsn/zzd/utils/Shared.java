@@ -43,6 +43,25 @@ public class Shared {
     }
 
 
+    public static Gardening getGardening() {
+        String json = shared.getString("garden", "");
+        Gson gson = new Gson();
+        Gardening gardening = gson.fromJson(json,Gardening.class);
+        if(gardening == null){
+            gardening = new Gardening();
+        }
+        return gardening;
+    }
+
+
+    public static boolean saveGardening(Gardening gardening) {
+        Gson gson = new Gson();
+        String json = gson.toJson(gardening);
+        return shared.edit().putString("garden", json).commit();
+    }
+
+
+
     public static boolean saveGardingList(List list){
         Gson gson = new Gson();
         String json = gson.toJson(list);

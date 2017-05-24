@@ -31,6 +31,7 @@
         android:layout_width="0dip"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="18.0sp"
         android:visibility="visible" />

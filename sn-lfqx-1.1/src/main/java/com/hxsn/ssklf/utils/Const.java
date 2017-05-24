@@ -48,7 +48,9 @@ public class Const {
     //历史数据接口
     public static final String URL_HISTORY = TApplication.URL_STRING + "get_history.json?uuId=";
 
+    //国家气象灾害预警http://msc.fweb.cn:7700/aiot2/app/qixj/langf_warning.json
 
+    public static final String URL_WARNING_WEATHER = TApplication.URL_STRING + "langf_warning.json";
 
     //农情站页面
     public static String URL_NQZHAN_WEB = "http://115.28.140.121:8280/zzdcms/app/" + "nsh.do?chid=40288c9a55ec67500155ec79ebcd0008";

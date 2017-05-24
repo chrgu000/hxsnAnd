@@ -2,9 +2,12 @@ package com.hxsn.zzd.videogo.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +23,7 @@ import android.widget.TextView;
 import com.andbase.ssk.utils.AndHttpRequest;
 import com.andbase.ssk.utils.AndJsonUtils;
 import com.andbase.ssk.utils.AndShared;
+import com.andbase.ssk.utils.LoadingDialogUtils;
 import com.andbase.ssk.utils.LogUtil;
 import com.andbase.ssk.utils.PermissionUtils;
 import com.hxsn.zzd.MainActivity;
@@ -44,9 +48,11 @@ public class EZCameraListActivity extends Activity implements View.OnClickListen
     private String TAG = "EZCameraListActivity";
     private ListAdapter mAdapter;
     private ListView listView;
+    private ImageView ivRefresh;
     private ImageButton btnAdd;//添加设备的按钮
     private String tempUrl;
     private String accessToken;
+    private Dialog freshDialog;//刷新对话框
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +133,8 @@ public class EZCameraListActivity extends Activity implements View.OnClickListen
      */
     private void checkAccessToken() {
         accessToken = AndShared.getValue("accessToken");
+        freshDialog = LoadingDialogUtils.createLoadingDialog(EZCameraListActivity.this, "加载中...");
+        mHandler.postDelayed(timeOutTask,6000);//6秒超时任务
         Log.i("EZCameraListActivity","----token="+accessToken+"------------");
         tempUrl = Const.URL_GET_ACCESS_TOKEN;
         if(accessToken.length() == 0){
@@ -152,6 +160,8 @@ public class EZCameraListActivity extends Activity implements View.OnClickListen
         listView = (ListView) findViewById(R.id.list);
         btnAdd = (ImageButton)findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(this);
+        ivRefresh = (ImageView)findViewById(R.id.iv_refresh);
+        ivRefresh.setOnClickListener(this);
     }
 
     private void visitYsy(){
@@ -161,7 +171,7 @@ public class EZCameraListActivity extends Activity implements View.OnClickListen
             @Override
             public void getResponse(String response) {
                 String code = AndJsonUtils.getCode(response);
-                if(code.equals("10002")){
+                if(code.equals("10002")){//token过期
                     obtainTokenAndCameraList(1);
                 }else {
                     obtainTokenAndCameraList(0);
@@ -188,17 +198,27 @@ public class EZCameraListActivity extends Activity implements View.OnClickListen
                     }
                     AndShared.setValue("accessToken",accessToken);
                     TApplication.cameraInfoList = JsonUtils.getCameraListForZzd(response);
-                    mAdapter = new ListAdapter(EZCameraListActivity.this);
-                    listView.setAdapter(mAdapter);
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            TApplication.cameraInfo = TApplication.cameraInfoList.get(position);
+                    if(TApplication.cameraInfoList.size() != 0){
+                        ivRefresh.setVisibility(View.GONE);
+                        mAdapter = new ListAdapter(EZCameraListActivity.this);
+                        listView.setAdapter(mAdapter);
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                TApplication.cameraInfo = TApplication.cameraInfoList.get(position);
 
-                            Intent intent = new Intent(EZCameraListActivity.this, RealPlayActivity.class);
-                            startActivity(intent);
-                        }
-                    });
+                                Intent intent = new Intent(EZCameraListActivity.this, RealPlayActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+
+                        LoadingDialogUtils.closeDialog(freshDialog);
+                        isTimeout = false;
+                        Message msg = Message.obtain();
+                        msg.what = MSG_INIT_OK;
+                        mHandler.sendMessage(msg);
+                    }
+
                 }
             }
         }.doPost(tempUrl);
@@ -214,6 +234,12 @@ public class EZCameraListActivity extends Activity implements View.OnClickListen
                 Intent intent = new Intent();
                 intent.setClass(this,CaptureActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.iv_refresh:
+                ivRefresh.setVisibility(View.GONE);
+                freshDialog = LoadingDialogUtils.createLoadingDialog(EZCameraListActivity.this,"加载中");
+                mHandler.postDelayed(timeOutTask,6000);//6秒超时任务
+                visitYsy();
                 break;
         }
     }
@@ -267,5 +293,40 @@ public class EZCameraListActivity extends Activity implements View.OnClickListen
         RelativeLayout rlPlay;
         ImageView imgHead;
     }
+
+
+    boolean isTimeout = false;
+    int MSG_INIT_TIMEOUT = 9;
+    int MSG_INIT_OK = 1;
+
+
+    Runnable timeOutTask = new Runnable() {
+        public void run() {
+            isTimeout = true;
+            Message msg = Message.obtain();
+            msg.what = MSG_INIT_TIMEOUT;
+            mHandler.sendMessage(msg);
+        }
+    };
+
+
+    //收到超时或成功获取列表的消息
+    public Handler mHandler = new Handler(){
+        public void handleMessage(Message msg){
+            if(msg.what == MSG_INIT_TIMEOUT){//超时
+                ivRefresh.setVisibility(View.VISIBLE);
+                if (mHandler != null && timeOutTask != null ){
+                    mHandler.removeCallbacks(timeOutTask);
+                }
+                LoadingDialogUtils.closeDialog(freshDialog);
+            }else if(msg.what == MSG_INIT_OK){//成功
+                if (mHandler != null && timeOutTask != null ){
+                    mHandler.removeCallbacks(timeOutTask);
+                }
+                LoadingDialogUtils.closeDialog(freshDialog);
+
+            }
+        }
+    };
 
 }

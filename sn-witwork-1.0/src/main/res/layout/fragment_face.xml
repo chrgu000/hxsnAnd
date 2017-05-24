@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/face_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp" >
+    </android.support.v4.view.ViewPager>
+
+    <com.hxsn.intelliwork.emoji.EmojiIndicatorView
+        android:id="@+id/face_indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal" >
+    </com.hxsn.intelliwork.emoji.EmojiIndicatorView>
+
+</LinearLayout>

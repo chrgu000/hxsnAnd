@@ -1,21 +1,10 @@
 
 package com.andbase.library.asynctask;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
+import android.os.Process;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import android.os.Process;
-import android.util.Log;
-
-import com.andbase.library.util.AbAppUtil;
 
 
 /**

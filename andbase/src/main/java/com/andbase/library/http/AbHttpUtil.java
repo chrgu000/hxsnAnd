@@ -12,6 +12,8 @@ import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 import android.content.Context;
@@ -40,8 +42,13 @@ import com.andbase.library.util.AbAppUtil;
 import com.andbase.library.util.AbFileUtil;
 import com.andbase.library.util.AbLogUtil;
 import com.andbase.library.util.AbStrUtil;
+import com.andbase.ssk.utils.LogUtil;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -530,6 +537,7 @@ public class AbHttpUtil {
             }
         }
     }
+
 
     /**
      * 发送get/post请求(无线程)

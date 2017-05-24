@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+  <RelativeLayout
+        android:id="@+id/commRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/topbg"
+        android:padding="8dp" >
+
+        <TextView
+            android:id="@+id/wodeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="交  流"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+  <EditText
+      android:id="@+id/et_work_com"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/commRL"
+      android:layout_centerHorizontal="true"
+      android:hint="搜索"
+      android:singleLine="true" >
+  </EditText>
+
+  <ListView
+      android:id="@+id/lv_work_com"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/et_work_com"
+      android:layout_centerHorizontal="true" >
+  </ListView>
+
+</RelativeLayout>

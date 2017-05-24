@@ -30,6 +30,7 @@ public class User implements Serializable{
     private String userExpertId;//CMS 用户专家组别，是个ID号
     @SerializedName("userrole")
     private String userRole;    //CMS用户角色
+    private int hasAddDevice;  //是否有添加设备的权限 0无 1有
 
     public User(){
         this.userId = "";
@@ -114,6 +115,14 @@ public class User implements Serializable{
 
     public void setUserRole(String userRole) {
         this.userRole = userRole;
+    }
+
+    public int getHasAddDevice() {
+        return hasAddDevice;
+    }
+
+    public void setHasAddDevice(int hasAddDevice) {
+        this.hasAddDevice = hasAddDevice;
     }
 
     @Override

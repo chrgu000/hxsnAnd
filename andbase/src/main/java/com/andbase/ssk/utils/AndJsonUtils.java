@@ -64,6 +64,28 @@ public class AndJsonUtils {
         return "";
     }
 
+    public static String getStatus(String jsonString){
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(jsonString);
+            return jsonObject.getString("status");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static long getCreateTime(String jsonString){
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(jsonString);
+            return jsonObject.getLong("createTime");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 
     public static boolean isSuccess(String jsonString){
         JSONObject jsonObject = null;

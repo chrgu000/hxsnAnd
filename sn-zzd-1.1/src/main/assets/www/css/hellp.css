@@ -1,0 +1,58 @@
+
+body{
+	background-color: #F5F5DC;
+	margin: 20px;
+}
+
+div{
+	margin-bottom: 10px;
+}
+
+
+.text1{
+	text-indent: 2em;
+	
+}
+
+.text1 span img{
+	width:15%;
+	height: 15%;
+	float: right;
+}
+
+
+#img1 img{
+	margin-right: 20px;
+	width:10%;
+	height: 10%;
+	float: right;
+}
+
+.table2{
+	text-align: center;
+	margin: 10px;
+	
+}
+
+.table2 table{
+	background:  #555555;
+	width: 100%;
+	border: 0;
+}
+
+.table2 table td{
+	background: #F5F5DC;
+}
+
+
+.divTable1{
+	margin-top: 10px;
+	font-size: 15px;
+	margin-bottom: -12px;
+}
+
+.divImg span img{
+	width: 60%;
+}
+
+

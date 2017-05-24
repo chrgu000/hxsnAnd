@@ -7,16 +7,12 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -25,13 +21,15 @@ import com.andbase.common.RxBus;
 import com.andbase.library.util.AbToastUtil;
 import com.andbase.ssk.utils.AndHttpRequest;
 import com.andbase.ssk.utils.AndJsonUtils;
-import com.andbase.ssk.utils.AndShared;
 import com.andbase.ssk.utils.LogUtil;
+import com.andbase.ssk.utils.PermissionUtils;
 import com.hxsn.zzd.R;
 import com.hxsn.zzd.TApplication;
 import com.hxsn.zzd.fragment.Mine5Fragment;
+import com.hxsn.zzd.fragment.Nong4Fragment;
 import com.hxsn.zzd.fragment.PestFragment;
-import com.hxsn.zzd.fragment.Ssk1Fragment;
+import com.hxsn.zzd.fragment.WenFragment;
+import com.hxsn.zzd.fragment.ZzdFragment;
 import com.hxsn.zzd.utils.Const;
 import com.hxsn.zzd.utils.UpdateUtil;
 import com.hxsn.zzd.videogo.activity.EZCameraListActivity;
@@ -50,67 +48,75 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     public static ImageView imgLeft;
     private RadioButton rb1, rb2, rb3, rb4, rb5;
     private TextView txtTitle,txtRight,txtLeft;
-    public static WebView webView;
-    public static FrameLayout frameLayout;
-    private Fragment mine5Fragment,ssk1Fragment,pestFragment;// njhui2Fragment;//,wen3Fragment, nqZhan4Fragment;
+    //public static WebView webView;
+    //public static FrameLayout frameLayout;
+    private Fragment mine5Fragment,zzd1Fragment,pestFragment,wenFragment,nong4Fragment;// njhui2Fragment;//,wen3Fragment, nqZhan4Fragment;
     private FragmentManager fm;
     private FragmentTransaction transaction;
-    // private int fragmentMode = 1;
     private ImageView imgPoint;//小红点
-    private String urlWebView;
     //private static int shouldOverrideUrlLoadingCnt=0;
-    private boolean isExit = false;
+    private String goBackEvent="";//返回事件
+    private boolean isExit = false;//是否退出
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         addView();
 
+
         addFragment();
         addListener();
 
-        LogUtil.i("HomeActivity","onCreate");
-        TApplication.baiduNotifyCallback = new Handler.Callback(){
-            @Override
-            public boolean handleMessage(Message msg) {
-                if(msg.what == 11){
-                    LogUtil.i("HomeActivity", "---------当前页面是控制页面且收到百度推送TApplication.webUrl="+TApplication.webUrl);
-                    Bundle bundle = msg.getData();
-                    String message = bundle.getString("message");
-                    urlWebView = TApplication.webUrl;
-                    webView.loadUrl("javascript:funFromjs('"+message+"')");
-                }
-                return false;
-            }
-        };
-
+        //根据模式选择进入的页面
+        setClickView(TApplication.mode);
         //检查是否有新版本
-        UpdateUtil.updateNowifiApp(this,Const.URL_UPDATE);
+        //动态申请CODE_WRITE_EXTERNAL_STORAGE权限
+        if(Integer.parseInt(android.os.Build.VERSION.SDK) < 23){
+            UpdateUtil.updateNowifiApp(this,Const.URL_UPDATE);
+        }else {
+            PermissionUtils.requestPermission(this, PermissionUtils.CODE_WRITE_EXTERNAL_STORAGE, new PermissionUtils.PermissionGrant() {
+                @Override
+                public void onPermissionGranted(int requestCode) {
+                    UpdateUtil.updateNowifiApp(HomeActivity.this,Const.URL_UPDATE);
+                }
+            });
+        }
 
         //获取用户未读警情信息数量
         requestReadWarning();
 
         //RxJava观察者和订阅者的注册，被观察者是JavaScriptInterface的showCnt方法，观察该方法是否被js远程调用
-        if (!EventBus.getDefault().isRegistered(this)) {
+        //为了保证该页面能保持注册，移植onStart中
+        /*if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
-        }
+        }*/
     }
 
+    /**
+     * 添加Fragment
+     */
     private void addFragment() {
-        mine5Fragment = new Mine5Fragment(this);
-        ssk1Fragment = new Ssk1Fragment(this);
-        pestFragment = new PestFragment();
+        mine5Fragment = Mine5Fragment.newInstance(this,5);
+        zzd1Fragment = ZzdFragment.newInstance(this,1);
+        pestFragment = PestFragment.newInstance(this,3);
+        wenFragment = WenFragment.newInstance(this,2);
+        nong4Fragment = Nong4Fragment.newInstance(this,4);
 
         fm = getFragmentManager();
-        transaction = fm.beginTransaction();
-        transaction.add(R.id.framelayout, ssk1Fragment);
-        transaction.commit();
+        if(!zzd1Fragment.isAdded()){
+            transaction = fm.beginTransaction();
+            transaction.add(R.id.framelayout_home, zzd1Fragment);
+            transaction.commit();
+        }
+
     }
 
-
+    /**
+     * 添加view控件
+     */
     private void addView() {
         imgLeft = (ImageView)findViewById(R.id.img_left);
-        imgLeft.setVisibility(View.INVISIBLE);
         rb1 = (RadioButton) findViewById(R.id.in_bottom).findViewById(R.id.rb_1);
         rb2 = (RadioButton) findViewById(R.id.in_bottom).findViewById(R.id.rb_2);
         rb3 = (RadioButton) findViewById(R.id.in_bottom).findViewById(R.id.rb_3);
@@ -119,12 +125,16 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         txtTitle = (TextView) findViewById(R.id.txt_title);
         txtRight = (TextView)findViewById(R.id.txt_right);
         txtLeft = (TextView)findViewById(R.id.txt_expert);
-        frameLayout = (FrameLayout) findViewById(R.id.framelayout);
-        webView = (WebView) findViewById(R.id.webView);
         imgPoint = (ImageView)findViewById(R.id.in_bottom).findViewById(R.id.img_red_point);
         rb1.setBackgroundResource(R.drawable.bottom1_s);
+        txtLeft.setText("");
+        initTitleUi(false);
+
     }
 
+    /**
+     * 添加按钮监听
+     */
     private void addListener() {
         rb1.setOnClickListener(this);
         rb2.setOnClickListener(this);
@@ -140,85 +150,102 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public  void onEventMainThread(String event){
 
+        //goBackEvent = event;
+
         LogUtil.i("HomeActivity", "---------消息订阅者订阅得到的消息event="+event);
-        if(event.equals("JavaScriptInterface")){
-            requestReadWarning();
-            //imgPoint.setVisibility(View.GONE);
-        }else if (event.equals("shouldOverrideUrlLoading")){
+
+        switch (event){
+            case "JavaScriptInterface":
+                requestReadWarning();
+                break;
+
+            case "deviceStatus"://收到手动控制的控制云推送消息了
+                setClickView(1);//进入设备控制页面
+                break;
+            case "zzd_to_home_click"://观察zzdFragment发来的点击事件
+                initTitleUi(true);
+                break;
+        }
+
+        if(event.contains("Back")){//可显示返回按钮
+            goBackEvent = event;
             imgLeft.setVisibility(View.VISIBLE);
-        }else if(event.equals("deviceStatus")){//收到手动控制的控制云推送消息了
-            setClickView(1);//进入设备控制页面
-        }else if(event.contains("mode")){
-            if(event.equals("mode1")){//观察Ssk1Fragment发来的事件
-                txtRight.setText("视频监控");
-            }else if(event.equals("mode2")){
-                txtRight.setText("提问题");
-            }else {
-                txtRight.setText("");
+        }
+        LogUtil.i("HomeActivity","onEventMainThread--goBackEvent="+goBackEvent);
+    }
+
+    //左上角返回键的处理,
+    private void leftGoBack() {
+        LogUtil.i("HomeActivity","点击左上角 返回按钮了goBackEvent="+goBackEvent);
+        if(goBackEvent.contains("canGoBack")){
+            switch (goBackEvent){
+                case "warning_canGoBack":
+                    EventBus.getDefault().post("home_warning_canGoBack");
+                    break;
+                case "realtime_canGoBack":
+                    EventBus.getDefault().post("home_realtime_canGoBack");
+                    break;
+                case "wen_canGoBack":
+                    EventBus.getDefault().post("home_wen_canGoBack");
+                    break;
+                case "nong4_canGoBack":
+                    EventBus.getDefault().post("home_nong4_canGoBack");
+                    break;
             }
-            //EventBus.getDefault().cancelEventDelivery(event);//取消这个消息
+        }else {
+            handleBackEvent();
+            if(goBackEvent.equals("cannotBack")){//不能返回了，就可以到首页面了
+                TApplication.mode = 1;
+            }
+           // goBackEvent = "";
         }
     }
 
-
-    //设置webv
-    @SuppressLint("SetJavaScriptEnabled")
-    private void setWebView() {
-        webView.setVisibility(View.VISIBLE);
-        webView.removeAllViews();
-        webView.getSettings().setJavaScriptEnabled(true);
-        MyWebViewClient webViewClient = new MyWebViewClient();
-        webView.setWebViewClient(webViewClient);
-        LogUtil.i("HomeActivity-setWebView","urlWebView="+urlWebView);
-        webView.loadUrl(urlWebView);
+    /**
+     *  初始化标题栏的UI
+     * @param isFromClick 是否是从点击按钮过来的 true 是
+     */
+    private void initTitleUi(boolean isFromClick){
+        LogUtil.i(HomeActivity.class,"initTitleUi--TApplication.isHouseView="+TApplication.isHouseView);
+        imgLeft.setVisibility(View.VISIBLE);
+        if(TApplication.mode == 1 || TApplication.mode > 5){
+            txtRight.setText("视频监控");
+            if(TApplication.mode == 1){
+                if (isFromClick){
+                    if(!TApplication.isHouseView){//在棚室选择页面时，mode的值也为1，这时应该显示返回键
+                        imgLeft.setVisibility(View.INVISIBLE);
+                    }
+                }
+            }
+        }else {
+            txtRight.setText("");
+        }
     }
 
-    private void clearButton() {
+    //初始化ＵＩ
+    private void initUI() {
         rb1.setBackgroundResource(R.drawable.bottom1_n);
         rb2.setBackgroundResource(R.drawable.bottom2_n);
         rb3.setBackgroundResource(R.drawable.bottom3_n);
         rb4.setBackgroundResource(R.drawable.bottom4_n);
         rb5.setBackgroundResource(R.drawable.bottom5_n);
         txtLeft.setText("");
-        txtRight.setText("");
-        imgLeft.setVisibility(View.INVISIBLE);
-        frameLayout.setVisibility(View.GONE);
-        webView.setVisibility(View.GONE);
-        TApplication.sskCanGoback = false;
+        initTitleUi(false);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if( TApplication.isNotify){//点击通知栏进入
-            LogUtil.i("HomeActivity", "onResume-TApplication.isNotify="+TApplication.isNotify);
-            urlWebView = AndShared.getValue("controlUrl");
-            TApplication.isNotify = false;
-            setWebView();
-        }
-        LogUtil.i("HomeActivity","onResume mode="+TApplication.mode);
+    protected void onStart() {
         setClickView(TApplication.mode);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+        super.onStart();
     }
-
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         EventBus.getDefault().unregister(this);
-    }
-
-
-
-    /**
-     * 渲染问专家页面
-     */
-    private void refreshExpertUI(){
-        webView.setVisibility(View.VISIBLE);
-        urlWebView = Const.URL_NSH_WEN + TApplication.user.getUserName();
-        setWebView();
-        if (TApplication.user.getUserRole().equals("3")) {
-            txtLeft.setText("专家回复");
-        }
     }
 
     //获取用户未读警情信息数量
@@ -239,92 +266,94 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         }.doGet(url);
     }
 
+    //设置点击事件
     private void setClickView(int mode){
-        LogUtil.i("HomeActivity","setClickView mode="+TApplication.mode);
-        clearButton();
-        if(mode != 1){
-            imgLeft.setVisibility(View.VISIBLE);
-        }
+        LogUtil.i("HomeActivity","setClickView-mode="+TApplication.mode);
+        initUI();
+
         switch (mode) {
-            case 1:
-                frameLayout.setVisibility(View.VISIBLE);
+            case 1://早知道
                 txtRight.setText("视频监控");
                 rb1.setBackgroundResource(R.drawable.bottom1_s);
                 txtTitle.setText("早知道");
                 transaction = fm.beginTransaction();
-                transaction.replace(R.id.framelayout, ssk1Fragment);
+                transaction.replace(R.id.framelayout_home, zzd1Fragment);
                 transaction.commit();
                 break;
-            case 2:
+            case 2://问专家
                 txtRight.setText("提问题");
                 rb2.setBackgroundResource(R.drawable.bottom2_s);
                 txtTitle.setText("问专家");
+
+                transaction = fm.beginTransaction();
+                transaction.replace(R.id.framelayout_home, wenFragment);
+                transaction.commit();
+
+                //获取用户身份，是否是专家
                 if(TApplication.user.getUserRole() == null || TApplication.user.getUserRole().length()==0){
                     new AndHttpRequest(TApplication.context) {
                         @Override
                         public void getResponse(String response) {
                             if(AndJsonUtils.getCode(response).equals("200")){
                                 TApplication.user = AndJsonUtils.setCmsUser(response,TApplication.user);
+                                if (TApplication.user.getUserRole().equals("3")) {
+                                    txtLeft.setText("专家回复");
+                                }
 
-                                refreshExpertUI();
                             }else {
-                                AbToastUtil.showToast(HomeActivity.this,AndJsonUtils.getDescription(response));
+                                //AbToastUtil.showToast(HomeActivity.this,AndJsonUtils.getDescription(response));
                             }
                         }
                     }.doGet(Const.URL_GET_CMS_USER_INFO+TApplication.user.getUserName());
                 }else {
-                    refreshExpertUI();
+                    if (TApplication.user.getUserRole().equals("3")) {
+                        txtLeft.setText("专家回复");
+                    }
                 }
-                LogUtil.i("HomeActivity", "问专家-urlWebView=" + urlWebView);
                 break;
-            case 3:
-                frameLayout.setVisibility(View.VISIBLE);
+            case 3://病虫害
                 rb3.setBackgroundResource(R.drawable.bottom3_s);
                 txtRight.setText("");
                 txtTitle.setText("病虫害");
                 transaction = fm.beginTransaction();
-                transaction.replace(R.id.framelayout, pestFragment);
+                transaction.replace(R.id.framelayout_home, pestFragment);
                 transaction.commit();
                 break;
-            case 4:
+            case 4://农事汇
                 txtRight.setText("");
-                webView.setVisibility(View.VISIBLE);
                 rb4.setBackgroundResource(R.drawable.bottom4_s);
-                urlWebView = Const.URL_NSH_WEB+TApplication.user.getUserName();
-                setWebView();
+                transaction = fm.beginTransaction();
+                transaction.replace(R.id.framelayout_home, nong4Fragment);
+                transaction.commit();
                 txtTitle.setText("农事汇");
                 break;
-            case 5:
+            case 5://我的
                 txtRight.setText("");
-                frameLayout.setVisibility(View.VISIBLE);
                 rb5.setBackgroundResource(R.drawable.bottom5_s);
                 transaction = fm.beginTransaction();
-                transaction.replace(R.id.framelayout, mine5Fragment);
+                transaction.replace(R.id.framelayout_home, mine5Fragment);
                 transaction.commit();
                 txtTitle.setText("我的");
                 break;
             default:
-                frameLayout.setVisibility(View.VISIBLE);
-                txtRight.setText("");
+                txtRight.setText("视频监控");
                 rb1.setBackgroundResource(R.drawable.bottom1_s);
                 txtTitle.setText("早知道");
                 transaction = fm.beginTransaction();
-                transaction.replace(R.id.framelayout, ssk1Fragment);
+                transaction.replace(R.id.framelayout_home, zzd1Fragment);
                 transaction.commit();
                 break;
         }
     }
 
-
     @Override
+    /**
+     * 监控按键
+     */
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        LogUtil.i("HomeActivity","---onKeyDown-------keyCode="+keyCode+"------TApplication.mode="+TApplication.mode+"webView.canGoBack()="+webView.canGoBack());
+        LogUtil.i("HomeActivity","---onKeyDown-------keyCode="+keyCode);
         if (keyCode == KeyEvent.KEYCODE_BACK ) {
-            if(webView.canGoBack()){
-                webView.goBack();
-            }else {
-                handleBackEvent();
-            }
+            leftGoBack();
             return false;
         } else {
             return super.onKeyDown(keyCode,event);
@@ -332,6 +361,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     }
 
 
+    //按两次退出ＡＰＰ
     public void exit(){
         if (!isExit) {
             isExit = true;
@@ -360,22 +390,27 @@ public class HomeActivity extends Activity implements View.OnClickListener {
      */
     private void handleBackEvent(){
 
-        if(TApplication.sskCanGoback){
-            LogUtil.i("HomeActivity","------------------------实时监控二级页面返回可用了------------");
-            TApplication.sskCanGoback = false;
-            EventBus.getDefault().post("sskGoBack");//创建一个被观察者事件由Ssk1Fragment来订阅,得到消息后进行webView的回退操作
-            imgLeft.setVisibility(View.GONE);
-        }else {
-            if(TApplication.mode == 1){
+        LogUtil.i(HomeActivity.class,"handleBackEvent********TApplication.mode="+TApplication.mode+",TApplication.isHouseView="+TApplication.isHouseView);
+
+        if(TApplication.mode == 1){
+            imgLeft.setVisibility(View.INVISIBLE);
+
+            if(!TApplication.isHouseView){//mode=1且不在棚室选择页面才能按两次退出
                 exit();
-            }else if(TApplication.mode > 5){//按下返回键，调用退出函数，并且通知ssk1Fragment页面切换到实时监控
-                TApplication.mode = 1;
-                RxBus.getInstance().post(TAG+"发送消息给ssk1Fragment");//向fragment发送消息
-            }else{
-                TApplication.mode = 1;
-                setClickView(1);
+            }else {
+                RxBus.getInstance().post("homeActivity_switch");//向zzdFragment发送消息
             }
+            TApplication.isHouseView = false;
+
+        }else if(TApplication.mode > 5){//按下返回键，调用退出函数，并且通知zzdFragment页面切换到实时监控
+            TApplication.mode = 1;
+            imgLeft.setVisibility(View.VISIBLE);
+            RxBus.getInstance().post("homeActivity_switch");//向zzdFragment发送消息
+        }else{
+            TApplication.mode = 1;
+            setClickView(1);
         }
+
 
     }
 
@@ -384,89 +419,57 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         LogUtil.i("HomeActivity","onClick mode="+TApplication.mode);
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.rb_1:
+            case R.id.rb_1://早知道
                 if (TApplication.mode != 1) {
                     TApplication.mode = 1;
                     setClickView(1);
                 }
                 break;
-            case R.id.rb_2:
+            case R.id.rb_2://问专家
                 if (TApplication.mode != 2) {
-                    setClickView(2);
                     TApplication.mode = 2;
+                    setClickView(2);
                 }
                 break;
-            case R.id.rb_3:
+            case R.id.rb_3://病虫害
                 if (TApplication.mode != 3) {
-                    setClickView(3);
                     TApplication.mode = 3;
+                    setClickView(3);
                 }
                 break;
-            case R.id.rb_4:
+            case R.id.rb_4://农事汇
                 if (TApplication.mode != 4) {
-                    setClickView(4);
                     TApplication.mode = 4;
+                    setClickView(4);
                 }
                 break;
-            case R.id.rb_5:
+            case R.id.rb_5://我的
                 if (TApplication.mode != 5) {
-                    setClickView(5);
                     TApplication.mode = 5;
+                    setClickView(5);
                 }
                 break;
-            case R.id.img_left:
-                LogUtil.i("HomeActivity","点击左上角 返回按钮了");
-                if(webView.canGoBack()){
-                    webView.goBack();
-                }else {
-                    handleBackEvent();
-                }
+            case R.id.img_left://返回按钮
+                leftGoBack();
                 break;
-            case R.id.txt_expert:
-
+            case R.id.txt_expert://专家回复
                 intent.setClass(this,ExpertActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.txt_right:
+            case R.id.txt_right://视频监控或提问题
                 intent = new Intent();
                 switch (TApplication.mode){
-                    case 1:
-                        intent.setClass(this,EZCameraListActivity.class);
-                        startActivity(intent);
-                        break;
                     case 2:
                         intent.setClass(this,SendQuestActivity.class);
                         startActivity(intent);
                         break;
+                    default:
+                        intent.setClass(this,EZCameraListActivity.class);
+                        startActivity(intent);
+                        break;
                 }
                 break;
         }
     }
 
-
-    public class MyWebViewClient extends WebViewClient {
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            TApplication.webUrl = url;
-            LogUtil.i("HomeActivity", "shouldOverrideUrlLoading-url="+url);
-            imgLeft.setVisibility(View.VISIBLE);
-
-            return true;
-        }
-
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            LogUtil.i("HomeActivity", "onPageStarted-url="+url);
-            super.onPageStarted(view, url, favicon);
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            LogUtil.i("HomeActivity", "onPageFinished-url="+url);
-            TApplication.webUrl = url;
-        }
-    }
 }

@@ -1,21 +1,16 @@
 package com.hxsn.zzd.service;
 
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
 
 import com.andbase.library.util.AbLogUtil;
 import com.andbase.ssk.entity.NotifyInfo;
 import com.andbase.ssk.utils.AndJsonUtils;
 import com.andbase.ssk.utils.AndShared;
 import com.baidu.android.pushservice.PushMessageReceiver;
-import com.hxsn.zzd.R;
 import com.hxsn.zzd.TApplication;
 import com.hxsn.zzd.activity.HomeActivity;
-import com.hxsn.zzd.activity.NewsActivity;
 import com.hxsn.zzd.utils.Const;
 import com.videogo.util.LogUtil;
 
@@ -26,6 +21,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 /**
+ * 百度推送的service
  *  Created by jiely on 2016/5/5.
  */
 public class BaiduPushMessageReceiver extends PushMessageReceiver {
@@ -103,7 +99,7 @@ public class BaiduPushMessageReceiver extends PushMessageReceiver {
     public void onMessage(Context context, String message, String customContentString) {
         String messageString = "透传消息 message=\"" + message + "\" customContentString=" + customContentString;
         LogUtil.i(Tgg1, "onMessage-" + messageString);
-         NotificationManager mNotificationManager;
+         /*NotificationManager mNotificationManager;
          NotificationCompat.Builder mBuilder;
 
         TApplication.isNotify = true;
@@ -113,7 +109,7 @@ public class BaiduPushMessageReceiver extends PushMessageReceiver {
         mBuilder.setContentTitle("设备状态改变")
                 .setContentText(message)
                 .setContentIntent(showIntentActivityNotify(context)) //点击的意图ACTION是跳转到Intent
-                .setTicker("测试通知来啦")//通知首次出现在通知栏，带上升动画效果的
+                //.setTicker("测试通知来啦")//通知首次出现在通知栏，带上升动画效果的
                 .setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示
                 .setPriority(Notification.PRIORITY_DEFAULT)//设置该通知优先级
                 .setAutoCancel(false)//设置这个标志当用户单击面板就可以让通知将自动取消
@@ -132,7 +128,7 @@ public class BaiduPushMessageReceiver extends PushMessageReceiver {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 
@@ -164,20 +160,27 @@ public class BaiduPushMessageReceiver extends PushMessageReceiver {
                 + description + "\" customContent=" + customContentString;
         LogUtil.i(Tgg1, "onNotificationClicked-notifyString=" + notifyString);
         NotifyInfo notifyInfo = getNotifyInfo(description,title,customContentString);
+
+        try {
+            JSONObject jsonObject = new JSONObject(customContentString);
+            TApplication.warningId = jsonObject.optString("warningid");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         TApplication.notifyInfo = notifyInfo;
 
         if(notifyInfo != null){
             Intent intent = new Intent();
             switch (notifyInfo.getType()){
-                case 1:
-                    intent.setClass(context.getApplicationContext(), NewsActivity.class);
-                    TApplication.newsUrl = Const.URL_NEWS_WEB+"&nqzuuid="+notifyInfo.getId();
+                case 1://新闻类
+
                     break;
-                case 2:
+                case 2://报警类
                     intent.setClass(context.getApplicationContext(), HomeActivity.class);
                     TApplication.mode = 7;
                     break;
-                case 3:
+                case 3://设备
                     intent.setClass(context.getApplicationContext(), HomeActivity.class);
                     TApplication.mode = 8;
                     break;
@@ -210,7 +213,15 @@ public class BaiduPushMessageReceiver extends PushMessageReceiver {
         TApplication.notifyInfo = getNotifyInfo(title, description, customContentString);
     }
 
+    /**
+     * 拼接为NotifyInfo对象
+     * @param title title
+     * @param description description
+     * @param customContentString type id
+     * @return NotifyInfo
+     */
     private NotifyInfo getNotifyInfo(String title, String description, String customContentString){
+
         NotifyInfo notifyInfo = new NotifyInfo();
         notifyInfo.setTitle(title);
         notifyInfo.setDescription(description);
@@ -219,6 +230,10 @@ public class BaiduPushMessageReceiver extends PushMessageReceiver {
         if(notifyInfo2 != null){
             notifyInfo.setId(notifyInfo2.getId());
             notifyInfo.setType(notifyInfo2.getType());
+        }
+
+        if(notifyInfo2.getType() == 3){
+            EventBus.getDefault().post("deviceStatus"+description);//设备状态改变了
         }
 
         return  notifyInfo;

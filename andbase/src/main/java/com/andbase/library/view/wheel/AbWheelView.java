@@ -1,9 +1,6 @@
 
 package com.andbase.library.view.wheel;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -27,6 +24,9 @@ import android.widget.Scroller;
 
 import com.andbase.library.util.AbGraphicUtil;
 import com.andbase.library.util.AbViewUtil;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Copyright amsoft.cn
@@ -178,7 +178,7 @@ public class AbWheelView extends View {
 	private int labelTextSize = 35;
 
 	/** 单行文字的高度. */
-	private int itemOffset = valueTextSize / 5;
+	private int itemOffset = valueTextSize / 3;
 	
 	/** 中间覆盖条高度. */
 	private int additionalItemHeight = 30;

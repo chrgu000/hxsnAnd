@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/gray_light_n"
+    android:orientation="vertical"
     tools:ignore="HardcodedText">
 
     <include
@@ -12,11 +13,128 @@
         android:layout_height="48dip"
         layout="@layout/in_title"/>
 
-    <WebView
-        android:id="@+id/web_view"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/in_title"/>
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_current_home_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:text="当前鸡舍:"
+            android:textSize="16sp"
+            android:textColor="@color/black_text_n"/>
+
+        <TextView
+            android:id="@+id/txt_current_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/txt_current_home_info"
+            android:layout_centerVertical="true"
+            android:text="1111111"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/txt_select"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="选择鸡舍"
+            android:textSize="18sp"
+            android:layout_alignParentRight="true"
+            android:background="@color/sky_blue"
+            android:textColor="@color/white"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="温度上限:"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/edt_up"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="numberDecimal"
+            android:background="@color/white"
+            android:textColor="@color/black_text_n"/>
+    </LinearLayout>
 
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="温度下限:"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/edt_down"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="numberDecimal"
+            android:background="@color/white"
+            android:textColor="@color/black_text_n"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_sure"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:text="确定"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:background="@color/green_none"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/txt_cancel"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="50dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textSize="18sp"
+            android:background="@color/orange"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+
+</LinearLayout>

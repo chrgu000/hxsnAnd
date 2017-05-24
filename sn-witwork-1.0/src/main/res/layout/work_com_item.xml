@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <FrameLayout
+        android:id="@+id/item_img_parent"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp" >
+
+        <ImageView
+            android:id="@+id/iv_comm_item"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            android:src="@drawable/contactor" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <TextView
+                android:id="@+id/item_remind_tv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/redpoint"
+                android:gravity="center"
+                android:text="99+"
+                android:textColor="#ffffff"
+                android:textSize="8sp" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_name_comm_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/item_img_parent"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_txt_comm_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_name_comm_item"
+        android:layout_below="@+id/tv_name_comm_item"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toLeftOf="@+id/tv_type_comm_item"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tv_date_comm_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_name_comm_item"
+        android:layout_alignBottom="@+id/tv_name_comm_item"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tv_type_comm_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/item_img_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:text="TextView" />
+
+</RelativeLayout>

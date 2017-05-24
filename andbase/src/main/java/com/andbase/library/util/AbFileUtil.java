@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.os.StatFs;
 
 import com.andbase.library.config.AbAppConfig;
@@ -261,6 +263,9 @@ public class AbFileUtil {
 		}
 		return drawable;
 	}
+
+
+
 	
      /**
  	 * 下载网络文件到SD卡中.如果SD中存在同名文件将不再下载
@@ -294,7 +299,7 @@ public class AbFileUtil {
                          //文件已存在
                          return files[i].getPath();
                      }
-                } 
+                }
             }
              
  			URL mUrl = new URL(url);
@@ -352,6 +357,121 @@ public class AbFileUtil {
  		}
  		return downFilePath;
  	 }
+
+
+	/**
+	 * desc:下载文件到本地，url为网络地址 absolutePath为文件地址
+	 * auther:jiely
+	 * create at 2015/10/10 20:35
+	 */
+	private static final int TIMEOUT = 10 * 1000;
+	public static long downloadFileToLocal(String down_url, String absolutePath, Handler handler) throws Exception {
+		int down_step = 5;// 提示step
+		int totalSize;// 文件总大小
+		int downloadCount = 0;// 已经下载好的大小
+		int updateCount = 0;// 已经上传的文件大小
+		InputStream inputStream;
+		OutputStream outputStream;
+		URL url = new URL(down_url);
+		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+		httpURLConnection.setConnectTimeout(TIMEOUT);
+		httpURLConnection.setReadTimeout(TIMEOUT);
+		// 获取下载文件的size
+		totalSize = httpURLConnection.getContentLength();
+		if (httpURLConnection.getResponseCode() == 404) {
+			throw new Exception("fail!");
+		}
+		inputStream = httpURLConnection.getInputStream();
+
+		File file = new File(absolutePath);
+
+		if (!file.exists()) {
+			try {
+				file.getParentFile().mkdirs();
+				file.createNewFile();
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+
+		if (file.isDirectory()) {
+			return 0;
+		}
+
+		outputStream = new FileOutputStream(absolutePath, false);// 文件存在则覆盖掉
+		byte buffer[] = new byte[1024];
+		int readsize = 0;
+		while ((readsize = inputStream.read(buffer)) != -1) {
+			outputStream.write(buffer, 0, readsize);
+			downloadCount += readsize;// 时时获取下载到的大小
+			/**
+			 * 每次增张5%
+			 */
+			if (updateCount == 0 || (downloadCount * 100 / totalSize - down_step) >= updateCount) {
+				updateCount += down_step;
+			}
+
+			if (handler != null) {
+				Integer progress = downloadCount * 100 / totalSize;
+				//TApplication.keyValueMap.put(Const.DOWNLOAD_PROGRESS, progress);
+				Message message = handler.obtainMessage();
+				message.what = 11;//Const.MSG_DOWNLOAD_PROGRESS;
+				handler.sendMessage(message);
+			}
+
+		}
+
+		if (handler != null) {
+			Message message = handler.obtainMessage();
+			message.what = 12;//Const.MSG_DOWNLOAD_OK;
+			handler.sendMessage(message);
+		}
+
+
+		if (httpURLConnection != null) {
+			httpURLConnection.disconnect();
+		}
+		inputStream.close();
+		outputStream.close();
+
+		return downloadCount;
+	}
+
+
+	/**
+	 * author：jiely
+	 * Date：2015年4月24日
+	 * Title: deleteFile
+	 * Description: 删除指定文件夹下所有文件,不删除文件夹，如果文件夹不存在则创建文件夹
+	 */
+	public static boolean deleteAllFile(String path) {
+		boolean isOk = true;
+		try {
+			File file = new File(path);
+			if (!file.exists()) {
+				return file.mkdirs();
+			}
+			if (!file.isDirectory()) {
+				deleteFile(file);
+				return false;
+			}
+
+			String[] tempList = file.list();
+			File temp = null;
+			for (int i = 0; i < tempList.length; i++) {
+				temp = new File(path + tempList[i]);
+				if (temp.isFile()) {
+					isOk = temp.delete();
+				}
+
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return false;
+		}
+		return isOk;
+	}
 	
 	/**
 	 * 获取网络文件的大小.
@@ -507,6 +627,19 @@ public class AbFileUtil {
         }
         return name;
     }
+
+	/**
+	 * author：jiely
+	 * Date：2015年4月23日
+	 * Title: getFileName
+	 * Description: 通过分割线"/"获取文件名
+	 * param @param url
+	 */
+	public static String getFileName(String url) {
+
+		String[] split = url.split("/");
+		return split[split.length - 1];
+	}
     
 	
 	/**
@@ -951,7 +1084,7 @@ public class AbFileUtil {
 	 *
 	 * @return true, if successful
 	 */
-    public static boolean deleteFile(File file) {
+  /*  public static boolean deleteFile(File file) {
     	
        try {
 		   if(!isCanUseSD()){
@@ -974,7 +1107,36 @@ public class AbFileUtil {
 		   return false;
 	   }
        return true;
-    }
+    }*/
+
+
+	/**
+	 * author：zhoujy
+	 * Date：2015-2-9
+	 * Title: createLocalPic
+	 * Description: 删除某文件夹下所有文件
+	 * param     文件夹路
+	 */
+	public static boolean deleteFile(File file) {
+
+		boolean isDelete = true;
+
+		if (file.exists()) {                    //判断文件是否存在
+			if (file.isFile()) {                    //判断是否是文件
+				file.delete();                       //delete()方法 你应该知道 是删除的意思;
+			} else if (file.isDirectory()) {              //否则如果它是一个目录
+				File files[] = file.listFiles();               //声明目录下所有的文件 files[];
+				for (int i = 0; i < files.length; i++) {            //遍历目录下所有的文件
+					deleteFile(files[i]);             //把每个文件 用这个方法进行迭代
+				}
+			}
+			isDelete = file.delete();
+		} else {
+			System.out.println("所删除的文件不存在！" + '\n');
+		}
+
+		return isDelete;
+	}
     
     
     /**

@@ -16,6 +16,11 @@ public class Gardening {
         this.id = "";
     }
 
+    public Gardening(String id,String name){
+        this.id = id;
+        this.name = name;
+    }
+
     public Gardening(String name, List<GreenHouse> greenHouseList) {
         this.id = "";
         this.name = name;
@@ -44,5 +49,24 @@ public class Gardening {
 
     public void setGreenHouseList(List<GreenHouse> greenHouseList) {
         this.greenHouseList = greenHouseList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Gardening gardening = (Gardening) o;
+
+        if (!id.equals(gardening.id)) return false;
+        return name.equals(gardening.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        return result;
     }
 }

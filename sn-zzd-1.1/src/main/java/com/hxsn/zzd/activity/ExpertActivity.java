@@ -2,7 +2,10 @@ package com.hxsn.zzd.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.andbase.library.util.AbAppUtil;
 import com.andbase.ssk.entity.AnswerInfo;
 import com.andbase.ssk.entity.QuestionInfo;
 import com.andbase.ssk.utils.AndHttpRequest;
@@ -21,8 +25,14 @@ import com.hxsn.zzd.R;
 import com.hxsn.zzd.TApplication;
 import com.hxsn.zzd.base.BaseTitle;
 import com.hxsn.zzd.utils.Const;
-import com.hxsn.zzd.utils.ImageUtil;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -35,6 +45,7 @@ public class ExpertActivity extends Activity implements View.OnClickListener{
     private int mode = 1;
     private List<QuestionInfo> questionList,questionList0,questionList1;
     private MyAdapter adapter;
+    DisplayImageOptions options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +57,16 @@ public class ExpertActivity extends Activity implements View.OnClickListener{
 
         //获取未回复问题列表
         obtainQuestionList(0);
+
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.ic_launcher)
+                .showImageForEmptyUri(R.mipmap.ic_empty)
+                .showImageOnFail(R.mipmap.ic_error)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .displayer(new RoundedBitmapDisplayer(20))
+                .build();
     }
 
     private void addView() {
@@ -76,7 +97,7 @@ public class ExpertActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.txt_left:
+            case R.id.txt_left://未回复
                 if(mode != 1){
                     mode = 1;
                     txtLeft.setBackgroundColor(getResources().getColor(R.color.sky_blue));
@@ -87,7 +108,7 @@ public class ExpertActivity extends Activity implements View.OnClickListener{
                     adapter.notifyDataSetChanged();
                 }
                 break;
-            case R.id.txt_right:
+            case R.id.txt_right://已回复
                 if(mode != 2){
                     mode = 2;
                     txtRight.setBackgroundColor(getResources().getColor(R.color.sky_blue));
@@ -151,9 +172,20 @@ public class ExpertActivity extends Activity implements View.OnClickListener{
             viewHolder.txtTime.setText(questionList.get(position).getTime());
             viewHolder.txtName.setText(questionList.get(position).getUsername());
             String imgUrl = questionList.get(position).getUrl();
+            viewHolder.imageView.setImageBitmap(null);
+
             if(imgUrl.length()>0){
-                viewHolder.imageView.setBackgroundDrawable(null);
-                ImageUtil.displayImage(imgUrl,viewHolder.imageView);
+                DisplayMetrics displayMetrics = AbAppUtil.getDisplayMetrics(ExpertActivity.this);
+                LogUtil.i(ExpertActivity.class,"imgUrl="+imgUrl+",position="+position+",displayMetrics.density="+displayMetrics.density+",displayMetrics.densityDpi="+displayMetrics.densityDpi);
+
+                ImageLoader.getInstance().displayImage(imgUrl, viewHolder.imageView, options, new AnimateFirstDisplayListener());
+
+               // ImageUtil.displayImage(imgUrl,viewHolder.imageView,(int)(95*displayMetrics.density),(int)(95*displayMetrics.density));
+            }else {
+                LogUtil.i(ExpertActivity.class,"imgUrl="+imgUrl+",position="+position);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    viewHolder.imageView.setBackground(getResources().getDrawable(R.mipmap.ic_launcher));
+                }
             }
 
             if(mode == 1){
@@ -178,15 +210,19 @@ public class ExpertActivity extends Activity implements View.OnClickListener{
         }
     }
 
+    /**
+     * 获取问题列表
+     * @param i 0，初次获取 1,第二次获取列表要更新适配器
+     */
     private void obtainQuestionList(final int i) {
         new AndHttpRequest(this) {
             @Override
             public void getResponse(String response) {
-                if(i == 0){
+                if(i == 0){//初次获取
                     questionList0 = AndJsonUtils.getQuestionList(TApplication.URL_CMS_STRING,response);
                     questionList = questionList0;
                     listview.setAdapter(adapter);
-                }else {
+                }else {//第二次获取列表要更新适配器
                     questionList1 = AndJsonUtils.getQuestionList(TApplication.URL_CMS_STRING,response);
                     questionList = questionList1;
                     adapter.notifyDataSetChanged();
@@ -196,9 +232,22 @@ public class ExpertActivity extends Activity implements View.OnClickListener{
                 +"&isReplied="+i+"&pageStart=0&pageSize=50",null);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        LogUtil.i("ExpertActivity","requestCode="+requestCode+"resultCode="+requestCode);
-        super.onActivityResult(requestCode, resultCode, data);
+    private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
+
+        static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
+
+        @Override
+        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+            if (loadedImage != null) {
+                ImageView imageView = (ImageView) view;
+                boolean firstDisplay = !displayedImages.contains(imageUri);
+                if (firstDisplay) {
+                    FadeInBitmapDisplayer.animate(imageView, 500);
+                    displayedImages.add(imageUri);
+                }
+            }
+        }
     }
+
+
 }

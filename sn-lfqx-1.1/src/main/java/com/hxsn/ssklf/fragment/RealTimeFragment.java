@@ -120,7 +120,7 @@ public class RealTimeFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_real_time, container, false);
-        Log.i("RealTimeFragment","onCreateView");
+
         Log.i("RealTimeFragment","menuMidMode="+menuMidMode);
         menuMidMode=1;
         addView(view);

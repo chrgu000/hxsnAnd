@@ -10,7 +10,7 @@
         android:id="@+id/in_mid_menu"
         layout="@layout/in_mid_menu"/>
 
-    <com.hxsn.ssklf.ui.MyLineChart
+    <com.andbase.chartlibrary.view.LineChartView
         android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

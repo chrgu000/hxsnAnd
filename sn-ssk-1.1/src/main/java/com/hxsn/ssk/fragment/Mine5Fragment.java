@@ -35,7 +35,7 @@ import com.hxsn.ssk.utils.UpdateUtil;
 public class Mine5Fragment extends Fragment implements View.OnClickListener {
 
     private Context context;
-    private TextView txt2, txt3, txt4, txt5, txtName, txtVersion;//txtSystemSetting;
+    private TextView txtPersonal, txtModifyPsw, txtHelp, txtExit, txtName, txtVersion;//txtSystemSetting;
     private RelativeLayout rl1;
     private String version;
 
@@ -64,10 +64,10 @@ public class Mine5Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void addListener() {
-        txt2.setOnClickListener(this);
-        txt3.setOnClickListener(this);
-        txt4.setOnClickListener(this);
-        txt5.setOnClickListener(this);
+        txtPersonal.setOnClickListener(this);
+        txtModifyPsw.setOnClickListener(this);
+        txtHelp.setOnClickListener(this);
+        txtExit.setOnClickListener(this);
         //txtSystemSetting.setOnClickListener(this);
 
         if(TApplication.versionType != Const.RELEASE_VERTION){
@@ -78,10 +78,10 @@ public class Mine5Fragment extends Fragment implements View.OnClickListener {
 
     private void addView(View v) {
         rl1 = (RelativeLayout)v.findViewById(R.id.rl_1);
-        txt2 = (TextView) v.findViewById(R.id.txt2);
-        txt3 = (TextView) v.findViewById(R.id.txt3);
-        txt4 = (TextView) v.findViewById(R.id.txt4);
-        txt5 = (TextView) v.findViewById(R.id.txt5);
+        txtPersonal = (TextView) v.findViewById(R.id.txt_personal_set);
+        txtModifyPsw = (TextView) v.findViewById(R.id.txt_modify_psw);
+        txtHelp = (TextView) v.findViewById(R.id.txt_help);
+        txtExit = (TextView) v.findViewById(R.id.txt_exit);
         txtVersion = (TextView) v.findViewById(R.id.txt_version);
         version = "ssk_v" + UpdateUtil.getThisAppVersion(getActivity());
         //txtSystemSetting = (TextView)v.findViewById(R.id.txt_system_setting);
@@ -108,19 +108,19 @@ public class Mine5Fragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.txt2:
+            case R.id.txt_personal_set:
                 intent.setClass(context, SettingActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.txt3:
+            case R.id.txt_modify_psw:
                 intent.setClass(context, PasswordEditActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.txt4:
+            case R.id.txt_help:
                 intent.setClass(context, AboutUsActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.txt5:
+            case R.id.txt_exit:
                 TApplication.user = new User();
                 AndShared.clearUser();
                 AndShared.setValue("login","0");

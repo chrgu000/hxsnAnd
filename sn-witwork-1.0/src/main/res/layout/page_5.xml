@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+   <RelativeLayout
+        android:id="@+id/wdnzjjRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F3F0E9"
+        android:padding="8dp" >
+
+        <TextView
+            android:id="@+id/dqfbTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="园区简介"
+            android:layout_centerVertical="true"
+            android:textColor="#2b2b2b"
+            android:textSize="20sp" />
+
+<ImageButton
+                    android:id="@+id/wdjjbackBtn"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/backjj" />
+       
+        
+    </RelativeLayout>
+      <WebView
+       android:id="@+id/wodejjWV"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@+id/wdnzjjRL" />
+
+</RelativeLayout>

@@ -49,39 +49,27 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center"
-            android:text="提问题"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:layout_marginRight="10dp"
             android:visibility="visible" />
-
-
     </RelativeLayout>
 
     <FrameLayout
-        android:id="@+id/framelayout"
+        android:id="@+id/framelayout_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="48dp"
-        android:layout_marginBottom="60dp"
-        android:visibility="visible">
+        android:layout_marginBottom="57dp">
 
     </FrameLayout>
 
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="60dp" />
 
     <include
         android:id="@+id/in_bottom"
         layout="@layout/in_bottom_menu"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp" />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

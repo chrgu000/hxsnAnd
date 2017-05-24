@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="13dp" >
+
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#C0C0C0"
+        android:padding="2dp"
+        android:textColor="#FF000000"
+        android:textSize="10sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" >
+
+        <ImageView
+            android:id="@+id/iv_userhead"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/personhead" />
+
+        <ProgressBar
+            android:id="@+id/pb_sending"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/tv_length"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_length"
+            style="@style/chat_text_name_style"
+            android:layout_width="wrap_content"
+             android:layout_centerVertical="true"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/hahahahahaha"
+            android:gravity="center"
+            android:singleLine="false"
+            android:paddingRight="5dp" />
+
+        <RelativeLayout
+            android:id="@+id/hahahahahaha"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="4dp"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_alignBottom="@+id/iv_userhead"
+            android:layout_toLeftOf="@+id/iv_userhead"
+            android:background="@drawable/uq" >
+
+            <ImageView
+                android:id="@+id/iv_voice"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:minHeight="40dp"
+                android:background="@drawable/voice_anim"
+                android:scaleType="center"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

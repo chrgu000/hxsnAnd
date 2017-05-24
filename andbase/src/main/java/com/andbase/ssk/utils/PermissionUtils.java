@@ -20,10 +20,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * android 23以上的权限申请
+ *使用方法
+ *1.  if(Integer.parseInt(android.os.Build.VERSION.SDK) < 23){
+        getAllGrantedPermission();
+    }else {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_READ_PHONE_STATE, new PermissionUtils.PermissionGrant() {
+        @Override
+        public void onPermissionGranted(int requestCode) {
+            getAllGrantedPermission();
+        }
+    });
+ }
+ *2. 在activity的onRequestPermissionsResult方法中调用requestPermissionsResult
+ *
  *
  * Created by jiely on 2017/3/29.
  */
-public class PermissionUtils {
+public class PermissionUtils {//Manifest.permission.ACCESS_FINE_LOCATION
 
     private static final String TAG = PermissionUtils.class.getSimpleName();
     public static final int CODE_WRITE_CONTACTS = 0;
@@ -100,6 +114,7 @@ public class PermissionUtils {
             //Manifest.permission.READ_READ_CELL_BROADCASTS
     };
 
+    //申请成功后的处理
     public interface PermissionGrant {
         void onPermissionGranted(int requestCode);
     }
@@ -188,8 +203,7 @@ public class PermissionUtils {
         try {
             checkSelfPermission = ActivityCompat.checkSelfPermission(activity, requestPermission);
         } catch (RuntimeException e) {
-            Toast.makeText(activity, "please open this permission", Toast.LENGTH_SHORT)
-                    .show();
+            Toast.makeText(activity, "please open this permission", Toast.LENGTH_SHORT).show();
             Log.e(TAG, "RuntimeException:" + e.getMessage());
             return;
         }
@@ -208,7 +222,7 @@ public class PermissionUtils {
 
         } else {
             LogUtil.i(TAG, "ActivityCompat.checkSelfPermission ==== PackageManager.PERMISSION_GRANTED");
-            Toast.makeText(activity, "opened:" + allPermissions[requestCode], Toast.LENGTH_SHORT).show();
+           // Toast.makeText(activity, "opened:" + allPermissions[requestCode], Toast.LENGTH_SHORT).show();
             permissionGrant.onPermissionGranted(requestCode);
         }
     }

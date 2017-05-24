@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +19,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.andbase.ssk.utils.AndHttpRequest;
 import com.hxsn.ssklf.R;
 import com.hxsn.ssklf.TApplication;
 import com.hxsn.ssklf.activity.SelectSiteActivity;
+import com.hxsn.ssklf.activity.WarningActivity;
+import com.hxsn.ssklf.utils.Const;
+import com.hxsn.ssklf.utils.JsonUtil;
 
 import java.lang.reflect.Field;
 
@@ -42,6 +48,7 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
     private Fragment fragmentRealTime,fragmentCurve,fragmentHistory,fragmentMore;
     private FragmentManager fm;
     private FragmentTransaction transaction;
+    private TextView txtWarning;
     //private TextView txtSiteName;
 
     public Ssk1Fragment() {
@@ -68,7 +75,46 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
 
         addListener();
 
+        //获取国家突发事件预警信息
+        obtainWarning();
+
         return view;
+    }
+
+    /**
+     * 获取国家突发事件预警信息
+     */
+    private void obtainWarning() {
+        new AndHttpRequest(context) {
+            @Override
+            public void getResponse(String response) {
+                if(JsonUtil.getStatus(response)) {
+                    TApplication.warningInfoList = JsonUtil.getWarningList(response);
+                    Handler.Callback callback = new WarningInfoCallback();
+                    Handler handler = new Handler(callback);
+                    Message message = handler.obtainMessage();
+
+                    message.what = 11;
+
+                    handler.sendMessage(message);
+
+                }
+            }
+        }.doGet(Const.URL_WARNING_WEATHER);
+    }
+
+    class WarningInfoCallback implements Handler.Callback {
+
+        @Override
+        public boolean handleMessage(Message msg) {
+            if(msg.what == 11){
+                if(TApplication.warningInfoList.size() != 0){
+                    txtWarning.setVisibility(View.VISIBLE);
+                    txtWarning.setText(TApplication.warningInfoList.get(0).getContent());
+                }
+            }
+            return false;
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -116,6 +162,8 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
        // layout3.setOnClickListener(this);
         layout4.setOnClickListener(this);
         layout5.setOnClickListener(this);
+
+        txtWarning.setOnClickListener(this);
     }
 
     /**
@@ -136,6 +184,8 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
         img5 = (ImageView) view.findViewById(R.id.img5);
         txt5 = (TextView) view.findViewById(R.id.txt5);
 
+        txtWarning = (TextView) view.findViewById(R.id.txt_warning);
+
         TextView txtSiteName = (TextView) view.findViewById(R.id.txt_siteName);
         txtSiteName.setText(TApplication.curSiteInfo.getName());
     }
@@ -147,6 +197,7 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.layout1://实时监控
                 if (menuTopMode != 1) {
@@ -182,9 +233,12 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.layout5://更多
-                    Intent intent = new Intent();
                     intent.setClass(getActivity(), SelectSiteActivity.class);
                     startActivity(intent);
+                break;
+            case R.id.txt_warning:
+                intent.setClass(getActivity(), WarningActivity.class);
+                startActivity(intent);
                 break;
         }
     }

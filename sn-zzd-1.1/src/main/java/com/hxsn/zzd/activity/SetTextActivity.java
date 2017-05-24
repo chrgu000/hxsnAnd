@@ -102,7 +102,7 @@ public class SetTextActivity extends Activity implements View.OnClickListener {
                 map.put(param,name);
                 String url = Const.URL_MODIFY_MINE;
                 new AndHttpRequest(this) {
-                    Intent intent = new Intent(SetTextActivity.this, SettingActivity.class);
+                    Intent intent = new Intent(SetTextActivity.this, PersonalSettingActivity.class);
                     @Override
                     public void getResponse(String response) {
                         switch (mode) {

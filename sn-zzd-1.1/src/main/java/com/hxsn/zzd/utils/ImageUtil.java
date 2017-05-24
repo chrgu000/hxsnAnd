@@ -20,7 +20,7 @@ public class ImageUtil {
         imageLoader.download(url, 300,200, new AbImageLoader.OnImageDownloadListener() {
             @Override
             public void onEmpty() {
-
+                imageView.setImageBitmap(null);
             }
 
             @Override

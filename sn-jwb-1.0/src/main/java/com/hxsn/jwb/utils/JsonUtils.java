@@ -24,13 +24,13 @@ public class JsonUtils {
 
 
     /**
-     * 获取鸡舍列表
+     * 获取鸡舍的设备列表
      * @param jsonString json
      * @return cameraInfoList
      */
     //private final static String[] DEVICELIST = {"id","name","temperature","createTime"};
     public static List<Device> getDeviceList(String jsonString){
-        params = new String[]{"id","name","isWarning","temperature","dayAge","createTime"};
+        params = new String[]{"id","name","temperature","createTime"};
         List<Device> deviceList = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
@@ -67,7 +67,7 @@ public class JsonUtils {
      */
     //private final static String[] homeValues = {"id","name","isWarning","temperature","dayAge","createTime"};
     public static List<ChickHome> getChickHomeList(String jsonString){
-        params = new String[]{"id","name","isWarning","temperature","dayAge","createTime"};
+        params = new String[]{"homeid","name","isWarning","temperature","dayAge","createTime"};
         List<ChickHome> chickHomeList = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
@@ -122,7 +122,7 @@ public class JsonUtils {
      */
     //private static final String[] SSKVALUELIST = {"id", "temperate", "dateType","hour"};
     public static List<HourData> getHourDataList(String jsonString){
-        params = new String[]{"id", "temperature", "dateType","hour"};
+        params = new String[]{"temperature","hour"};
         List<HourData> siteList = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
@@ -134,10 +134,10 @@ public class JsonUtils {
             for (int i = 0; i < jsonArray.length(); i++) {
                 jsonObject = jsonArray.optJSONObject(i);
                 HourData sskValue = new HourData();
-                sskValue.setId(jsonObject.optString(params[0]));
-                sskValue.setTemperature((float) jsonObject.optDouble(params[1]));
-                sskValue.setDateType(jsonObject.optInt(params[2]));
-                sskValue.setHour(jsonObject.optInt(params[3]));
+               // sskValue.setId(jsonObject.optString(params[0]));
+                sskValue.setTemperature((float) jsonObject.optDouble(params[0]));
+               // sskValue.setDateType(jsonObject.optInt(params[2]));
+                sskValue.setHour(jsonObject.optInt(params[1]));
                 siteList.add(sskValue);
             }
 
@@ -159,6 +159,9 @@ public class JsonUtils {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             jsonObject = jsonObject.optJSONObject("result");
+            if(jsonObject == null){
+                return siteList;
+            }
             JSONArray jsonArray = jsonObject.optJSONArray("warningList");
             if(jsonArray == null){
                 return siteList;

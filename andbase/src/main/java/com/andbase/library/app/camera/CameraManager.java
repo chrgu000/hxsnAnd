@@ -1,7 +1,5 @@
 package com.andbase.library.app.camera;
 
-import java.io.IOException;
-
 import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -9,6 +7,8 @@ import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.util.Log;
 import android.view.SurfaceHolder;
+
+import java.io.IOException;
 
 public final class CameraManager {
 
@@ -42,7 +42,7 @@ public final class CameraManager {
 
 	/**
 	 * 打开相机
-	 * 
+	 *
 	 * @param holder
 	 * @param cameraID
 	 * @throws IOException
@@ -70,7 +70,7 @@ public final class CameraManager {
 
 			// 设置预览参数
 			configManager.setDesiredCameraParameters(camera,cameraID);
-			
+
 		}
 	}
 
@@ -153,8 +153,8 @@ public final class CameraManager {
 				x = cameraResolution.y;
 				y = cameraResolution.x;
 			}
-			
-			
+
+
 
 		}else{
 			if(cameraResolution.x > cameraResolution.y){
@@ -165,20 +165,20 @@ public final class CameraManager {
 				y = cameraResolution.x;
 			}
 		}
-		
+
 		float height = y*8/10;
 		float width = height*b;
 		float leftOffset = (x - width) / 2.0f;
 		float topOffset = (y - height) / 2.0f;
 		framingRect = new Rect((int) leftOffset, (int) topOffset,
 				(int) (leftOffset + width), (int) (topOffset + height));
-		
-		
+
+
 		return framingRect;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * 获取选定窗口.
 	 * @return
 	 */
@@ -192,7 +192,7 @@ public final class CameraManager {
 	public void takePicture() {
 		camera.takePicture(null, null, this.pictureCallback);
 	}
-	
+
 	/**
 	 * 闪光灯
 	 */
@@ -220,15 +220,15 @@ public final class CameraManager {
 	public Point getPreviewSize() {
 		return configManager.getCameraResolution();
 	}
-	
+
 	public Point getPictureSize() {
 		return configManager.getPictureResolution();
 	}
-	
+
 	public Point getScreenResolution() {
 		return configManager.getScreenResolution();
 	}
-	
+
 	public Camera.AutoFocusCallback getAutoFocusCallback() {
 		return autoFocusCallback;
 	}
@@ -244,7 +244,7 @@ public final class CameraManager {
 	public void setPreviewCallback(Camera.PreviewCallback previewCallback) {
 		this.previewCallback = previewCallback;
 	}
-	
+
 	public Camera.PictureCallback getPictureCallback() {
 		return pictureCallback;
 	}

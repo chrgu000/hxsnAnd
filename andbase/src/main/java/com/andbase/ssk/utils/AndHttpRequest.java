@@ -2,6 +2,9 @@ package com.andbase.ssk.utils;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,9 +13,15 @@ import com.andbase.library.http.AbHttpUtil;
 import com.andbase.library.http.listener.AbStringHttpResponseListener;
 import com.andbase.library.http.model.AbRequestParams;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -131,6 +140,57 @@ public abstract class AndHttpRequest {
         });
     }
 
+    public void  get(final String uriApi){
+        LogUtil.i("httpRequest","url="+uriApi);
+        Handler.Callback callback = new HttpHandlerCallback();
+        final Handler handler = new Handler(callback);
+        new Thread(){
+            @Override
+            public void run() {
+                HttpGet httpRequest = new HttpGet(uriApi);
+                try {
+                    /*发送请求并等待响应*/
+                    HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequest);
+                     /*若状态码为200 ok*/
+                    LogUtil.i("httpRequest","getStatusCode="+httpResponse.getStatusLine().getStatusCode());
+                    if(httpResponse.getStatusLine().getStatusCode() == 200) {
+                         /*读*/
+                        String result =  EntityUtils.toString(httpResponse.getEntity()).trim();
+                        result = replaceBlank(result);
+                        LogUtil.i("httpRequest","content="+result);
+                        Message message = handler.obtainMessage();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("result",result);
+                        message.setData(bundle);
+                        handler.sendMessage(message);
+                    }
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
 
+    class HttpHandlerCallback implements Handler.Callback {
+
+        @Override
+        public boolean handleMessage(Message msg) {
+            Bundle bundle = msg.getData();
+            String result = bundle.getString("result");
+            getResponse(result);
+            return false;
+        }
+    }
+
+    public static String replaceBlank(String str) {
+        String dest = "";
+        if (str!=null) {
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(str);
+            dest = m.replaceAll("");
+        }
+        return dest;
+    }
 
 }

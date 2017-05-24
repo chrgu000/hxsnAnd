@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">智慧作业</string>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <string name="action_settings">设置</string>
+
+    <string name="xlistview_header_hint_normal">下拉查看历史记录</string>
+    <string name="xlistview_header_hint_ready">松开加载记录</string>
+    <string name="xlistview_header_hint_loading">正在加载&#8230;</string>
+    <string name="xlistview_header_last_time"></string>
+    <string name="xlistview_footer_hint_normal">下拉加载更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="xlistview_footer_hint_nomore">没有更多内容了</string>
+
+    <string name="str_recorder_normal">按 住 说 话</string>
+    <string name="str_recorder_recorder">松 开 结 束</string>
+    <string name="str_recorder_want_cancel">松开手指，取消发送</string>
+    <string name="folder_all">所有图片</string>
+    <string name="preview">预览</string>
+    <string name="msg_no_camera">没有系统相机哦</string>
+    <string name="msg_amount_limit">Select images amount is limit</string>
+</resources>

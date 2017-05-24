@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_light"
+    tools:ignore="HardcodedText">
+
+
+    <RelativeLayout
+        android:id="@+id/shczRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/topbg"
+        android:padding="8dp" >
+
+        <ImageButton
+            android:id="@+id/shczBackBtn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/back" />
+
+        <TextView
+            android:id="@+id/dsfhTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="返回"
+            android:layout_toRightOf="@+id/shczBackBtn"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="收获详情"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/shdbnc"
+        android:layout_below="@+id/shczRL"
+        >
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+            <RelativeLayout
+                android:id="@+id/sh1RL"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/inputbg"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/scmcdx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="生成名称："
+                    android:textColor="#2b2b2b"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/objecNameTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/scmcdx"
+                    android:textColor="#666666"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sh2RL"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sh1RL"
+                android:layout_margin="15dp"
+                android:background="@drawable/inputbg"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/czslTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="采摘数量："
+                    android:layout_centerVertical="true"
+                    android:textColor="#2b2b2b"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/cznumET"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/czslTV"
+                    android:layout_toLeftOf="@+id/unitTV"
+                    android:textColor="#666666"
+                    android:singleLine="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:inputType="numberDecimal"
+                    android:background="@android:color/transparent"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/unitTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="公斤"
+                    android:textColor="#666666"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sh3RL"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sh2RL"
+                android:layout_margin="15dp"
+                android:background="@drawable/inputbg"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/bxcpTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="更新菜品主料履历："
+                    android:textColor="#2b2b2b"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/setllTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/bxcpTV"
+                    android:textColor="#666666"
+                    android:gravity="right"
+                    android:layout_alignParentRight="true"
+                    android:text="打开"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/sh4RL"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sh3RL"
+                android:layout_margin="15dp"
+                android:background="@drawable/inputbg"
+                android:visibility="gone"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/scqdTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="更新送菜清单："
+                    android:textColor="#2b2b2b"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/setqdTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/scqdTV"
+                    android:textColor="#666666"
+                    android:gravity="right"
+                    android:layout_alignParentRight="true"
+                    android:text="关闭"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sh5RL"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sh4RL"
+                android:layout_margin="15dp"
+                android:background="@drawable/inputbg"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/dyjmbleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="打印二维码（手持二维码打印机）："
+                    android:textColor="#2b2b2b"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/setdyewmTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/dyjmbleTV"
+                    android:textColor="#666666"
+                    android:gravity="right"
+                    android:layout_alignParentRight="true"
+                    android:text="关闭"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/subshBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sh5RL"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/butbg"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="#ffffff"
+                android:textSize="19sp" />
+        </RelativeLayout>
+    </ScrollView>
+    <include
+        android:id="@+id/shdbnc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/bottom_menu" />
+
+</RelativeLayout>

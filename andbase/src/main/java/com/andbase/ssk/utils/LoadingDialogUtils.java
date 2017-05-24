@@ -18,13 +18,20 @@ import com.andbase.R;
  * Created by jiely on 2017/3/17.
  */
 public class LoadingDialogUtils {
-    public static Dialog createLoadingDialog(Context context, String msg) {
+
+    /**
+     * 创建loading的对话框
+     * @param context c
+     * @param text 加载时显示的文字
+     * @return
+     */
+    public static Dialog createLoadingDialog(Context context, String text) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_loading, null);// 得到加载view
         LinearLayout layout = (LinearLayout) v
                 .findViewById(R.id.dialog_loading_view);// 加载布局
         TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);// 提示文字
-        tipTextView.setText(msg);// 设置加载信息
+        tipTextView.setText(text);// 设置加载信息
 
         Dialog loadingDialog = new Dialog(context, R.style.MyDialogStyle);// 创建自定义样式dialog
         loadingDialog.setCancelable(true); // 是否可以按“返回键”消失

@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_light"
-    tools:context="com.hxsn.zzd.fragment.Ssk1Fragment"
+    tools:context=".fragment.ZzdFragment"
     tools:ignore="HardcodedText">
 
     <LinearLayout
         android:id="@+id/line_title"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginTop="-20dp"
+        android:layout_height="90dp"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -24,7 +23,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/detect_s" />
 
             <TextView
@@ -50,7 +49,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/qx_n" />
 
             <TextView
@@ -75,8 +74,8 @@
                 android:id="@+id/img3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
                 android:background="@drawable/worn_n" />
 
             <ImageView
@@ -110,7 +109,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/control_n" />
 
             <TextView
@@ -136,7 +135,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/more_n" />
 
             <TextView
@@ -150,48 +149,16 @@
                 android:textColor="@color/gray" />
 
         </RelativeLayout>
-
     </LinearLayout>
 
-
-
-
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/line_title"/>
-
-    <ImageView
-        android:id="@+id/img_setting"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/icon_setting"
-        android:visibility="gone"/>
 
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/line_title"
-        android:visibility="gone">
+        android:visibility="visible">
 
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/txt_look_all"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/line_title"
-        android:layout_alignParentRight="true"
-        android:text="查看所有报警"
-        android:textColor="@color/orange"
-        android:gravity="center"
-        android:background="@drawable/bg_text_green"
-        android:visibility="gone"/>
 
 </RelativeLayout>

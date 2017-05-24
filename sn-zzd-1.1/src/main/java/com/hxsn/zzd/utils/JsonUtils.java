@@ -1,5 +1,7 @@
 package com.hxsn.zzd.utils;
 
+import com.andbase.library.model.AbEntity;
+import com.andbase.ssk.entity.User;
 import com.hxsn.zzd.model.Gardening;
 import com.hxsn.zzd.model.GreenHouse;
 import com.videogo.openapi.bean.EZCameraInfo;
@@ -58,6 +60,33 @@ public class JsonUtils {
             e.printStackTrace();
         }
         return departmentList;
+    }
+
+    /**
+     *
+     * @param jsonString
+     * @return
+     */
+    public static List<AbEntity> getEntityList(String jsonString){
+        List<AbEntity> entityList = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray jsonArray = jsonObject.optJSONArray("result");
+            if(jsonArray == null){
+                return entityList;
+            }
+            for (int i = 0; i < jsonArray.length(); i++) {
+                AbEntity department= new AbEntity();
+                jsonObject = jsonArray.getJSONObject(i);
+                department.setId(jsonObject.optString("id"));
+                department.setName(jsonObject.optString("name"));
+                entityList.add(department);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return entityList;
     }
 
     /**
@@ -141,6 +170,44 @@ public class JsonUtils {
             e.printStackTrace();
         }
         return cameraInfoList;
+    }
+
+
+    /**
+     * desc:user解析
+     * auther:jiely
+     * create at 2015/10/10 19:52
+     */
+    public static User getUser(String jsonString) {
+        params = new String[]{"userid", "username", "realname", "nickname","email", "phone", "address"};
+        User user = null;
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+
+            int hasAddDevice = jsonObject.optInt("hasAddDevice");
+
+            jsonObject = jsonObject.optJSONObject("result");
+            String userId = jsonObject.optString(params[0]);
+            user = new User();
+            user.setUserId(userId);
+            String userName = jsonObject.optString(params[1]);
+            user.setUserName(userName);
+            String realName = jsonObject.optString(params[2]);
+            user.setRealName(realName);
+            String nickName = jsonObject.optString(params[3]);
+            user.setNickName(nickName);
+            String email = jsonObject.optString(params[4]);
+            user.setEmail(email);
+            String phone = jsonObject.optString(params[5]);
+            user.setPhone(phone);
+            String address = jsonObject.optString(params[6]);
+            user.setAddress(address);
+
+            user.setHasAddDevice(hasAddDevice);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
 }

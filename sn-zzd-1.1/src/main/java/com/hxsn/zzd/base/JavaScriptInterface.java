@@ -1,9 +1,7 @@
 package com.hxsn.zzd.base;
 
 import android.webkit.JavascriptInterface;
-
 import com.andbase.ssk.utils.LogUtil;
-
 import org.greenrobot.eventbus.EventBus;
 
 
@@ -26,7 +24,7 @@ public class JavaScriptInterface {
     @JavascriptInterface
     public void showCnt(int count) {
         if(count == 0){
-            //创建一个被观察者事件由sskFragment和HomeActivity来订阅
+            //创建一个被观察者事件由zzdFragment和HomeActivity来订阅
             EventBus.getDefault().post("JavaScriptInterface");
         }
 

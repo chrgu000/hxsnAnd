@@ -13,6 +13,9 @@ import com.hxsn.zzd.R;
 import com.hxsn.zzd.TApplication;
 import com.hxsn.zzd.utils.Const;
 
+/**
+ * 系统设置页面
+ */
 public class SystemSettingActivity extends Activity {
 
     private int shouldOverrideUrlLoadingCnt=0;
@@ -22,7 +25,7 @@ public class SystemSettingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_system_setting);
+        setContentView(R.layout.activity_web_view);
 
         imgLeft = (ImageView)findViewById(R.id.img_left);
         imgLeft.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +48,9 @@ public class SystemSettingActivity extends Activity {
     }
 
     @Override
+    /**
+     * webView页面返回处理
+     */
     public void onBackPressed() {
         if(shouldOverrideUrlLoadingCnt == 0 ){
             super.onBackPressed();
@@ -74,11 +80,10 @@ public class SystemSettingActivity extends Activity {
 
     public class MyWebViewClient extends WebViewClient {
 
-
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
-            TApplication.webUrl = url;
+            //TApplication.webUrl = url;
 
             Log.i("HomeActivity", "shouldOverrideUrlLoading-url="+url);
             imgLeft.setVisibility(View.VISIBLE);
@@ -97,7 +102,7 @@ public class SystemSettingActivity extends Activity {
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             Log.i("HomeActivity", "onPageFinished-url="+url);
-            TApplication.webUrl = url;
+           // TApplication.webUrl = url;
         }
     }
 

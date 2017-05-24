@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <SurfaceView
+        android:id="@+id/suyuan_preview_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <com.hxsn.witwork.ui.ViewfinderView
+        android:id="@+id/suyuan_viewfinder_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/suyuanTitleTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#000000"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:paddingLeft="10dp"
+            android:text="扫码溯源"
+            android:drawableLeft="@drawable/back"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/suyuanDesTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="将二维码/条码放入框内，即可自动扫描"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_above="@+id/suyuan_logoIV"
+            android:layout_marginBottom="120dp"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/suyuan_logoIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/su_n"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:layout_above="@+id/suyuandtTV"
+            />
+        <TextView
+            android:id="@+id/suyuandtTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="农产品动态"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:textColor="@color/font_color"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentBottom="true"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+</FrameLayout>

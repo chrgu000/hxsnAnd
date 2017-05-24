@@ -7,11 +7,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.webkit.WebView;
 
+import com.andbase.ssk.BaseWebViewClient;
+import com.andbase.ssk.utils.LogUtil;
 import com.hxsn.ssk.R;
+import com.hxsn.ssk.TApplication;
+import com.hxsn.ssk.utils.Const;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 /**
@@ -21,11 +27,10 @@ import com.hxsn.ssk.R;
  * create an instance of this fragment.
  */
 @SuppressLint("ValidFragment")
-public class Ssk1Fragment extends Fragment implements View.OnClickListener {
+public class Ssk1Fragment extends Fragment {
     private Context context;
-    private RelativeLayout layout1, layout2, layout3, layout4, layout5;
-    private ImageView img1, img2, img3, img4, img5;
-    private TextView txt1, txt2, txt3, txt4, txt5;
+    private WebView webView;
+    private String urlWebView;
 
     public Ssk1Fragment() {
     }
@@ -43,100 +48,57 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
     @SuppressLint("JavascriptInterface")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ssk1, container, false);
-        addView(view);
-        addListener();
+        View view = inflater.inflate(R.layout.fragment_webview, container, false);
+        webView = (WebView)view.findViewById(R.id.web_view);
+
+        if(TApplication.user == null){
+            return view;
+        }
+
+        urlWebView =  Const.URL_SSK_WEB+ TApplication.user.getUserId();
+        setWebView();
+
+        //RxJava观察者和订阅者的注册，被观察者是JavaScriptInterface的showCnt方法，观察该方法是否被js远程调用
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+
         return view;
     }
 
-    private void addListener() {
-        layout1.setOnClickListener(this);
-        layout2.setOnClickListener(this);
-        layout3.setOnClickListener(this);
-        layout4.setOnClickListener(this);
-        layout5.setOnClickListener(this);
-    }
 
-    private void addView(View view) {
-        layout1 = (RelativeLayout) view.findViewById(R.id.layout1);
-        img1 = (ImageView) view.findViewById(R.id.img1);
-        txt1 = (TextView) view.findViewById(R.id.txt1);
-        layout2 = (RelativeLayout) view.findViewById(R.id.layout2);
-        img2 = (ImageView) view.findViewById(R.id.img2);
-        txt2 = (TextView) view.findViewById(R.id.txt2);
-        layout3 = (RelativeLayout) view.findViewById(R.id.layout3);
-        img3 = (ImageView) view.findViewById(R.id.img3);
-        txt3 = (TextView) view.findViewById(R.id.txt3);
-        layout4 = (RelativeLayout) view.findViewById(R.id.layout4);
-        img4 = (ImageView) view.findViewById(R.id.img4);
-        txt4 = (TextView) view.findViewById(R.id.txt4);
-        layout5 = (RelativeLayout) view.findViewById(R.id.layout5);
-        img5 = (ImageView) view.findViewById(R.id.img5);
-        txt5 = (TextView) view.findViewById(R.id.txt5);
+    //订阅/观察者事件FirstEvent，被观察者是JavaScriptInterface的showCnt方法，如果该方法被js远程调用，则进行触发
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public  void onEventMainThread(String event){
+        LogUtil.i("Ssk1Fragment", "---------消息订阅者订阅得到的消息event="+event);
+        if(event.equals("home_ssk1_canGoBack")){
+            webView.goBack();
+            if(!webView.canGoBack()){
+                LogUtil.i("Ssk1Fragment", "---------不能返回了");
+                EventBus.getDefault().post("cannotBack");
+            }else {
+                EventBus.getDefault().post("ssk1_canGoBack");
+            }
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        EventBus.getDefault().unregister(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        clearClickView();
-        switch (v.getId()) {
-            case R.id.layout1:
-                setClickView(1);
-                break;
-            case R.id.layout2:
-                setClickView(2);
-                break;
-            case R.id.layout3:
-                setClickView(3);
-                break;
-            case R.id.layout4:
-                setClickView(4);
-                break;
-            case R.id.layout5:
-                setClickView(5);
-                break;
-        }
+    //设置webView
+    private void setWebView() {
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        LogUtil.i("Ssk1Fragment","urlWebView="+urlWebView);
+
+        BaseWebViewClient webViewClient = new BaseWebViewClient("ssk1_canGoBack");
+        webView.setWebViewClient(webViewClient);
+
+        webView.loadUrl(urlWebView);
     }
 
-    private void setClickView(int mode) {
-        switch (mode) {
-            case 1:
-                img1.setBackgroundResource(R.drawable.detect_s);
-                txt1.setTextColor(getResources().getColor(R.color.green));
-                break;
-            case 2:
-                img1.setBackgroundResource(R.drawable.curve_s);
-                txt1.setTextColor(getResources().getColor(R.color.green));
-                break;
-            case 3:
-                img1.setBackgroundResource(R.drawable.worn_s);
-                txt1.setTextColor(getResources().getColor(R.color.green));
-                break;
-            case 4:
-                img1.setBackgroundResource(R.drawable.history_s);
-                txt1.setTextColor(getResources().getColor(R.color.green));
-                break;
-            case 5:
-                img1.setBackgroundResource(R.drawable.more_s);
-                txt1.setTextColor(getResources().getColor(R.color.green));
-                break;
-        }
-    }
 
-    private void clearClickView() {
-        img1.setBackgroundResource(R.drawable.detect_n);
-        txt1.setTextColor(getResources().getColor(R.color.gray));
-        img2.setBackgroundResource(R.drawable.curve_n);
-        txt2.setTextColor(getResources().getColor(R.color.gray));
-        img3.setBackgroundResource(R.drawable.worn_n);
-        txt3.setTextColor(getResources().getColor(R.color.gray));
-        img4.setBackgroundResource(R.drawable.history_n);
-        txt4.setTextColor(getResources().getColor(R.color.gray));
-        img5.setBackgroundResource(R.drawable.more_n);
-        txt5.setTextColor(getResources().getColor(R.color.gray));
-    }
 }

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hxsn.zzd">
 
-
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -25,7 +24,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- Push service 运行需要的权限 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -40,24 +39,22 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
 
-
     <!-- zxing -->
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
-
-    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- Keeps the processor from sleeping when a message is received. -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- 适配Android N系统必需的ContentProvider写权限声明，写权限包含应用包名 -->
     <uses-permission android:name="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.hxsn.zzd" />
+
     <permission
         android:name="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.hxsn.zzd"
         android:protectionLevel="normal" />
@@ -84,7 +81,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.WelcomeActivity"
             android:screenOrientation="portrait" />
@@ -101,34 +97,24 @@
             android:name=".activity.AboutUsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SettingActivity"
+            android:name=".activity.PersonalSettingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SetTextActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.SystemSettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.NewsActivity"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.SendQuestActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".activity.MoreActivity" />
         <activity android:name=".activity.ExpertActivity" />
         <activity android:name=".activity.ReplayActivity" />
-
-
 
         <!-- push必须的receviver和service声明 -->
         <receiver
             android:name="com.baidu.android.pushservice.PushServiceReceiver"
-            android:process=":bdservice_v1" >
+            android:process=":bdservice_v1">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -141,11 +127,9 @@
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
-
-
         <receiver
             android:name="com.baidu.android.pushservice.RegistrationReceiver"
-            android:process=":bdservice_v1" >
+            android:process=":bdservice_v1">
             <intent-filter>
                 <action android:name="com.baidu.android.pushservice.action.METHOD" />
                 <action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
@@ -160,7 +144,7 @@
         <service
             android:name="com.baidu.android.pushservice.PushService"
             android:exported="true"
-            android:process=":bdservice_v1" >
+            android:process=":bdservice_v1">
             <intent-filter>
                 <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
             </intent-filter>
@@ -169,14 +153,13 @@
             android:name="com.baidu.android.pushservice.CommandService"
             android:exported="true" />
 
-        <!-- 适配Android N系统必需的ContentProvider声明，写权限包含应用包名-->
+        <!-- 适配Android N系统必需的ContentProvider声明，写权限包含应用包名 -->
         <provider
             android:name="com.baidu.android.pushservice.PushInfoProvider"
             android:authorities="com.hxsn.zzd.bdpush"
             android:exported="true"
-            android:protectionLevel = "signature"
-            android:writePermission="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.hxsn.zzd"/>
-
+            android:protectionLevel="signature"
+            android:writePermission="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.hxsn.zzd" />
 
         <!-- 此处Receiver名字修改为当前包名路径 -->
         <receiver android:name=".service.BaiduPushMessageReceiver">
@@ -191,13 +174,17 @@
             </intent-filter>
         </receiver>
 
-
         <activity android:name=".videogo.activity.EZCameraListActivity" />
         <activity android:name=".videogo.activity.RealPlayActivity" />
         <activity android:name=".videogo.activity.AddScanDeviceActivity" />
         <activity android:name=".videogo.activity.CaptureActivity" />
         <activity android:name=".videogo.activity.AddEditDeviceActivity" />
-        <activity android:name=".videogo.activity.PermissionsActivity"/>
+        <activity android:name=".videogo.activity.PermissionsActivity" />
+        <activity android:name=".activity.UserManualActivity" />
+        <activity android:name=".activity.AddZZDActivity" />
+        <activity android:name=".activity.AddGardenActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

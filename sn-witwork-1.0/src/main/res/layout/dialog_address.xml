@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="15dp"
+    android:background="#ffffff" >
+
+    <TextView
+        android:id="@+id/paddress_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="请输入新地址"
+        android:textColor="#666666"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/p_addressET"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/paddress_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text=""
+        android:textColor="#000000" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/p_addressET"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" >
+
+        <Button
+            android:id="@+id/p_adsetBtn"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@drawable/butbg"
+            android:text="确定"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/pad_cancleBtn"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/butbg"
+            android:text="取消"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+</RelativeLayout>

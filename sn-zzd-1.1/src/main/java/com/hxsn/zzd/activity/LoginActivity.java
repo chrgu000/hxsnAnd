@@ -3,7 +3,6 @@ package com.hxsn.zzd.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,8 +15,12 @@ import com.andbase.ssk.utils.AndShared;
 import com.hxsn.zzd.R;
 import com.hxsn.zzd.TApplication;
 import com.hxsn.zzd.utils.Const;
+import com.hxsn.zzd.utils.JsonUtils;
 
 
+/**
+ * 登录界面
+ */
 public class LoginActivity extends Activity implements View.OnClickListener {
 
     private Button btnLogin;
@@ -35,14 +38,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         btnLogin = (Button) findViewById(R.id.btn_login);
         edtUsername = (EditText) findViewById(R.id.edt_username);
         edtPassword = (EditText) findViewById(R.id.edt_password);
-        if (TApplication.versionType != Const.RELEASE_VERTION) {
+        if (TApplication.versionType != Const.RELEASE_VERTION) {//测试版本默认用户名密码
             edtUsername.setText("shouji");
             edtPassword.setText("123456");
         } else {
             String username = AndShared.getValue("username");
             edtUsername.setText(username);//显示上次登录过的用户名
         }
-
     }
 
     private void addListener() {
@@ -68,6 +70,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    /**
+     * 发送注册请求
+     * @param name username
+     * @param psw password
+     */
     private void request(String name, final String psw) {
         //LoadingDialog.showLoading(this);
         String channelId = AndShared.getValue(Const.CODE_CHANNEL_ID);
@@ -77,7 +84,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             public void getResponse(String response) {
                 String code = AndJsonUtils.getCode(response);
                 if(code.equals("200")){
-                    User user = AndJsonUtils.getUser(response);
+                    User user = JsonUtils.getUser(response);
                     user.setPassword(psw);
                     user.setUserRole("");
                     TApplication.user = user;
@@ -85,14 +92,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     AndShared.setValue("login","1");
                     Intent intent = new Intent();
                     // TApplication.defaultGreenHouse = Shared.getGreenHouse();
-                    if(TextUtils.isEmpty(TApplication.defaultGreenHouse.getId()) ){
-                        intent.setClass(LoginActivity.this, MoreActivity.class);
-                        startActivity(intent);
-                    }else {
-                        intent.setClass(LoginActivity.this, HomeActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                    TApplication.mode = 9;//首次登录后，先进行选择棚室，先进入棚室界面
+                    intent.setClass(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
                 }else if(code.equals("301")){
                     AbToastUtil.showToast(LoginActivity.this,"用户名不存在或密码错误");
                 }else if(code.equals("302")){
@@ -104,9 +107,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }.doPost(url,null);
     }
 
-
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        this.finish();
     }
 }

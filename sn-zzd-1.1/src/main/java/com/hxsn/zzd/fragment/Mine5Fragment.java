@@ -16,16 +16,15 @@ import com.andbase.ssk.utils.AndShared;
 import com.hxsn.zzd.R;
 import com.hxsn.zzd.TApplication;
 import com.hxsn.zzd.activity.AboutUsActivity;
+import com.hxsn.zzd.activity.AddZZDActivity;
 import com.hxsn.zzd.activity.LoginActivity;
-import com.hxsn.zzd.activity.PasswordEditActivity;
 import com.hxsn.zzd.activity.SettingActivity;
 import com.hxsn.zzd.activity.SystemSettingActivity;
-import com.hxsn.zzd.utils.Const;
-import com.hxsn.zzd.utils.UpdateUtil;
+import com.hxsn.zzd.activity.UserManualActivity;
 
 
 /**
- * A simple {@link Fragment} subclass.  早知道
+ * A simple {@link Fragment} subclass.  早知道 我的页面
  * Activities that contain this fragment must implement the
  * to handle interaction events.
  * create an instance of this fragment.
@@ -35,16 +34,24 @@ import com.hxsn.zzd.utils.UpdateUtil;
 public class Mine5Fragment extends Fragment implements View.OnClickListener {
 
     private Context context;
-    private TextView txt2, txt3, txt4, txt6, txtName, txtVersion,txtSystemSetting;
+    private TextView txtAboutUs, txtExit,txtSetting;
+    private TextView txtUserManual,txtAddDevice,txtUserCallback;
     private RelativeLayout rl1;
-    private String version;
 
 
-    public Mine5Fragment() {
-    }
 
     public Mine5Fragment(Context context) {
         this.context = context;
+    }
+
+    public Mine5Fragment() {
+    }
+    public static Mine5Fragment newInstance(Context context,int mode) {
+        Mine5Fragment fragment = new Mine5Fragment(context);
+        Bundle args = new Bundle();
+        args.putInt("fragment_mode", mode);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -64,68 +71,58 @@ public class Mine5Fragment extends Fragment implements View.OnClickListener {
     }
 
     private void addListener() {
-        txt2.setOnClickListener(this);
-        txt3.setOnClickListener(this);
-        txt4.setOnClickListener(this);
+        txtAboutUs.setOnClickListener(this);
+        txtSetting.setOnClickListener(this);
+        txtExit.setOnClickListener(this);
+        txtUserManual.setOnClickListener(this);
+        txtUserCallback.setOnClickListener(this);
 
-        txt6.setOnClickListener(this);
-
-        if(TApplication.versionType != Const.RELEASE_VERTION){
-            rl1.setOnClickListener(this);
-        }
-
-        txtSystemSetting.setOnClickListener(this);
+        txtAddDevice.setOnClickListener(this);
+        txtUserManual.setOnClickListener(this);
     }
 
     private void addView(View v) {
         rl1 = (RelativeLayout)v.findViewById(R.id.rl_1);
-        txt2 = (TextView) v.findViewById(R.id.txt2);
-        txt3 = (TextView) v.findViewById(R.id.txt3);
-        txt4 = (TextView) v.findViewById(R.id.txt4);
-
-        txt6 = (TextView) v.findViewById(R.id.txt6);
-        txtSystemSetting = (TextView)v.findViewById(R.id.txt_system_setting);
-        txtVersion = (TextView) v.findViewById(R.id.txt_version);
-        version = "zzd_v" + UpdateUtil.getThisAppVersion(context);
-        switch (TApplication.versionType) {
-            case Const.TEST_VERTION:
-                version += "T";
-                break;
-            case Const.TEST_VERTION1:
-                version += "T1";
-                break;
-            case Const.DEBUG_VERTION:
-                version += "D";
-                break;
-            case Const.RELEASE_VERTION:
-                version += "R";
-                break;
-        }
-        txtVersion.setText(version);
-        txtName = (TextView) v.findViewById(R.id.txt_name);
+        txtAboutUs = (TextView) v.findViewById(R.id.txt_about_us);
+        txtSetting = (TextView) v.findViewById(R.id.txt_setting);
+        txtUserManual = (TextView)v.findViewById(R.id.txt_user_manual);
+        txtAddDevice = (TextView)v.findViewById(R.id.txt_add_device);
+        txtUserCallback = (TextView)v.findViewById(R.id.txt_user_callback);
+        txtExit = (TextView) v.findViewById(R.id.txt_exit);
+        TextView txtName = (TextView) v.findViewById(R.id.txt_name);
         if(TApplication.user != null){
             txtName.setText(TApplication.user.getUserName());
+            if(TApplication.user.getHasAddDevice() == 1){
+                txtAddDevice.setVisibility(View.VISIBLE);
+            }else {
+                txtAddDevice.setVisibility(View.GONE);
+            }
+        }else {
+            txtName.setText("");
+            txtAddDevice.setVisibility(View.GONE);
         }
+
     }
 
     @Override
     public void onClick(View v) {
         Intent intent = new Intent();
         switch (v.getId()) {
-            case R.id.txt2:
+            case R.id.txt_setting://设置
                 intent.setClass(context, SettingActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.txt3:
-                intent.setClass(context, PasswordEditActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.txt4:
+            case R.id.txt_about_us://关于我们
                 intent.setClass(context, AboutUsActivity.class);
                 startActivity(intent);
                 break;
 
-            case R.id.txt6://退出登录
+            case R.id.txt_user_manual://用户手册
+                intent.setClass(context, UserManualActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.txt_exit://退出登录
                 TApplication.user = new User();
                 AndShared.saveUser(new User());
                 AndShared.setValue("login","0");
@@ -135,10 +132,15 @@ public class Mine5Fragment extends Fragment implements View.OnClickListener {
                 TApplication.mode = 1;
                 getActivity().finish();
                 break;
-            case R.id.txt_system_setting:
-                intent.setClass(context, SystemSettingActivity.class);
-                intent.putExtra("version",version);
+            case R.id.txt_add_device://添加设备
+                intent.setClass(context, AddZZDActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.txt_user_callback://用户反馈
+                intent.setClass(context, SystemSettingActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 }

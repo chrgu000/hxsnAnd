@@ -57,6 +57,9 @@ public class Const {
     //上传已读报警预警
     public static String URL_WARNING_READ = TApplication.URL_JWB_STRING + "/hasReaded.json";
 
+    //上传已读报警预警
+    public static String URL_SETTING_WARNNING_PARAMS = TApplication.URL_JWB_STRING + "/setWarning.json";
+
 
     /*-----------------------------------cms相关接口-------------------------------------*/
     //提问

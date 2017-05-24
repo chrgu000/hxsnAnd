@@ -21,6 +21,7 @@ import com.andbase.ssk.utils.LogUtil;
 import com.hxsn.jwb.R;
 import com.hxsn.jwb.TApplication;
 import com.hxsn.jwb.activity.ChickCurveActivity;
+import com.hxsn.jwb.model.ChickHome;
 import com.hxsn.jwb.ui.MyGridView;
 import com.hxsn.jwb.utils.Const;
 import com.hxsn.jwb.utils.JsonUtils;
@@ -97,13 +98,16 @@ public class RealTimeFragment extends Fragment implements View.OnClickListener {
         map.put("pageStart",String.valueOf(currentPage));
         map.put("pageSize","6");
         //String url = "http://192.168.12.97:8080/jwb/getHomeList.json"+"?uid=1&pageStart="+currentPage+"&pageSize=6";
-        String url = Const.URL_GET_HOME_LIST;//Const.URL_WARN_HOUSE_UNREAD + TApplication.user.getUserId()+"&dyid="+TApplication.defaultGreenHouse.getId();
+        String url = Const.URL_GET_HOME_LIST;
         new AndHttpRequest(context) {
             @Override
             public void getResponse(String response) {
                 TApplication.homeList = JsonUtils.getChickHomeList(response);
                 if(TApplication.homeList.size()>0){
-                    Shared.saveChickHome(TApplication.homeList.get(0));
+                    ChickHome home = Shared.getChickHome();
+                    if(home == null){
+                        Shared.saveChickHome(TApplication.homeList.get(0));
+                    }
                 }
                 LogUtil.i("ssk1Fragment","-------------homelist.size="+ TApplication.homeList.size());
                 int size = JsonUtils.getTotalSize(response);
@@ -257,6 +261,7 @@ public class RealTimeFragment extends Fragment implements View.OnClickListener {
                 viewHolder.txtDayAge = (TextView) convertView.findViewById(R.id.txt_day_age);
                 viewHolder.txtTemperate = (TextView) convertView.findViewById(R.id.txt_temperate);
                 viewHolder.imgRing = (ImageView)convertView.findViewById(R.id.img_ring);
+                viewHolder.txtCreateTime = (TextView)convertView.findViewById(R.id.txt_create_time);
                 convertView.setTag(viewHolder);
             }else {
                 viewHolder = (ViewHolder)convertView.getTag();
@@ -269,13 +274,16 @@ public class RealTimeFragment extends Fragment implements View.OnClickListener {
             }else {
                 viewHolder.imgRing.setVisibility(View.GONE);
             }
+            long time = TApplication.homeList.get(position).getCreateTime();
+            String str = Tools.formatTime(time,"MM-dd HH:mm");
+            viewHolder.txtCreateTime.setText(str);
             return convertView;
         }
     }
 
     //     ViewHolder 模式, 效率提高 50%
     static class ViewHolder {
-        TextView txtName,txtDayAge,txtTemperate;
+        TextView txtName,txtDayAge,txtTemperate,txtCreateTime;
         ImageView imgRing;
     }
 }

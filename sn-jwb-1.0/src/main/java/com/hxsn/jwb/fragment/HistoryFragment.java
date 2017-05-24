@@ -103,7 +103,7 @@ public class HistoryFragment extends Fragment  implements
         ChickHome chickHome = Shared.getChickHome();
         if(chickHome !=null){
             String homeId = chickHome.getId();
-            map.put("homeId",homeId);
+            map.put("homeid",homeId);
         }
 
         map.put("pageStart",String.valueOf(pageStart));

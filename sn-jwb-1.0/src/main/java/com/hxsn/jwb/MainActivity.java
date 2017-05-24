@@ -14,6 +14,8 @@ import com.baidu.android.pushservice.PushManager;
 import com.hxsn.jwb.activity.HomeActivity;
 import com.hxsn.jwb.activity.LoginActivity;
 import com.hxsn.jwb.activity.WelcomeActivity;
+import com.hxsn.jwb.utils.Const;
+import com.hxsn.jwb.utils.UpdateUtil;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
 
         baiduPush();
 

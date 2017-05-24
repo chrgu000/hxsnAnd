@@ -6,6 +6,7 @@ import android.util.Log;
 import com.hxsn.ssklf.model.SiteInfo;
 import com.hxsn.ssklf.model.SiteValue;
 import com.hxsn.ssklf.model.Threshold;
+import com.hxsn.ssklf.model.WarningInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,18 +19,6 @@ import java.util.List;
  *  Created by jiely on 2016/10/10.
  */
 public class JsonUtil {
-
-    /**
-     * 	"upTemp":15,
-     "downTemp":15,
-     "upHumidity":45,
-     "downHumidity":45,
-     "upTemp15cm":14,
-     "downTemp15cm":14,
-     "upSunlight":600,
-     "downSunlight":600,
-     */
-    private static final String[] thresHoldArray = {"upTemp","downTemp","upHumidity","downHumidity","upTemp15cm","downTemp15cm","upSunlight","downSunlight"};
 
     /**
      * param  jsonString
@@ -67,7 +56,7 @@ public class JsonUtil {
         return null;
     }
 
-    //weather windDirection windVelocity airTemp surfaceTemp humidity visible temp10cm temp20cm temp40cm
+    private static final String[] thresholdArray = {"upTemp","downTemp","upHumidity","downHumidity","upTemp15cm","downTemp15cm","upSunlight","downSunlight"};
     /**
      * json解析 获取参数阈值
      * @param  jsonString json串
@@ -78,21 +67,21 @@ public class JsonUtil {
             JSONObject jsonObject = new JSONObject(jsonString);
             jsonObject = jsonObject.optJSONObject("threshold");
             Threshold threshold = new Threshold();
-            int hold = jsonObject.optInt(thresHoldArray[0]);
+            int hold = jsonObject.optInt(thresholdArray[0]);
             threshold.setUpTemp(hold);
-            hold = jsonObject.optInt(thresHoldArray[1]);
+            hold = jsonObject.optInt(thresholdArray[1]);
             threshold.setDownTemp(hold);
-            hold = jsonObject.optInt(thresHoldArray[2]);
+            hold = jsonObject.optInt(thresholdArray[2]);
             threshold.setUpHumidity(hold);
-            hold = jsonObject.optInt(thresHoldArray[3]);
+            hold = jsonObject.optInt(thresholdArray[3]);
             threshold.setDownHumidity(hold);
-            hold = jsonObject.optInt(thresHoldArray[4]);
+            hold = jsonObject.optInt(thresholdArray[4]);
             threshold.setUpTemp15cm(hold);
-            hold = jsonObject.optInt(thresHoldArray[5]);
+            hold = jsonObject.optInt(thresholdArray[5]);
             threshold.setDownTemp15cm(hold);
-            hold = jsonObject.optInt(thresHoldArray[6]);
+            hold = jsonObject.optInt(thresholdArray[6]);
             threshold.setUpSunlight(hold);
-            hold = jsonObject.optInt(thresHoldArray[7]);
+            hold = jsonObject.optInt(thresholdArray[7]);
             threshold.setDownSunlight(hold);
             return threshold;
 
@@ -102,7 +91,7 @@ public class JsonUtil {
         }
     }
 
-    //weather windDirection windVelocity airTemp surfaceTemp humidity visible temp10cm temp20cm temp40cm
+
     /**
      * json解析 获取气象站数据
      * @param  jsonString json串
@@ -183,6 +172,39 @@ public class JsonUtil {
             e.printStackTrace();
         }
         return siteInfoList;
+    }
+
+    private final static String[] warningParams = {"title","content","createTime"};
+
+    /**
+     * 获取廊坊市气象预警列表信息，来源于
+     * @param jsonString
+     * @return
+     */
+    public static List<WarningInfo> getWarningList(String jsonString){
+        List<WarningInfo> warningInfoList = new ArrayList<>();
+
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(jsonString);
+            JSONArray jsonArray = jsonObject.optJSONArray("warning_list");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                jsonObject = jsonArray.optJSONObject(i);
+                WarningInfo warningInfo = new WarningInfo();
+                String str = jsonObject.optString(warningParams[0]);
+                warningInfo.setTitle(str);
+                str = jsonObject.optString(warningParams[1]);
+                warningInfo.setContent(str);
+                long createTime = jsonObject.optLong(warningParams[2]);
+                warningInfo.setCreateTime(createTime);
+                warningInfoList.add(warningInfo);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return warningInfoList;
     }
 
 }

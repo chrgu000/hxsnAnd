@@ -7,14 +7,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
+import com.andbase.ssk.BaseWebViewClient;
+import com.andbase.ssk.utils.LogUtil;
 import com.hxsn.ssk.R;
 import com.hxsn.ssk.TApplication;
 import com.hxsn.ssk.utils.Const;
-import com.hxsn.ssk.utils.DebugUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
 /**
@@ -26,55 +29,67 @@ import com.hxsn.ssk.utils.DebugUtil;
 @SuppressLint("ValidFragment")
 public class Wen3Fragment extends Fragment {
 
-    private WebView webView;
     private Context context;
-
-    public Wen3Fragment() {
-    }
+    private WebView webView;
+    private String urlWebView;
 
     public Wen3Fragment(Context context) {
         this.context = context;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @SuppressLint("JavascriptInterface")
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_wen3, container, false);
-        webView = (WebView) view.findViewById(R.id.webView);
 
-        WebSettings wSet = webView.getSettings();
-        wSet.setJavaScriptEnabled(true);
-        final JavaScriptInterface myJavaScriptInterface = new JavaScriptInterface(context);
-        if (TApplication.intAndroidSDK >= 17) {
-            webView.addJavascriptInterface(myJavaScriptInterface, "ssk");
+        View view = inflater.inflate(R.layout.fragment_webview, container, false);
+        webView = (WebView)view.findViewById(R.id.web_view);
+
+        if(TApplication.user == null){
+            return view;
         }
 
-        String url1 = Const.URL_WNN_LIST+ TApplication.user.getUserId();
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-        });
-        webView.loadUrl(url1);
-        DebugUtil.d("Wen3Fragment","url="+url1);
+        urlWebView = Const.URL_WNN_LIST + TApplication.user.getUserName();
+        setWebView();
+
+        //RxJava观察者和订阅者的注册，被观察者是JavaScriptInterface的showCnt方法，观察该方法是否被js远程调用
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+
         return view;
+    }
+
+    //订阅/观察者事件FirstEvent，被观察者是JavaScriptInterface的showCnt方法，如果该方法被js远程调用，则进行触发
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public  void onEventMainThread(String event){
+        LogUtil.i("WenFragment", "---------消息订阅者订阅得到的消息event="+event);
+        if(event.equals("home_wen_canGoBack")){
+            webView.goBack();
+            if(!webView.canGoBack()){
+                LogUtil.i("WenFragment", "---------不能返回了");
+                EventBus.getDefault().post("cannotBack");
+            }else {
+                EventBus.getDefault().post("wen_canGoBack");
+            }
+        }
     }
 
     @Override
     public void onStop() {
-        webView.clearCache(true);
-        webView.removeAllViews();
         super.onStop();
+        //EventBus.getDefault().unregister(this);
     }
 
+    //设置webView
+    private void setWebView() {
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        LogUtil.i("WenFragment","urlWebView="+urlWebView);
+
+        BaseWebViewClient webViewClient = new BaseWebViewClient("wen_canGoBack");
+        webView.setWebViewClient(webViewClient);
+
+        webView.loadUrl(urlWebView);
+    }
 
 }

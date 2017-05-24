@@ -50,18 +50,26 @@ public class Const {
     //获取用户当前设备状态
     public static String URL_DEVICE_STATUS = TApplication.URL_ZZD_STRING + "/app/zzd2/getControllerStatus.json?uid=";
     //控制用户当前设备
-    public static String URL_CONTROL_DEVICE = TApplication.URL_ZZD_STRING + "/app/zzd2/doControl.json?";
+    public static String URL_CONTROL_DEVICE = TApplication.URL_ZZD_STRING + "/app/zzd2/doControl.json";
     //登记分机号码
-    public static String URL_REGISTER_PHONE = TApplication.URL_ZZD_STRING + "/app/zzd2/doRegisterPhone.json?";
+    public static String URL_REGISTER_PHONE = TApplication.URL_ZZD_STRING + "/app/zzd2/doRegisterPhone.json";
 
     //获取园区及棚室列表
     public static String URL_GET_HOUSE_LIST = TApplication.URL_ZZD_STRING + "/app/zzd2/getYqDyData.json?uid=";
 
+    //获取所有园区列表 售后人员可以获得所有园区以便添加设备
+    public static String URL_GET_ALL_GARDEN = TApplication.URL_ZZD_STRING + "/app/zzd2/garden/getList.json?uid=";
+
+    //获取PLC类型列表 售后人员添加设备
+    public static String URL_GET_PLC_LIST = TApplication.URL_ZZD_STRING + "/app/zzd2/plc/typeList.json";
+
+    //添加棚温宝设备
+    public static String URL_ADD_ZZD = TApplication.URL_ZZD_STRING + "/app/zzd2/device/create.json";
+
     /*-----------------------------------物联网后台相关页面-------------------------------------*/
     //早知道页面
     public static String URL_ZZD_WEB = TApplication.URL_ZZD_STRING + "/app/zzd/index.do?uid=";
-    //系统设置
-    public static String URL_SYSTEM_SETTING = TApplication.URL_ZZD_STRING+"/app/zzd/swzParams.do?uid=";
+
     //控制页面
     public static String URL_CONTROL_WEB = TApplication.URL_ZZD_STRING+"/app/zzd/kongzhi.do?uid=";
     //告警页面
@@ -75,6 +83,11 @@ public class Const {
     //早知道预警报警页面
     public static String URL_WARNING_WEB = TApplication.URL_ZZD_STRING + "/app/zzd2/baojing.do?uid=";
 
+    //PLC手工设置
+    public static String URL_SYSTEM_SETTING = TApplication.URL_ZZD_STRING+"/app/zzd/swzParams.do?uid=";
+
+    //PLC模板设置
+    public static String URL_TEMPLATE_SETTING = TApplication.URL_ZZD_STRING+"/app/zzd2/setPlcParam.do?uid=";
     /*-----------------------------------cms相关接口-------------------------------------*/
     //提问
     public static String URL_ASK_QUEST = TApplication.URL_CMS_STRING + "/app/addWen.json";

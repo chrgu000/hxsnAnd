@@ -3,6 +3,7 @@ package com.hxsn.ssklf.fragment;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,16 +12,24 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.andbase.chartlibrary.gesture.ContainerScrollType;
+import com.andbase.chartlibrary.gesture.ZoomType;
+import com.andbase.chartlibrary.model.Axis;
+import com.andbase.chartlibrary.model.AxisValue;
+import com.andbase.chartlibrary.model.Line;
+import com.andbase.chartlibrary.model.LineChartData;
+import com.andbase.chartlibrary.model.PointValue;
+import com.andbase.chartlibrary.model.ValueShape;
+import com.andbase.chartlibrary.model.Viewport;
+import com.andbase.chartlibrary.view.LineChartView;
 import com.andbase.ssk.utils.AndHttpRequest;
 import com.hxsn.ssklf.R;
 import com.hxsn.ssklf.TApplication;
 import com.hxsn.ssklf.model.SiteValue;
-import com.hxsn.ssklf.ui.MyLineChart;
 import com.hxsn.ssklf.utils.Const;
 import com.hxsn.ssklf.utils.JsonUtil;
 import com.hxsn.ssklf.utils.Tools;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +51,11 @@ public class CurveFragment extends Fragment implements View.OnClickListener{
     private TextView txtToday,txtYesterday,txtThreeDay;
     private View view;
     //处理小数点后为0时不显示
-    private DecimalFormat decimalFormat = new DecimalFormat("###################.###########");
+    //private DecimalFormat decimalFormat = new DecimalFormat("###################.###########");
 
     private List<SiteValue> siteList;//今天昨天前天小时数据
     private int hour;//当前是几点
+    private LineChartView chart;
 
     public CurveFragment() {
     }
@@ -81,7 +91,7 @@ public class CurveFragment extends Fragment implements View.OnClickListener{
      * @param type 0-今天 1-昨天 2-前天
      */
     private void obtainData(final int type) {
-        String url = Const.URL_PRE_THREE+ TApplication.curSiteInfo.getUuid()+"&date="+type;
+        String url = Const.URL_PRE_THREE+TApplication.curSiteInfo.getUuid()+"&date="+type;
         new AndHttpRequest(context) {
             @Override
             public void getResponse(String response) {
@@ -97,40 +107,41 @@ public class CurveFragment extends Fragment implements View.OnClickListener{
      * 添加曲线数据并画曲线
      */
     private void addCurve() {
-        // 制作24个数据点（沿x坐标轴）
-        List<Integer> xList = new ArrayList<>();
-        List<Double> yList = new ArrayList<>();
+        List<PointValue> mPointValues = new ArrayList<PointValue>();
+        List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
+        String xName = "";
+        String yName = "";
+        int count = 24;
         if(dayMode == 1){
-            for(int i=0; i<hour; i++){
-                xList.add(i);
-            }
-        }else {
-            for(int i=0; i<24; i++){
-                xList.add(i);
-            }
+            count = hour;
         }
-
-        //LineData mLineData = null;
-        for(SiteValue siteValue: siteList){
+        for(int i=0; i<count; i++){
+            mAxisXValues.add(new AxisValue(i).setLabel(String.valueOf(i)));
             switch (menuMidMode){
                 case 1:
-                    yList.add(siteValue.getTemperature());
+                    mPointValues.add(new PointValue(i, (float)siteList.get(i).getTemperature()));
+                    xName = "空气温度";
+                    yName = "℃";
                     break;
                 case 2:
-                    yList.add( siteValue.getHumidity());
+                    mPointValues.add(new PointValue(i, (float)siteList.get(i).getHumidity()));
+                    xName = "空气湿度";
+                    yName = "%";
                     break;
                 case 3:
-                    yList.add(siteValue.getSoilTemp());
+                    mPointValues.add(new PointValue(i, (float)siteList.get(i).getSoilTemp()));
+                    xName = "土壤温度";
+                    yName = "℃";
                     break;
                 case 4:
-                    yList.add( siteValue.getIllu());
+                    mPointValues.add(new PointValue(i, (float)siteList.get(i).getIllu()));
+                    xName = "光照";
+                    yName = "Lx";
                     break;
             }
         }
-        MyLineChart chart = (MyLineChart) view.findViewById(R.id.chart);
+        initLineChart(xName,yName,mPointValues,mAxisXValues);
 
-        chart.setDate(menuMidMode,xList,yList);
-        chart.invalidate();
     }
 
     private void addListener() {
@@ -143,6 +154,7 @@ public class CurveFragment extends Fragment implements View.OnClickListener{
         txtThreeDay.setOnClickListener(this);
     }
 
+    @SuppressLint("SetTextI18n")
     private void addView(View view) {
         //中间菜单
         txtTemp = (TextView)view.findViewById(R.id.in_mid_menu).findViewById(R.id.txt_temp);
@@ -167,10 +179,16 @@ public class CurveFragment extends Fragment implements View.OnClickListener{
         txtYesterday = (TextView)view.findViewById(R.id.txt_yesterday);
         txtThreeDay = (TextView)view.findViewById(R.id.txt_three_day);
 
+        chart = (LineChartView) view.findViewById(R.id.chart);
+
         if(TApplication.curSiteValue != null){
-            txtTempVal.setText(String.valueOf(decimalFormat.format(TApplication.curSiteValue.getTemperature()))+"℃");
+
+            String str = Tools.subZeroAndDot(String.valueOf(TApplication.curSiteValue.getTemperature()));
+
+            txtTempVal.setText(String.valueOf(str+"℃"));
             txtHumidityVal.setText(String.valueOf(TApplication.curSiteValue.getHumidity())+"%");
-            txtSoilVal.setText(String.valueOf(decimalFormat.format(TApplication.curSiteValue.getSoilTemp()))+"℃");
+            str = Tools.subZeroAndDot(String.valueOf(TApplication.curSiteValue.getSoilTemp()));
+            txtSoilVal.setText(str+"℃");
             txtIlluVal.setText(String.valueOf(TApplication.curSiteValue.getIllu())+"Lx");
         }
 
@@ -247,7 +265,7 @@ public class CurveFragment extends Fragment implements View.OnClickListener{
                     clearDayUI();
                     txtToday.setTextColor(getResources().getColor(R.color.white));
                     txtToday.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_text_sky));
-                   // initSiteDatas();
+                    // initSiteDatas();
 
                     obtainData(0);
 
@@ -259,7 +277,7 @@ public class CurveFragment extends Fragment implements View.OnClickListener{
                     clearDayUI();
                     txtYesterday.setTextColor(getResources().getColor(R.color.white));
                     txtYesterday.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_text_sky));
-                   // initSiteDatas();
+                    // initSiteDatas();
 
                     obtainData(1);
                 }
@@ -271,7 +289,7 @@ public class CurveFragment extends Fragment implements View.OnClickListener{
                     txtThreeDay.setTextColor(getResources().getColor(R.color.white));
                     txtThreeDay.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_text_sky));
                     //initSiteDatas();
-                   //
+                    //
                     obtainData(2);
                 }
                 break;
@@ -301,5 +319,75 @@ public class CurveFragment extends Fragment implements View.OnClickListener{
         txtIlluVal.setTextColor(getResources().getColor(R.color.black_text_n));
         txtIlluVal.setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_text_gray));
         viewLine4.setBackgroundColor(getResources().getColor(R.color.gray_light_n));
+    }
+
+    final int COLOR_TEXT = TApplication.context.getResources().getColor(R.color.black_text_n);    //文字颜色
+    final int COLOR_POINT = TApplication.context.getResources().getColor(R.color.sky_blue);       //圆点颜色
+    final int COLOR_CURVE = TApplication.context.getResources().getColor(R.color.green_none);     //折线、曲线颜色
+
+    private void initLineChart(String xName,String yName,List<PointValue> mPointValues,List<AxisValue> mAxisXValues){
+
+        Line line = new Line(mPointValues).setColor(COLOR_CURVE);  //折线的颜色
+        List<Line> lines = new ArrayList<Line>();
+        line.setShape(ValueShape.CIRCLE);//折线图上每个数据点的形状  这里是圆形 （有三种 ：ValueShape.SQUARE  ValueShape.CIRCLE  ValueShape.DIAMOND）
+        line.setPointColor(COLOR_POINT);//圆点颜色
+        line.setCubic(true);//曲线是否平滑，即是曲线还是折线
+        line.setFilled(false);//是否填充曲线的面积
+        line.setHasLabels(true);//曲线的数据坐标是否加上备注
+
+//      line.setHasLabelsOnlyForSelected(true);//点击数据坐标提示数据（设置了这个line.setHasLabels(true);就无效）
+        line.setHasLines(true);//是否用线显示。如果为false 则没有曲线只有点显示
+        line.setHasPoints(true);//是否显示圆点 如果为false 则没有原点只有点显示（每个数据点都是个大的圆点）
+        lines.add(line);
+        LineChartData data = new LineChartData();
+
+        data.setLines(lines);
+        data.setValueLabelsTextColor(Color.WHITE);
+        data.setValueLabelTextSize(6);
+
+
+        //x坐标轴
+        Axis axisX = new Axis(); //X轴
+        axisX.setHasTiltedLabels(true);  //X坐标轴字体是斜的显示还是直的，true是斜的显示
+        axisX.setName(xName);  //表格名称
+        axisX.setTextColor(COLOR_TEXT);  //设置x轴字体颜色
+
+        axisX.setTextSize(10);//设置字体大小
+        axisX.setMaxLabelChars(7); //最多几个X轴坐标，意思就是你的缩放让X轴上数据的个数7<=x<=mAxisXValues.length
+        axisX.setValues(mAxisXValues);  //填充X轴的坐标名称
+
+        data.setAxisXBottom(axisX); //x 轴在底部
+        //data.setAxisXTop(axisX);  //x 轴在顶部
+        axisX.setHasLines(true); //x 轴分割线
+
+        // Y轴是根据数据的大小自动设置Y轴上限(在下面我会给出固定Y轴数据个数的解决方案)
+        //y坐标轴
+        Axis axisY = new Axis();  //Y轴
+        axisY.setName(yName);//y轴标注
+
+        axisY.setTextSize(10);//设置字体大小
+        axisY.setTextColor(COLOR_TEXT);  //设置x轴字体颜色
+        axisY.setHasLines(true);
+        data.setAxisYLeft(axisY);  //Y轴设置在左边
+        //data.setAxisYRight(axisY);  //y轴设置在右边
+        //设置行为属性，支持缩放、滑动以及平移
+
+        chart.setInteractive(true);
+        chart.setZoomType(ZoomType.HORIZONTAL);
+        chart.setMaxZoom((float) 10);//最大方法比例
+        chart.setContainerScrollEnabled(true, ContainerScrollType.HORIZONTAL);
+        chart.setLineChartData(data);
+        chart.setVisibility(View.VISIBLE);
+
+        /**注：下面的7，10只是代表一个数字去类比而已
+         * 当时是为了解决X轴固定数据个数。见（http://forum.xda-developers.com/tools/programming/library-hellocharts-charting-library-t2904456/page2）;
+         */
+        Viewport v = new Viewport(chart.getMaximumViewport());
+        v.left = 5;
+        v.right= 17;
+        chart.setCurrentViewport(v);
+        /*Viewport port = initViewPort(0,50);
+        chart.setCurrentViewportWithAnimation(port);
+        chart.startDataAnimation();*/
     }
 }

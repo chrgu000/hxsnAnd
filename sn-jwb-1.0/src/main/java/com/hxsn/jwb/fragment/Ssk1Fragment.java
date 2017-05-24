@@ -29,6 +29,7 @@ import com.hxsn.jwb.TApplication;
 import com.hxsn.jwb.activity.HomeActivity;
 import com.hxsn.jwb.activity.SelectHomeActivity;
 import com.hxsn.jwb.utils.Const;
+import com.hxsn.jwb.utils.Shared;
 import com.hxsn.jwb.utils.Tools;
 
 import org.greenrobot.eventbus.EventBus;
@@ -90,26 +91,26 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
         //获取用户所选大棚未读报警预警数量
         obtainUnReadWarning();
 
-       // setClickView(TApplication.mode);
-
         return view;
     }
 
-
     private void obtainUnReadWarning() {
-        String url = Const.URL_WARN_HOUSE_UNREAD + TApplication.user.getUserId()+"&dyid=";//+TApplication.defaultGreenHouse.getId();
-        new AndHttpRequest(context) {
-            @Override
-            public void getResponse(String response) {
-                String result = AndJsonUtils.getResult(response);
-                LogUtil.i(TAG,"------------未读预警信息个数----result="+result);
-                if(!result.equals("0")){//没有未读预警
-                    imgPoint.setVisibility(View.VISIBLE);
-                }else {
-                    imgPoint.setVisibility(View.GONE);
+        if(Shared.getChickHome() != null &&  TApplication.user != null){
+            String homeid = Shared.getChickHome().getId();
+            String url = Const.URL_WARN_HOUSE_UNREAD + TApplication.user.getUserId()+"&homeid="+homeid;//+TApplication.defaultGreenHouse.getId();
+            new AndHttpRequest(context) {
+                @Override
+                public void getResponse(String response) {
+                    String result = AndJsonUtils.getResult(response);
+                    LogUtil.i(TAG,"------------未读预警信息个数----result="+result);
+                    if(!result.equals("0")){//没有未读预警
+                        imgPoint.setVisibility(View.VISIBLE);
+                    }else {
+                        imgPoint.setVisibility(View.GONE);
+                    }
                 }
-            }
-        }.doGet(url);
+            }.doGet(url);
+        }
     }
 
 
@@ -260,7 +261,6 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
             case 2://气象数据
                 img2.setBackgroundResource(R.drawable.qx_s);
                 txt2.setTextColor(getResources().getColor(R.color.green));
-                //urlWebView = "http://115.28.140.121:8480/aiot2/app/zzd2/qixiang.do?uid="+TApplication.user.getUserId();//f39c0cf957f4257a0158adf5445301cd&dyid=f39c0cf9592ec14201592f42b241002e";
                 urlWebView = Const.URL_WEATHER_WEB+ Tools.getHomeId();
                 LogUtil.i("Ssk1Fragment","**********************webViewUrl="+urlWebView+"***********************LogUtil.i");
 

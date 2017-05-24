@@ -110,7 +110,7 @@
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
-                android:text="系统设置"
+                android:text="报警设置"
                 android:textColor="@color/black_text_n"
                 android:textSize="16sp" />
 

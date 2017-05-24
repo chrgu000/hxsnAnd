@@ -9,6 +9,7 @@ import com.andbase.ssk.entity.NotifyInfo;
 import com.andbase.ssk.utils.AndShared;
 import com.hxsn.ssklf.model.SiteInfo;
 import com.hxsn.ssklf.model.SiteValue;
+import com.hxsn.ssklf.model.WarningInfo;
 import com.hxsn.ssklf.utils.Const;
 import com.hxsn.ssklf.utils.Shared;
 
@@ -29,6 +30,7 @@ public class TApplication extends Application{
     public static boolean isUpdateNongshImage= false;//判断是否需要更新图标,默认不需要更新，进入APP首先在APPBiz中判断是否更新
     public static SiteInfo curSiteInfo;
     public static SiteValue curSiteValue;
+    public static List<WarningInfo> warningInfoList;//国家应急
 
     @Override
     public void onCreate() {

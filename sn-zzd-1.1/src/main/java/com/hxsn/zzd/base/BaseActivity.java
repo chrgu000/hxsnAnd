@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import com.hxsn.zzd.utils.CheckPermission;
 
 /**
+ *
  * Created by jiely on 2017/3/29.
  */
 abstract public class BaseActivity extends Activity {

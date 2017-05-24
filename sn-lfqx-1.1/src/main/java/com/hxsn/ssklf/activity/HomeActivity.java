@@ -22,6 +22,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.andbase.library.util.AbToastUtil;
+import com.andbase.ssk.utils.PermissionUtils;
 import com.hxsn.ssklf.R;
 import com.hxsn.ssklf.fragment.Mine5Fragment;
 import com.hxsn.ssklf.fragment.Nshui2Fragment;
@@ -71,7 +72,17 @@ public class HomeActivity extends Activity implements View.OnClickListener{
         addListener();
 
         //检查是否有新版本
-        UpdateUtil.updateNowifiApp(this, Const.URL_UPDATE);
+        //动态申请CODE_WRITE_EXTERNAL_STORAGE权限
+        if(Integer.parseInt(android.os.Build.VERSION.SDK) < 23){
+            UpdateUtil.updateNowifiApp(this,Const.URL_UPDATE);
+        }else {
+            PermissionUtils.requestPermission(this, PermissionUtils.CODE_WRITE_EXTERNAL_STORAGE, new PermissionUtils.PermissionGrant() {
+                @Override
+                public void onPermissionGranted(int requestCode) {
+                    UpdateUtil.updateNowifiApp(HomeActivity.this,Const.URL_UPDATE);
+                }
+            });
+        }
     }
 
     /**

@@ -31,7 +31,7 @@
         android:layout_marginTop="22dp"
         android:orientation="vertical">
 
-        shouji<com.hxsn.jwb.ui.MyClearEditText
+        <com.hxsn.jwb.ui.MyClearEditText
             android:id="@+id/edt_username"
             android:layout_width="330dp"
             android:layout_height="45dp"

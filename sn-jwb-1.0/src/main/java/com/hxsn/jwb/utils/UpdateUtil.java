@@ -11,7 +11,6 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.andbase.library.util.AbAppUtil;
@@ -19,6 +18,7 @@ import com.andbase.library.util.AbFileUtil;
 import com.andbase.ssk.entity.AppVersion;
 import com.andbase.ssk.utils.AndHttpRequest;
 import com.andbase.ssk.utils.AndJsonUtils;
+import com.andbase.ssk.utils.LogUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -62,6 +62,7 @@ public class UpdateUtil {
         new AndHttpRequest(context) {
             @Override
             public void getResponse(String response) {
+                LogUtil.i("httpRequest","response="+response);
                // String jsonString = HttpRequest.result;
                 AppVersion appVersion = AndJsonUtils.getAppVersion(response);
                 urlString = appVersion.getUrl();
@@ -84,7 +85,7 @@ public class UpdateUtil {
                     }
                 }
             }
-        }.doGet(url);
+        }.get(url);
     }
 
 
@@ -232,22 +233,22 @@ public class UpdateUtil {
 
         @Override
         protected Integer doInBackground(String... params) {
-            String path;
+            long path;
             try {
                 Boolean isSuccess = AbFileUtil.deleteFile(new File(PATH_APK));
 
-                String fileName = AbFileUtil.getCacheFileNameFromUrl(urlString);
+                String fileName = AbFileUtil.getFileName(urlString);
                 absolutePath = PATH_APK +"/"+ fileName;
                 if (!isSuccess) {//如果删除失败，再次删除文件夹下的指定文件，再次删除失败，就不删除了，而是创建新的文件夹和文件 SDCARD_ROOT + "/apkDownloadTemp"
                     boolean isDeleteSuccess = AbFileUtil.deleteFile(new File(absolutePath));
                     if(!isDeleteSuccess){
                         absolutePath = PATH_APK +"Temp/"+ fileName;
-                        AbFileUtil.deleteFile(new File(PATH_APK));
+                        AbFileUtil.deleteAllFile(PATH_APK);
                     }
                 }
 
-                path = AbFileUtil.downloadFile(urlString, absolutePath);//.downloadFileToLocal(urlString, absolutePath, null);
-                if (!TextUtils.isEmpty(path) ) {
+                path = AbFileUtil.downloadFileToLocal(urlString, absolutePath,null);//.downloadFileToLocal(urlString, absolutePath, null);
+                if (path > 0 ) {
                     return 200;
                 }
             } catch (Exception e) {

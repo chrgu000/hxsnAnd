@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.andbase.gson.Gson;
+import com.andbase.library.model.AbEntity;
 import com.andbase.ssk.entity.User;
 
 /**
@@ -57,6 +58,22 @@ public class AndShared {
         Gson gson = new Gson();
         String json = gson.toJson(new User());
         return shared.edit().putString("user_info", json).commit();
+    }
+
+    public static boolean saveEntity(AbEntity entity,String suffix) {
+        Gson gson = new Gson();
+        String json = gson.toJson(entity);
+        return shared.edit().putString("AbEntity"+suffix, json).commit();
+    }
+
+    public static AbEntity getEntity(String suffix) {
+        String json = shared.getString("AbEntity"+suffix, "");
+        Gson gson = new Gson();
+        AbEntity entity = gson.fromJson(json,AbEntity.class);
+        if(entity == null){
+            entity = new AbEntity();
+        }
+        return entity;
     }
 
 }

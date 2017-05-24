@@ -11,7 +11,6 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.andbase.library.util.AbAppUtil;
@@ -19,6 +18,8 @@ import com.andbase.library.util.AbFileUtil;
 import com.andbase.ssk.entity.AppVersion;
 import com.andbase.ssk.utils.AndHttpRequest;
 import com.andbase.ssk.utils.AndJsonUtils;
+import com.andbase.ssk.utils.LogUtil;
+import com.hxsn.zzd.TApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -66,7 +67,7 @@ public class UpdateUtil {
                 AppVersion appVersion = AndJsonUtils.getAppVersion(response);
                 urlString = appVersion.getUrl();
                 if (appVersion != null) {
-                    String thisAppVersion = UpdateUtil.getThisAppVersion(context);
+                    String thisAppVersion = UpdateUtil.getThisAppVersion();
                     if (UpdateUtil.isNewVersion(appVersion.getVersion(), thisAppVersion)) {
                         new AlertDialog.Builder(context)
                                 .setMessage("是否升级")
@@ -168,7 +169,12 @@ public class UpdateUtil {
      * auther:jiely
      * create at 2015/11/24 10:00
      */
-    public static String getThisAppVersion(Context context) {
+    public static String getThisAppVersion() {
+
+        Context context = TApplication.context;
+        if(context == null){
+            return "";
+        }
 
         // 获取packagemanager的实例
         PackageManager packageManager = context.getPackageManager();
@@ -232,22 +238,23 @@ public class UpdateUtil {
 
         @Override
         protected Integer doInBackground(String... params) {
-            String path;
+            long path;
             try {
                 Boolean isSuccess = AbFileUtil.deleteFile(new File(PATH_APK));
-
-                String fileName = AbFileUtil.getCacheFileNameFromUrl(urlString);
+                String tmpPath = PATH_APK;
+                LogUtil.i(UpdateUtil.class,"tmpPath="+tmpPath);
+                String fileName = AbFileUtil.getFileName(urlString);
                 absolutePath = PATH_APK +"/"+ fileName;
                 if (!isSuccess) {//如果删除失败，再次删除文件夹下的指定文件，再次删除失败，就不删除了，而是创建新的文件夹和文件 SDCARD_ROOT + "/apkDownloadTemp"
                     boolean isDeleteSuccess = AbFileUtil.deleteFile(new File(absolutePath));
                     if(!isDeleteSuccess){
                         absolutePath = PATH_APK +"Temp/"+ fileName;
-                        AbFileUtil.deleteFile(new File(PATH_APK));
+                        AbFileUtil.deleteAllFile(PATH_APK);
                     }
                 }
 
-                path = AbFileUtil.downloadFile(urlString, absolutePath);//.downloadFileToLocal(urlString, absolutePath, null);
-                if (!TextUtils.isEmpty(path) ) {
+                path = AbFileUtil.downloadFileToLocal(urlString, absolutePath,null);//.downloadFileToLocal(urlString, absolutePath, null);
+                if (path > 0 ) {
                     return 200;
                 }
             } catch (Exception e) {

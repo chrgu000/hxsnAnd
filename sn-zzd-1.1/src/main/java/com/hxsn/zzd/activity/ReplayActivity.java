@@ -1,8 +1,6 @@
 package com.hxsn.zzd.activity;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -54,6 +52,7 @@ public class ReplayActivity extends Activity {
         addView();
         BaseTitle.getInstance(this).setTitle("专家回复");
 
+        //根据问题ID获取问题回复列表
         obtainAnswerList(questionInfo.getId());
     }
 
@@ -66,6 +65,7 @@ public class ReplayActivity extends Activity {
         txtTitle.setText(questionInfo.getTitle());
         txtTime.setText(questionInfo.getTime());
 
+        //添加回复弹出对话框
         txtAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +76,7 @@ public class ReplayActivity extends Activity {
                 final EditText editText = (EditText) mView.findViewById(R.id.edt_info);
                 TextView positiveButton = (TextView) mView.findViewById(R.id.txt_send);
                 TextView negativeButton = (TextView) mView.findViewById(R.id.txt_cancel);
+
                 negativeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -83,6 +84,7 @@ public class ReplayActivity extends Activity {
                     }
                 });
 
+                //提交回复
                 positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -133,63 +135,6 @@ public class ReplayActivity extends Activity {
                 answerListView.setAdapter(answerAdapter);
             }
         }.doPost(Const.URL_GET_ANSWER_LIST+ id);
-    }
-
-    class AnswerDialog1 extends Dialog {
-        public AnswerDialog1(Context context) {
-            super(context);
-            setCustomDialog();
-        }
-
-        private void setCustomDialog() {
-            View mView = LayoutInflater.from(ReplayActivity.this).inflate(R.layout.dialog_answer, null);
-            final EditText editText = (EditText) mView.findViewById(R.id.edt_info);
-            TextView positiveButton = (TextView) mView.findViewById(R.id.txt_send);
-            TextView negativeButton = (TextView) mView.findViewById(R.id.txt_cancel);
-            negativeButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dismiss();
-                }
-            });
-
-            positiveButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String msg = editText.getText().toString();
-                    final AnswerInfo answerInfo = new AnswerInfo();
-                    answerInfo.setTime(Tools.getCurTime());
-                    answerInfo.setName(TApplication.user.getUserName());
-                    answerInfo.setContent(msg);
-                    AbRequestParams map = new AbRequestParams();
-                    map.put("wzjid",questionInfo.getId());
-                    map.put("username", TApplication.user.getUserName());
-                    map.put("content",msg);
-                    if(msg.length()>0){
-                        new AndHttpRequest(ReplayActivity.this) {
-                            @Override
-                            public void getResponse(String response) {
-                                String code = AndJsonUtils.getCode(response);
-                                if(code.equals("200")){
-                                    if(answerInfoList == null){
-                                        answerInfoList = new ArrayList<>();
-                                    }
-                                    answerInfoList.add(answerInfo);
-                                    answerAdapter.notifyDataSetChanged();
-                                    isReplay = true;
-                                    dismiss();
-                                }else {
-                                    AbToastUtil.showToast(ReplayActivity.this,AndJsonUtils.getDescription(response));
-                                }
-                            }
-                        }.doPost(Const.URL_SUBMIT_ANSWER,map);
-                    }else {
-                        AbToastUtil.showToast(ReplayActivity.this,"请回复");
-                    }
-                }
-            });
-            super.setContentView(mView);
-        }
     }
 
     /**

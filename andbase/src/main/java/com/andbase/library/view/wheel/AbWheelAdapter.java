@@ -26,4 +26,6 @@ public interface AbWheelAdapter {
 	 * 获取条目的最大字符长度，中文表示2个.
 	 */
 	public int getMaximumLength();
+
+
 }

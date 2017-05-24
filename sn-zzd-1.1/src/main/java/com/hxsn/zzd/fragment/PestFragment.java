@@ -23,9 +23,20 @@ import java.util.List;
 import static com.hxsn.zzd.TApplication.context;
 
 /**
+ * 病虫害页面
  */
 @SuppressLint("ValidFragment")
 public class PestFragment extends Fragment implements View.OnClickListener{
+
+
+
+    public static PestFragment newInstance(Context context,int mode) {
+        PestFragment fragment = new PestFragment();
+        Bundle args = new Bundle();
+        args.putInt("fragment_mode", mode);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     /**
      * 1黄瓜病虫害图片

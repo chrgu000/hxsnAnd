@@ -13,30 +13,16 @@ import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 import com.hxsn.zzd.activity.HomeActivity;
 import com.hxsn.zzd.activity.LoginActivity;
-import com.hxsn.zzd.activity.MoreActivity;
 import com.hxsn.zzd.activity.WelcomeActivity;
-import com.hxsn.zzd.utils.CheckPermission;
 
+/**
+ * APP入口
+ */
 public class MainActivity extends Activity {
-
-
-    static final String[] PERMISSION = new String[]{
-            android.Manifest.permission.READ_PHONE_STATE,        //读取设备信息
-    };
-
-    public static final int PERMISSION_DENIEG = 1;//权限不足，权限被拒绝的时候
-    public static final int PERMISSION_REQUEST_CODE = 0;//系统授权管理页面时的结果参数
-    public static final String PACKAGE_URL_SCHEME = "package:";//权限方案
-    public CheckPermission checkPermission;//检测权限类的权限检测器
-    private boolean isrequestCheck = true;//判断是否需要系统权限检测。防止和系统提示框重叠
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-       // process(savedInstanceState);
-       // setContentView(R.layout.activity_main);
 
         baiduPush();
 
@@ -48,10 +34,9 @@ public class MainActivity extends Activity {
         } else {
             if (isLogin.equals("1")) {
                 if(TextUtils.isEmpty(TApplication.defaultGreenHouse.getId()) ){
-                    intent.setClass(this, MoreActivity.class);
-                }else {
-                    intent.setClass(this, HomeActivity.class);
+                    TApplication.mode = 9;//首次，未选择棚室，先进入棚室界面
                 }
+                intent.setClass(this, HomeActivity.class);
             } else {
                 intent.setClass(this, LoginActivity.class);
             }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/not_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/zhzy" />
+
+    <TextView
+        android:id="@+id/not_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/not_img"
+        android:layout_marginLeft="10dp"
+        android:singleLine="true"
+        android:layout_toRightOf="@+id/not_img"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/not_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/not_img"
+        android:layout_alignLeft="@+id/not_name"
+        android:text="您收到来自“”的消息，点击查看"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/not_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/not_name"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:singleLine="true"
+        android:text="2016/01/29 11:47" />
+
+</RelativeLayout>
