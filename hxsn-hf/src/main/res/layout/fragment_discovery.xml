@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#cccccc" >
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_weight="0.00"
+                android:gravity="center_vertical"
+                android:background="#cccccc"
+                />
+
+            
+            <RelativeLayout
+                android:id="@+id/discovery_Cookbook"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/discovery_cookbook_IV"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/discovery_menu" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_toRightOf="@+id/discovery_cookbook_IV"
+                    android:text="菜谱" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/discovery_Order"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/discovery_order_IV"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/discovery_order" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_toRightOf="@+id/discovery_order_IV"
+                    android:text="点餐记录" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="0.00"
+                android:background="#cccccc"
+               android:gravity="center_vertical"
+               />
+            <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+
+            <RelativeLayout
+                android:id="@+id/discovery_Sweep"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/discovery_sweep_IV"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/discovery_sweep" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_toRightOf="@+id/discovery_sweep_IV"
+                    android:text="扫一扫" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/discovery_Swing"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/discovery_swing_IV"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/discovery_swing" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_toRightOf="@+id/discovery_swing_IV"
+                    android:text="摇一摇" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="0.00"
+                android:background="#cccccc"
+                 android:gravity="center_vertical"
+               />
+             <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+            
+            <RelativeLayout
+                android:id="@+id/discovery_Dynamic"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/discovery_dynamic_IV"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/discovery_dynamic" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_toRightOf="@+id/discovery_dynamic_IV"
+                    android:text="农庄动态" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/discovery_Inquire"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/discovery_inquire_IV"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/discovery_inquire" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="18dp"
+                    android:layout_toRightOf="@+id/discovery_inquire_IV"
+                    android:text="订单查询" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    
+</FrameLayout>

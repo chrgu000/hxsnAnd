@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/navigation_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                 android:layout_gravity="center_horizontal"
+                android:src="@drawable/navigation_0" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="导航" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cs"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/cs_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                 android:layout_gravity="center_horizontal"
+                android:src="@drawable/cs_0" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="客服" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/discovery"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/discovery_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                 android:layout_gravity="center_horizontal"
+                android:src="@drawable/discovery_0" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="发现" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/me"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/me_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                 android:layout_gravity="center_horizontal"
+                android:src="@drawable/me_0" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="我" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light_n"
+    android:orientation="vertical"
+    tools:context=".activity.PersonalSettingActivity"
+    tools:ignore="HardcodedText">
+
+    <include
+        android:id="@+id/in_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        layout="@layout/in_title"/>
+
+
+    <TextView
+        android:id="@+id/txt_set_personal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="个人设置"
+        android:background="@color/white"
+        android:textColor="@color/black_text_n"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/txt_set_plc_manual"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="PLC手工设置"
+        android:background="@color/white"
+        android:textColor="@color/black_text_n"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txt_set_plc_template"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="PLC模板设置"
+        android:background="@color/white"
+        android:textColor="@color/black_text_n"
+        android:textSize="16sp" />
+
+
+
+</LinearLayout>

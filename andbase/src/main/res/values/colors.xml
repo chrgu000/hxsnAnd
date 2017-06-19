@@ -21,6 +21,7 @@
     <!-- 灰色 -->
     <color name="gray_dark">#808080</color>
     <color name="black">#000000</color>
+    <color name="black_blue">#00002B</color>
     <color name="black_text_s">#666666</color>
     <color name="black_text_n">#545454</color>
     <color name="black_light">#606060</color>

@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/andbase/andbase.iml" filepath="$PROJECT_DIR$/andbase/andbase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hxsn-hf/hxsn-hf.iml" filepath="$PROJECT_DIR$/hxsn-hf/hxsn-hf.iml" />
       <module fileurl="file://$PROJECT_DIR$/hxsnAnd.iml" filepath="$PROJECT_DIR$/hxsnAnd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sn-iot-1.2/sn-iot-1.2.iml" filepath="$PROJECT_DIR$/sn-iot-1.2/sn-iot-1.2.iml" />
       <module fileurl="file://$PROJECT_DIR$/sn-jwb-1.0/sn-jwb-1.0.iml" filepath="$PROJECT_DIR$/sn-jwb-1.0/sn-jwb-1.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/sn-lfqx-1.1/sn-lfqx-1.1.iml" filepath="$PROJECT_DIR$/sn-lfqx-1.1/sn-lfqx-1.1.iml" />
       <module fileurl="file://$PROJECT_DIR$/sn-ssk-1.1/sn-ssk-1.1.iml" filepath="$PROJECT_DIR$/sn-ssk-1.1/sn-ssk-1.1.iml" />

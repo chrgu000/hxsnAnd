@@ -1,0 +1,876 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	$("#tan").click(function(){
+		$(".tancbg").toggle();
+		});
+		$(".flcd li").click(function(){
+		var f=false;
+		if($(this).find(".cdxz").css("display")=="none"){
+		$("#cai1").hide();	
+		$(this).find(".cdxz").css("display","inline");
+		$("#"+$(this).attr("name")).insertBefore($(".cai")[0]);
+		$("#"+$(this).attr("name")).show();
+		}
+		else{
+			
+			
+			$(this).find(".cdxz").css("display","none");
+			$("#"+$(this).attr("name")).hide();
+			}
+	
+			
+				$(".flcd li").each(function(index, element) {
+				
+                  if($(this).find(".cdxz").css("display")=="block"){
+					 
+					 f=true; 
+					  }
+                });
+				
+				
+				
+			if(f){
+			$("#cai1").hide();		
+				}else{$("#cai1").show();}	
+		//$("#"+$(this).attr("name")).toggle();
+		return false;
+		});
+$(".tancbg").click( function(){
+		
+		$(this).hide();});
+$("#ld img").click(function(){
+		var ind=$(this).index();
+		var cen=ind+1;
+		var att=$(this).attr("src");
+		$("#cai1").hide();	
+		$(this).prevAll().attr("src","images/lt.png");
+		$(this).attr("src","images/lt.png");
+		$(this).nextAll().attr("src","images/l2.png");
+		$("#cail"+(ind+1)).insertBefore($(".cai")[0]).show().siblings(".la").hide();
+		if(ind==0){
+			
+			if(att=="images/lt.png"){$(this).attr("src","images/l2.png");$("#cai1").show();$("#cail1").hide();}
+			if(att=="images/l2.png"){$(this).attr("src","images/lt.png");$("#cail1").show();$("#cai1").hide();}
+			}
+		
+		return false;
+		});
+	});
+	
+	
+</script>
+</head>
+
+<body class="fxbg">
+<div class="head"><span class="headback"><a href="faxian.html">A</a></span>
+  <p>餐厅菜单</p></div>
+<div class="tancbg">
+  <div class="tanc">
+    <div class="fl">
+      <h2><span>类型</span></h2>
+      <ul class="flcd">
+        <li name="cail"><span class="cdtu"><img src="images/cdtu.png"></span><span class="cdzi" >凉菜</span><span class="cdxz right"><img src="images/xz.png"></span></li>
+        <li name="cair"><span class="cdtu"><img src="images/rc.png"></span><span class="cdzi">热菜</span><span class="cdxz right"><img src="images/xz.png"></span></li>
+        <li name="caiz"><span class="cdtu"><img src="images/mf.png"></span><span class="cdzi">主食</span><span class="cdxz right"><img src="images/xz.png"></span></li>
+        <li name="cait"><span class="cdtu"><img src="images/t.png"></span><span class="cdzi">汤</span><span class="cdxz right"><img src="images/xz.png"></span></li>
+      </ul>
+    </div>
+    <div class="fl matop1">
+      <h2><span>荤素</span></h2>
+      <ul class="flcd">
+        <li name="caih"><span class="cdtu"><img src="images/h.png"></span><span class="cdzi">荤</span><span class="cdxz right"><img src="images/xz.png"></span></li>
+        <li name="cais"><span class="cdtu"><img src="images/s.png"></span><span class="cdzi" >素</span><span class="cdxz right"><img src="images/xz.png"></span></li>
+      </ul>
+    </div>
+    <div class="fl matop1">
+      <h2><span>辣度</span></h2>
+      <ul class="ldul">
+        <li><span class="cdtu"><img src="images/l.png"></span><span class="cdzi">辣度</span><span class="ld right" id="ld"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="ctcd">
+  <div class="search">
+    <div class="sou left"><span>
+      <input type="text" class="souinput" value="搜索"/>
+      </span></div>
+    <span class="cdtan right" id="tan"><img src="images/cdul.png"></span> </div>
+  <div class="clear"></div>
+  <div class="cai" id="cail" style=" display:none">
+    <ul class="pscp matop1 cdul">
+      <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/1c01.jpg" ></dt>
+          <dd>
+            <h2>凉拌黄瓜</h2>
+            <p><span>被点击<em>20</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+      <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/lc02.jpg"></dt>
+          <dd>
+            <h2>凉拌土豆丝</h2>
+            <p><span>被点击<em>20</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+      <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/lc03.jpg"></dt>
+          <dd>
+            <h2>胭脂冬瓜</h2>
+            <p><span>被点击<em>22</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+      <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/lc04.jpg"></dt>
+          <dd>
+            <h2>手撕茄子</h2>
+            <p><span>被点击<em>10</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+      <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/lc05.jpg"></dt>
+          <dd>
+            <h2>香拌藕片</h2>
+            <p><span>被点击<em>20</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="cai" id="cair" style=" display:none">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/nr01.jpg"></dt>
+        <dd>
+          <h2>孜然牛肉条</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span> </div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc01.jpg"></dt>
+        <dd>
+          <h2>水煮鱼</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span> </div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc02.jpg"></dt>
+        <dd>
+          <h2>虾仁娃娃菜</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span> </div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc03.jpg"></dt>
+        <dd>
+          <h2>可乐鸡翅</h2>
+          <p><span>被点击<em>21</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span> </div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc04.jpg"></dt>
+        <dd>
+          <h2>农家小炒肉</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span> </div>
+    </li>
+  </ul>
+</div>
+<div class="cai" id="caiz" style=" display:none">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs01.jpg"></dt>
+        <dd>
+          <h2>紫薯花卷</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs02.jpg"></dt>
+        <dd>
+          <h2>清凉寿司卷</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs03.jpg"></dt>
+        <dd>
+          <h2>芝麻馒头</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs04.jpg"></dt>
+        <dd>
+          <h2>香煎土豆饼</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs05.jpg"></dt>
+        <dd>
+          <h2>家常炒面</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+  </ul>
+</div>
+<div class="cai" id="cait" style="display:none">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/t01.jpg"></dt>
+        <dd>
+          <h2> 西式土豆浓汤</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/t02.jpg"></dt>
+        <dd>
+          <h2> 甘蔗排骨汤</h2>
+          <p><span>被点击<em>30</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/t03.jpg"></dt>
+        <dd>
+          <h2> 牛肉丸子汤</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/t04.jpg"></dt>
+        <dd>
+          <h2> 金针菇豆腐汤</h2>
+          <p><span>被点击<em>25</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/t05.jpg"></dt>
+        <dd>
+          <h2> 莲藕香菇鲜鸡汤</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+  </ul>
+</div>
+<div class="cai" id="caih" style=" display:none">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/nr01.jpg"></dt>
+        <dd>
+          <h2>孜然牛肉条</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc01.jpg"></dt>
+        <dd>
+          <h2>水煮鱼</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/nr03.jpg"></dt>
+        <dd>
+          <h2>可乐鸡翅</h2>
+          <p><span>被点击<em>21</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc02.jpg"></dt>
+        <dd>
+          <h2>虾仁娃娃菜</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc04.jpg"></dt>
+        <dd>
+          <h2>农家小炒肉</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span> </div>
+    </li>
+  </ul>
+</div>
+<div class="cai" id="cais" style=" display:none">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/lc02.jpg"></dt>
+        <dd>
+          <h2>凉拌土豆丝</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/lc03.jpg"></dt>
+        <dd>
+          <h2>胭脂冬瓜</h2>
+          <p><span>被点击<em>22</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/lc05.jpg"></dt>
+        <dd>
+          <h2>香拌藕片</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs04.jpg"></dt>
+        <dd>
+          <h2>香煎土豆饼</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+  </ul>
+</div>
+<div class="cai la" id="cail1" style=" display:none">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs05.jpg"></dt>
+        <dd>
+          <h2>家常炒面</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/1c01.jpg"></dt>
+        <dd>
+          <h2>凉拌黄瓜</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/lc02.jpg"></dt>
+        <dd>
+          <h2>凉拌土豆丝</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/lc04.jpg"></dt>
+        <dd>
+          <h2>手撕茄子</h2>
+          <p><span>被点击<em>10</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/lc03.jpg"></dt>
+          <dd>
+            <h2>胭脂冬瓜</h2>
+            <p><span>被点击<em>22</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+  </ul>
+</div>
+<div class="cai la" id="cail2" style=" display:none">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/lc05.jpg"></dt>
+        <dd>
+          <h2>香拌藕片</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/qcc01.jpg"></dt>
+        <dd>
+          <h2>芹菜炒香干</h2>
+          <p><span>被点击<em>15</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right">
+      <span><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div></li>
+      <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/nr03.jpg"></dt>
+        <dd>
+          <h2>京葱爆牛肉</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+   <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/lc04.jpg"></dt>
+          <dd>
+            <h2>手撕茄子</h2>
+            <p><span>被点击<em>10</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+      <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/lc02.jpg"></dt>
+          <dd>
+            <h2>凉拌土豆丝</h2>
+            <p><span>被点击<em>20</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+  </ul>
+</div>
+<div class="cai la" id="cail3" style=" display:none">
+  <ul class="pscp matop1 cdul">
+   <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/lc05.jpg"></dt>
+          <dd>
+            <h2>香拌藕片</h2>
+            <p><span>被点击<em>20</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+      <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/1c01.jpg"></dt>
+          <dd>
+            <h2>凉拌黄瓜</h2>
+            <p><span>被点击<em>20</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+      <li> <a href="cdxq.html" class="zs">
+        <dl>
+          <dt class="left"><span></span><img src="images/1c01.jpg"></dt>
+          <dd>
+            <h2>凉拌黄瓜</h2>
+            <p><span>被点击<em>20</em>次</span></p>
+          </dd>
+        </dl>
+        </a>
+        <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+      </li>
+      <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc02.jpg"></dt>
+        <dd>
+          <h2>虾仁娃娃菜</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"></span> </div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs04.jpg"></dt>
+        <dd>
+          <h2>香煎土豆饼</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+  </ul>
+</div>
+<div class="cai la" id="cail4" style=" display:none">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/nr01.jpg"></dt>
+        <dd>
+          <h2>孜然牛肉条</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/qcc01.jpg"></dt>
+        <dd>
+          <h2>芹菜炒香干</h2>
+          <p><span>被点击<em>15</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/nr03.jpg"></dt>
+        <dd>
+          <h2>京葱爆牛肉</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/t03.jpg"></dt>
+        <dd>
+          <h2> 牛肉丸子汤</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs05.jpg"></dt>
+        <dd>
+          <h2>家常炒面</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"></span></div>
+    </li>
+  </ul>
+</div>
+<div class="cai la" id="cail5" style=" display:none">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/nr01.jpg"></dt>
+        <dd>
+          <h2>孜然牛肉条</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span> </div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc01.jpg"></dt>
+        <dd>
+          <h2>水煮鱼</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span> </div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc02.jpg"></dt>
+        <dd>
+          <h2>虾仁娃娃菜</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span> </div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/rc04.jpg"></dt>
+        <dd>
+          <h2>农家小炒肉</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span> </div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/lc04.jpg"></dt>
+        <dd>
+          <h2>手撕茄子</h2>
+          <p><span>被点击<em>10</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span></div>
+    </li>
+  </ul>
+</div>
+<div class="cai" id="cai1">
+  <ul class="pscp matop1 cdul">
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/cai.png"></dt>
+        <dd>
+          <h2>西芹牛柳</h2>
+          <p><span>被点击<em>12</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/qcc01.jpg"></dt>
+        <dd>
+          <h2>芹菜炒香干</h2>
+          <p><span>被点击<em>15</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right">
+      <span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/qcc02.jpg"></dt>
+        <dd>
+          <h2>芹菜炒鸡蛋</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/nr01.jpg"></dt>
+        <dd>
+          <h2>孜然牛肉条</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/nr03.jpg"></dt>
+        <dd>
+          <h2>京葱爆牛肉</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/lt.png"><img src="images/lt.png"><img src="images/lt.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs01.jpg"></dt>
+        <dd>
+          <h2>紫薯花卷</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs02.jpg"></dt>
+        <dd>
+          <h2>清凉寿司卷</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs03.jpg"></dt>
+        <dd>
+          <h2>芝麻馒头</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs04.jpg"></dt>
+        <dd>
+          <h2>香煎土豆饼</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+    <li> <a href="cdxq.html" class="zs">
+      <dl>
+        <dt class="left"><span></span><img src="images/zs05.jpg"></dt>
+        <dd>
+          <h2>家常炒面</h2>
+          <p><span>被点击<em>20</em>次</span></p>
+        </dd>
+      </dl>
+      </a>
+      <div class="cdld right"><span><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"><img src="images/l2.png"></span></div>
+    </li>
+   
+  </ul>
+</div>
+</div>
+<div class="foot">
+<ul>
+<li><a href="daohang.html"><span>游</span></a></li>
+<li><a href="kefu.html"><span>摘</span></a></li>
+<li><a href="index.html"><img src="images/dh03.png"></a></li>
+<li><a href="sys.html"><span>溯</span></a></li>
+<li><a href="faxian.html"><span>吾</span></a></li>
+</ul>
+
+</div>
+<div class="kong"></div>
+</body>
+</html>

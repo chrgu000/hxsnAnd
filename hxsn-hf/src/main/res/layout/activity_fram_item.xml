@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FrameLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        
+        
+   <include layout="@layout/title_back" />
+   
+   
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp" >
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:text="杂粮东1区-01" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:textColor="@android:color/holo_blue_bright"
+                android:text="成熟度65%" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView7"
+                android:layout_below="@+id/textView7"
+                android:layout_marginTop="18dp"
+                android:text="红豆" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_alignBottom="@+id/textView9"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/textView7"
+                android:src="@drawable/jindutiao" />
+
+            <Button
+                android:id="@+id/camera_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView9"
+                android:layout_marginTop="14dp"
+                android:text="实时监控" />
+
+            <Button
+                android:id="@+id/duijiang_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/imageView4"
+                android:layout_below="@+id/imageView4"
+                android:layout_marginTop="14dp"
+                android:text="实时对讲" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+              <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:background="#51000000" />
+
+              <WebView
+                  android:id="@+id/fram_item_wb"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

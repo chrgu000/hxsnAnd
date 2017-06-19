@@ -1,9 +1,21 @@
 package com.hxsn.ssklf.utils;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
 
 /**
@@ -331,4 +343,63 @@ public class Tools {
         }
         return s;
     }
+
+
+    /**
+     * 通过GPS得到位置详细信息
+     *
+     * @param context
+     *            一個Activity
+     * @return 城市名
+     */
+    public static String getCityName(Context context) {
+        LocationManager locationManager;
+        String contextString = Context.LOCATION_SERVICE;
+        locationManager = (LocationManager) context.getSystemService(contextString);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
+        criteria.setCostAllowed(false);
+        criteria.setPowerRequirement(Criteria.POWER_LOW);
+
+        // 取得效果最好的criteria
+        String provider = locationManager.getBestProvider(criteria, true);
+        if (provider == null) {
+            return null;
+        }
+        // 得到坐标相关的信息
+        if (ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return null;
+        }
+        Location location = locationManager.getLastKnownLocation(provider);
+        if (location == null) {
+            return null;
+        }
+
+        if (location != null) {
+            double latitude = location.getLatitude();
+            double longitude = location.getLongitude();
+            // 更具地理环境来确定编码
+            Geocoder gc = new Geocoder(context, Locale.getDefault());
+            try {
+                // 取得地址相关的一些信息\经度、纬度
+                List<Address> addresses = gc.getFromLocation(latitude, longitude, 1);
+                StringBuilder sb = new StringBuilder();
+                if (addresses.size() > 0) {
+
+                    Address address = addresses.get(0);
+                    return address.getAddressLine(0);
+                    //sb.append(address.getLocality()).append("\n");
+                    // cityName = sb.toString();
+                }
+            } catch (IOException e) {
+            }
+        }
+        return "";
+    }
+
 }

@@ -1,0 +1,361 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+	font-family: 'biao';
+	src:url('../fonts/biao.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'fzqk';
+	src:url('../fonts/fzqk.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+*{ padding:0; margin:0 auto;-webkit-tap-highlight-color: transparent;}
+
+html{ font-size: 62.5%; color:#2b2b2b; font-family:fzqk,"方正清刻本悦宋简体", "微软雅黑"; line-height:2.5rem; height:100%}
+body{ font-size:1.4rem;background:#fff;}
+body.ind{background:url(../images/bg.jpg) no-repeat fixed; background-size:cover;}
+body.dlbg{background:url(../images/dlbg.jpg) no-repeat fixed; background-size:cover;}
+body.fxbg{background:url(../images/fxbg.png) no-repeat fixed; background-size:cover; }
+img{ border:none; display:inline-block; vertical-align:middle}
+h2, h3{ font-weight:normal}
+a,input{-webkit-tap-highlight-color:rgba(255,0,0,0);outline:none}
+input:focus,textarea:focus{ outline:none}
+button:focus{ outline:none}
+:focus{ outline:none}
+a{ text-decoration:none; color:#2b2b2b;tap-highlight-color: rgba(0,0,0,0);  }
+a:hover{}
+a:visited{ color:#2b2b2b}
+.clear{ clear:both}
+.left{ float:left}
+.right{ float:right}
+ul,dl{ list-style:none; padding:0; margin:0}
+ul li{ border:none; outline:none}
+
+.head{ height:4.4rem; background:url(../images/topbg.jpg) repeat-x center; color:#e70012; position:relative; text-align:center; font-size:2.2rem}
+.head a{ color:#e70012}
+.head p{ line-height:4.4rem}
+.headback,.headswitch{ width:1.6rem;height:1.8rem; top:1.3rem; position:absolute; display:block; line-height:1.8rem; font-family:biao; font-size:2.5rem}
+.headback{  left:2rem;}
+.headswitch{ right:2rem;}
+.index{ width:100%; height:100%;  text-align:center; margin-bottom:4.4rem; color:#e70012; font-size:1.6rem}
+.index img{ display:block; margin:0 auto}
+/*---登录---*/
+.dl{ margin-top:8rem; overflow:hidden;  margin-bottom:3rem  }
+.dlimg{ text-align:center; text-align:center}
+.dlmain h2{ font-size:2.0rem; color:#987c5e; text-align:center}
+.name{ width:29.8rem; height:4.7rem; background:url(../images/dlmainbg.png) no-repeat; border-radius:0.5rem; border:none; font-size:2.2rem; color:#b7b4b5; text-align:center; margin:0 auto; margin-top:1rem; display:block}
+.dl_but{ width:29.8rem; font-family:"方正清刻本悦宋简体", "微软雅黑"}
+.dl_but span{ display:inline-block; width:14.6rem; height:4.9rem; margin-top:1rem; text-align:center;zoom:1;*display:inline}
+.dl_but span.dl{ margin-right:0.6rem}
+.dl_but span button{ width:14.6rem; height:4.9rem; margin:0 auto; line-height:4.9rem; text-align:center; color:#fff; font-size:2.2rem; background:url(../images/dl_zc.png) no-repeat  0 -1px; border:none}
+.dl_but span button:hover,.dl_but span.dl button{background:url(../images/dl_dl.png) no-repeat;}
+/*----------------导航-开始---------------*/
+.dh{ position:relative; width:100%; height:100%}
+.bjtu{ width:100%; height:50rem; text-align:center; background-color:#093}
+.dhtanch{ width:60%; overflow:hidden;  padding:2.5rem; display:none; position:absolute; left:-40%; top:0; margin-left:50%;z-index:100}
+.close{ position:absolute; width:2.2rem; height:2.1rem;   text-align:center; right:0rem; top:-1.2rem; border-radius:50%;z-index:100; cursor:pointer;background:rgba(0,0,0,0.3); line-height:2rem; display:table-cell; vertical-align:middle; padding-top:0.1rem}
+/*.closebg{position:absolute; width:2.4rem; height:2.1rem; text-align:center; right:-2.5rem; top:-2.5rem; border-radius:50%;z-index:100; padding-top:0.3rem; cursor:pointer; background:#d32b2a; display:none;z-index:101; }*/
+.tanchmain{text-align:center; border:#fff; border:0.1rem solid #f3f3f3; border-radius:.3rem; box-shadow:0 0 1rem #ccc; position:relative; display:table; width:100%}
+.dhul{ background:#fff}
+.dhul li{ border-bottom:.1rem solid #eee; padding:0 1rem; height:6rem; text-align:left; position:relative; clear:both}
+.dhul li:hover{ background:#f3f3f3}
+.dhul li .rq{ font-size:1.2rem; color:#999}
+.dhul dl{ padding-right:3rem;}
+.dhul dl dt{ width:6rem; text-align:left; height:100%}
+.dhul dl dt img{width:4.8rem; margin-top:0.6rem; border-radius:0.6rem; border:0.1rem solid #d9d9da}
+.dhul dl dd h2{font-size:1.8rem; font-weight:normal; color:#d32b2a; height:2.5rem; padding-top:1rem; position:relative; display:inline-block}
+.dhul dl dd p{ height:2rem; overflow:hidden}
+.dhul dl dd{ font-size:1.4rem; color:#666; line-height:1.8rem; overflow:hidden; height:7rem}
+.dhul .sp{ width:8rem; height:3rem; position:absolute; z-index:2; top:3rem; right:0}
+.dhul .sp span a{ display:inline-block; width:3rem; height:3rem; padding:0 0.4rem}
+
+.dhul .sp span.sp01 a{ background:url(../images/sp01.png) no-repeat}
+.dhul .sp span.sp02 a{ background:url(../images/sp02.png) no-repeat}
+
+.yqwz{ position:absolute; width:2.4rem; height:2.4rem; padding:0.2rem; line-height:1.2rem; font-size:1.2rem; border-bottom:7rem; right:1.5rem;bottom:7rem; background:rgba(255,255,255,0.9); border:0.1rem solid #f7f7f7; border-radius:0.5rem; overflow:hidden; text-align:center;word-wrap:break-word; display:block}
+/*----------------导航-结束---------------*/
+/*----------------绿色履历-开始---------------*/
+.ll_top{ height:15rem; background:#fff url(../images/lsllbg.jpg) no-repeat center bottom; background-size:cover; box-shadow:0 0 1rem #ccc; padding:1rem 1.5rem; position:relative}
+.ll_tu{ position:absolute; top:5rem; left:1.5rem;width:5rem; height:5rem; border:0.1rem solid #e70012; border-radius:50%; padding:0.1rem;}
+.ll_tu img{ width:5rem; border-radius:50%}
+.ll_tit{ display:inline-block; background:url(../images/tianzi.png) repeat-x; height:2.5rem; line-height:2.7rem;font-size:2.2rem; padding-left:0.2rem; letter-spacing:0.25rem; overflow:hidden}
+.biao{ display:inline-block; padding-top:1.5rem; color:#b70c21; font-size:1.4rem; vertical-align:top; line-height:2rem}
+.szt{ width:26.6rem; height:2rem; position:absolute;left:7.5rem; top:8.5rem;}
+.ll_main{ height:43rem; overflow-y:auto; padding-bottom:2rem;}
+.tian,.szq{position:absolute; width:26.6rem; height:1.6rem;left:7.5rem; font-size:1.2rem}
+.tiao{position:absolute; width:26.6rem; height:2rem;left:7.5rem;top:8.5rem}
+.tian span,.szq span{ display:block; float:left}
+
+.tian{top:10.5rem; text-align:left}
+.szq{top:7rem; text-align:center}
+
+.tian0,.szq0{ width:5.5rem;}
+.tian1,.szq1{ width:5rem;}
+.tian2,.szq2{ width:10rem;}
+.tian3,.szq3{ width:6rem;}
+.tian4,.szq4{ width:5.5rem;}
+.tian5{ width:3rem;}
+.szq5{ width:4rem;}
+.tian6,.szq6{ width:11rem;}
+.tian6{ width:12rem;}
+.tian7,.szq7{ width:6rem;}
+
+.llul{ overflow:hidden; margin-top:6.5rem}
+.llul li{ margin-right:1.5rem; display:inline-block; background:#d32b2a; padding:0.2rem; height:2rem;line-height:1.8rem;}
+.llul li a{ display:inline-block;  font-size:1.6rem; color:#fff; border:0.1rem solid #dc5555; height:1.8rem}
+.llul li:last-child{ margin-right:0}
+
+.niu{ width:100%; background:url(../images/jy.png) center repeat-y; overflow:hidden; padding-bottom:10rem;}
+.niu li{ width:51%; max-height:10rem; display:table-cell; padding:0 3rem; line-height:1.5rem; margin-top:0rem}
+.niu li p.img{ height:11.5rem}
+.niu li p img{ max-height:8rem; border-radius:0.6rem;}
+.niu li:nth-child(odd){ float:left; text-align:right; }
+.niu li:nth-child(odd) span,.niu li:nth-child(odd) p{ padding-right:7.5rem}
+.niu li:nth-child(even){ float:right; text-align:left;}
+.niu li:nth-child(even) span,.niu li:nth-child(even) p{  padding-left:7.5rem}
+.niu li span{ font-size:1.8rem; color:#b70c21; height:2rem}
+.niu li p{ font-size:1.4rem;}
+.niud{ width:5rem; height:5rem; border:0.1rem solid #e70012; border-radius:50%; padding:0.1rem; position:absolute; bottom:10rem; margin-left:50%; left:-2.5rem }
+.niud img{ width:5rem; border-radius:50%}
+.nx{ padding-bottom:11rem; background:url(../images/nbg.png) no-repeat bottom center; position:relative}
+
+
+
+.tanniu{ position:absolute; width:30rem;top:10rem; left:-15rem; height:40rem; background:#fff;z-index:100; text-align:center; padding-top:2rem; box-shadow:0 0 0.8rem #999; border:0.1rem solid #f7f7f7; border-radius:0.5rem; margin-left:50%; display:none}
+.tou{ width:28rem; height:100rem;position:relative; background:url(../images/sj.png) no-repeat top center;}
+.toubg{ position:absolute; width:16.5rem; height:15.6rem; background:url(../images/huan.png) no-repeat; top:3.9rem; padding-top:0.9rem; left:5.7rem}
+.qcbg{background:url(../images/qcquan.png) no-repeat }
+.toubg img{ width:14.6rem; height:14.6rem; border-radius:50%; text-align:center;}
+.ldot{ width:14rem; height:20rem; position:absolute; left:0.8rem; top:13rem; background:url(../images/ldot.png) no-repeat left top; padding-top:7.5rem; text-align:left}
+.lqc{ background:background:url(../images/ldot.png) no-repeat left top;}
+.rqc{background:url(../images/rdotq.png) no-repeat left top;}
+.rdot{ width:14rem; height:15rem; position:absolute; right:-4rem; top:15rem; background:url(../images/rdot.png) no-repeat left top; padding-top:6.3rem}
+.toutit{ width:28rem; height:2.5rem; position:absolute; top:28rem; left:0; font-size:2.5rem; line-height:2.5rem; color:#e70012}
+.toutity{ width:28rem; height:5rem; position:absolute; top:31rem; left:0; font-size:2rem; line-height:2rem}
+.jidi{ height:5rem; width:100%; position:absolute; top:35rem}
+.jidi span{ border-top:0.1rem solid #ccc; display:inline-block; background:url(../images/map.png) no-repeat left; padding-left:2rem}
+.lqc{ background:url(../images/ldotq.png) no-repeat center top; top:18.9rem; left:1.5rem; height:10rem; padding-top:4.5rem;}
+.rqc{background:url(../images/rdotq.png) no-repeat left top;}
+
+.sm{ width:100%; background:url(../images/sm02.png) center repeat-y; overflow:hidden; padding-bottom:0rem}
+.sm li{ width:51%; min-height:7.6rem; display:table-cell; padding:0 3rem}
+.sm li img{ max-height:6rem;border-radius:0.6rem}
+.sm li:nth-child(odd){ float:left; text-align:right; }
+.sm li:nth-child(odd) span,.sm li:nth-child(odd) p{ padding-right:7rem}
+.sm li:nth-child(even){ float:right; text-align:left;}
+.sm li:nth-child(even) span,.sm li:nth-child(even) p{  padding-left:7rem}
+.sm li span{ font-size:1.8rem; color:#b70c21; }
+.sm li p{ font-size:1.4rem; line-height:2rem}
+.smtop{ text-align:center; background:url(../images/smtou.png) no-repeat center bottom}
+.smd{ height:10.3rem; background:url(../images/zwd.png) no-repeat bottom center}
+/*----------------绿色履历-结束---------------*/
+/*----------------生长过程-开始---------------*/
+.sz_main{ margin-top:2rem}
+.sz_main img{max-width:100%}
+/*----------------生长过程-结束---------------*/
+/*----------------菜谱-开始---------------*/
+.cp{ padding:0 2rem}
+.cp div{ position:relative; padding-top:1rem; margin-top:1rem;min-height:7rem; overflow:hidden}
+.cp_tit{ width:3.6rem; height:7rem; font-size:1.4rem; text-align:center; color:#fff; position:absolute; top:0; left:0;z-index:100}
+.cptxt{ overflow:hidden; background:#f5f4f4; padding:1rem; font-size:1.4rem; padding-left:4.2rem; line-height:2rem}
+.cpul li{ background:#f5f4f4;overflow:hidden; margin-bottom:1rem}
+.cpul li:hover{ background:#f1f1f1}
+.cpul li:last-child{ margin-bottom:0}
+.cpul li a{ display:block; overflow:hidden}
+.cpul li span{ text-align:center}
+.cpul li span.tu{ width:20.4rem; height:13.6rem;display:inline-block;}
+.tit{font-size:1.8rem; color:#d32b2a; letter-spacing:0.1rem; padding-top:3rem; padding-left:2rem; line-height:3rem}
+.cpul li span p.dian{padding-left:2rem}
+.cpul li span p.dian em{ color:#d32b2a; font-style:normal}
+.xz{ text-align:right; display:inline-block; width:4.8rem; height:1.8rem; text-align:center; line-height:1.8rem; letter-spacing:0.4rem; color:#fff; float:right; background:url(../images/anjiu.png) no-repeat}
+.xz a{ color:#fff}
+.qt{ padding-top:0; letter-spacing:normal; padding-left:0}
+.tit2{ font-size:1.6rem;color:#d32b2a; line-height:3rem}
+.qt2{ line-height:3rem; border-top:0.1rem solid #b4b6b7; display:inline-block}
+.qt3{ padding-top:0.5rem;border-top:0.1rem solid #b4b6b7;}
+/*----------------菜谱-结束---------------*/
+
+
+
+/*----------------发现-开始---------------*/
+.fx{ background:#f7f7f7;  overflow:hidden;}
+.fx ul{ border-top:0.1rem solid #f3f3f3;border-bottom:0.1rem solid #f3f3f3; margin-top:2rem; overflow:hidden; background:#fff}
+.fx ul li{padding:0 1rem; height:4.4rem; }
+.fx ul li:hover{ background:#f3f3f3}
+.fx ul li a{ height:100%; width:100%; display:inline-block; border-bottom:0.1rem solid #eee; color:#333;}
+.fx ul li a:hover{ }
+.fx ul li img{ height:3rem}
+.fx ul li:last-child a{ border-bottom:0.1rem solid transparent;}
+.fxtu{ width:6rem; text-align:center; padding-top:0.7rem; line-height:0; height:3rem}
+.fxtit{ line-height:4.4rem; font-size:1.8rem; position:relative}
+.fxzi{ width:50%; font-size:1.4rem; color:#999;line-height:1.5rem; display:table; overflow:hidden}
+.fxzi p{ display:table-cell; vertical-align:middle;height:4.4rem;}
+.dot{ display:inline-block; width:1rem; height:1rem; background:#F00; right:-1rem; top:0.6rem; position:absolute; border-radius:50%}
+/*----------------发现-结束---------------*/
+
+
+/*----------------配送菜品-开始---------------*/
+.pscp{ overflow:hidden; background:#fff; }
+.pscaidan{ overflow:hidden; margin:1.2rem 1.5rem;}
+.pscaidan li{ padding:0.2rem; background:#d32b2a; overflow:hidden; display:inline-block; margin-right:2rem; height:2rem; line-height:2rem}
+.pscaidan li a{ display:inline-block; padding:0 0.2rem; border:0.1rem solid #e88f8e; font-size:1.8rem; color:#fff; line-height:1.8rem; height:1.8rem}
+.pscp li{ position:relative; height:8.8rem; padding:0 1.5rem}
+.pscp li:hover{ background:#f7f7f7}
+.pscp li img.zsimg{ margin-top:2.5rem}
+.pscp a.zs{ width:100%; height:100%; display:block; position:absolute;z-index:1; left:0; top:0;border-bottom:0.1rem solid #ccc;}
+
+.pscp dl{padding-right:8rem;}
+.pscp dl dt{ width:11rem; text-align:center; height:100%; position:relative; margin-right:1rem}
+.pscp dl dt span{ width:9.5rem; height:7rem; position:absolute; top:0.9rem; left:1.5rem; background:url(../images/pscpbg.png) no-repeat;z-index:5; display:inline-block}
+.pscp dl dt img{ width:8.3rem; height:5.5rem; margin-top:1.7rem; margin-left:1.5rem;display:inline-block}
+.pscp dl dd h2{ font-size:1.8rem; font-weight:normal; color:#d32b2a; height:2.5rem; padding-top:2.5rem}
+.pscp dl dd{ font-size:1.4rem; color:#2b2b2b; line-height:1.6rem; overflow:hidden; height:8.8rem}
+.pscp dl dd p{ display:table;float:left}
+.pscp dl dd p span{ display:table-cell;  height:3.6rem; vertical-align:middle}
+.pscp .xh{ width:8rem; height:3rem; position:absolute; z-index:2; top:2.8rem; right:2.5rem}
+.pscp .xh span a{ display:inline-block; width:3rem; height:3rem; padding:0 0.2rem}
+
+.pscp .xh span.xhtu a{ background:url(../images/xhx2.png) no-repeat}
+.pscp .xh span.nxhtu a{ background:url(../images/nxhx4.png) no-repeat}
+
+.pscp .xh span.xhtu a:hover,.pscp .xh span.xhtu a.hover{ background:url(../images/xhx.png) no-repeat}
+.pscp .xh span.nxhtu a:hover,.pscp .xh span.nxhtu a.hover{ background:url(../images/nxhx5.png) no-repeat}
+.xhtit{ height:4.4rem; background:#fff; font-size:1.8rem; color:#d32b2a; line-height:4.4rem; padding-left:1rem}
+/*----------------配送菜品-结束---------------*/
+/*----------------餐厅菜单-开始---------------*/
+.ctcd{ background:#f3f3f3; position:relative; z-index:20}
+.search{ height:4.4rem; background:#fff; border-bottom:0.1rem solid #f7f7f7; position:relative; padding:0 1rem}
+.sou{height:4.4rem; width:100%; height:100%; position:absolute; left:0; top:0}
+.sou span{ display:block; padding-right:9rem; padding-left:1.5rem}
+.souinput{ width:100%; border:0.1rem solid #d9d9da; border-radius:0.5rem; height:3rem; line-height:3rem; padding-left:3rem; background:url(../images/ou.png) no-repeat 0.5rem center; margin-top:0.6rem;color:#666}
+.cdtan{ display:block; width:3rem; height:3rem; top:0.6rem; cursor:pointer;right:1.5rem; position:absolute;}
+
+.tancbg{ width:100%; height:100%;;position:absolute;z-index:100; display:none}
+.tanc{ width:20rem; overflow:hidden; background:#fff; right:0; position:absolute; top:10rem; box-shadow:0 0 1rem #ccc; padding:1.5rem; height:40rem; overflow:auto;z-index:10}
+.cdtan img{ width:3rem; height:3rem}
+.fl h2{ padding:0.2rem; background:#d32b2a; overflow:hidden; display:inline-block; margin-right:2rem; height:2rem; line-height:1.8rem}
+.fl h2 span{ display:inline-block; padding:0 1rem; border:0.1rem solid #e88f8e; font-size:1.8rem; color:#fff}
+.flcd,.ldul{ padding-left:2rem}
+.matop1{ margin-top:1rem}
+.flcd li,.ldul li{ height:4.4rem; border-bottom:0.1rem solid #d9d9da; cursor:pointer}
+.flcd li span,.ldul li span{ display:inline-block; vertical-align:middle; height:3.5rem; margin-top:0.2rem}
+.flcd li span.cdtu img,.ldul li span.cdtu img{ width:3.5rem}
+.flcd li span.cdzi,.ldul li span.cdzi{ padding-left:2rem; line-height:3.5rem}
+.flcd li span.cdxz{ display:none}
+.ldul li span.ld{ padding-top:0.5rem}
+
+.cdul li p em{ color:#d32b2a;  font-style:normal}
+.cdld{ width:9rem; position:relative;z-index:80}
+.cdld span{ display:block;width:100%; text-align:center; height:2.4rem; padding-top:1rem}
+.cdld span a{ color:#fff}
+.cdld span a.xz{ float:none}
+
+/*----------菜单详情-------------*/
+.cpxq .cdul{ border-top:0.1rem solid #d9d9da; border-bottom:0.1rem solid #d9d9da;}
+.cpjs,.cpzl{ background:#fff;  margin-top:2rem;border-top:0.1rem solid #d9d9da; border-bottom:0.1rem solid #d9d9da; padding:1rem 0}
+.cpjs{ padding:1rem}
+.cpxq .tit{ padding-top:1rem; padding-left:0; text-align:center}
+.cpjs .txt img{ margin:0 auto; display:block}
+.cpzlul{ border-top:0.1rem solid #d9d9da; overflow:hidden; margin-top:1rem}
+.cpzlul li{ height:5rem; line-height:5rem; cursor:pointer; padding:0 1rem; }
+.cpzlul li a{ display:block; width:100%; height:5rem; border-bottom:0.1rem solid #d9d9da}
+.cpzlul li:hover{ background:#f5f4f4}
+.cpzlul li:last-child a{ border-bottom:none}
+.cpzlul img{ width:3rem;}
+/*--------已点清单-----------*/
+.ydqd{ position:relative; z-index:80}
+.ydqd a{ display:inline-block; width:2rem; height:2rem; background:#d32b2a; color:#fff; vertical-align:middle; font-size:2rem; line-height:2rem}
+.ydqd .shul{ width:4rem; height:1.8rem; border:0.1rem solid #d9d9da; margin:0 0.2rem; display:inline-block; vertical-align:middle; text-align:center}
+.tijiao{ padding:2rem 5rem}
+.tijiao a{ display:inline-block; width:100%; height:3rem; border-radius:0.5rem; background:#d32b2a; color:#fff; line-height:3rem; text-align:center; font-size:1.6rem}
+/*－－－－菜单追溯－－－－－－－－－－*/
+.caipin{ padding:2rem; box-shadow:0 0 1rem #ddd; background:#fff}
+.caipin .tit{ text-align:center; display:block; padding-top:0}
+.caipin .txt{}
+.cpll{ overflow:hidden; height:auto}
+/*----------------餐厅菜单-结束---------------*/
+/*----------------农庄动态-开始---------------*/
+.nzdt{}
+.news{ overflow:hidden; background:#fff}
+.news li{ border-bottom:.1rem solid #eee; padding:0 1rem; height:8rem}
+.news li:hover{ background:#f3f3f3}
+.news li .rq{ font-size:1.2rem; color:#999}
+.news dl{ padding-right:3rem;}
+.news dl dt{ width:7.5rem; text-align:left; height:100%}
+.news dl dt img{width:6.5rem; border-radius:0.6rem; border:0.1rem solid #d9d9da; margin-top:0.6rem}
+.news dl dd h2{font-size:1.8rem; font-weight:normal; color:#333; height:2.5rem; padding-top:1rem; position:relative; display:inline-block}
+.news dl dd p{ height:1.8rem; overflow:hidden}
+.news dl dd p.lianjie{ text-align:right}
+.news dl dd p.lianjie a{ color:#e70012}
+.news dl dd{ font-size:1.4rem; color:#666; line-height:1.8rem; overflow:hidden; height:7rem}
+/*----详情---*/
+.xq{ margin:0 1rem; background:#f5f4f4; padding:1rem}
+.xqtit{ font-size:1.6rem; text-align:center; color:#2b2b2b}
+.xqrq{ font-size:1.2rem; text-align:center}
+.xqtxt{ font-size:1.4remm; line-height:2.5rem}
+.xqtxt img{ margin:0 auto; display:block}
+/*----------------农庄动态-结束---------------*/
+/*-------扫一扫　开始------ */
+.sys{ width:100%; height:100%; overflow:hidden; background:#999; text-align:center}
+.sys img{max-width:100%}
+/*-------扫一扫　结束------ */
+
+/*---------我　开始------*/
+.woul{ background:#fff;}
+.woul li{ height:4.4rem; font-size:1.8rem; line-height:4.4rem; padding:0 2rem; clear:both}
+.woul li a{ display:block; width:100%; height:100%;border-bottom:0.1rem solid #d9d9da; background:url(../images/wodot.png) no-repeat right center; }
+.woul li:hover{ background:#f5f4f4}
+.woul li:first-child{ height:8rem;}
+.woul li:first-child .fxtit{ line-height:8rem}
+.wor{ padding-right:2rem; display:table; height:8rem}
+.worzi{ padding-right:2rem;  line-height:4.4rem; font-size:1.6rem}
+.wor p{ display:table-cell; vertical-align:middle}
+.woul .fxzi{ padding-right:2rem}
+/*---------我　结束------*/
+
+/*--r摘-----*/
+.zhaimain{ padding-left:8.8rem; height:100%; overflow:hidden; position:relative}
+.zhail{ width:7.7rem; float:left; background:#f2f2f2; margin-bottom:-99rem; padding-bottom:99rem;border-top:0.1rem solid #eaeaea; border-right:0.1rem solid #eaeaea; z-index:10; position:absolute;left:0;top:0}
+.zhai_ul{ overflow:hidden}
+.zhai_ul li { height:3.4rem; border-bottom:0.1rem solid #fff; border-top:0.1rem solid #d9d9d9; line-height:3.4rem}
+.zhai_ul li.hover{ border-top:0.1rem solid #fff; border-bottom:0.1rem solid #fff;}
+.zhai_ul li.hover span{ border-left:0.6rem solid #e70012; padding-left:1rem; color:#e70012; background:#fff}
+.zhai_ul li span{ display:inline-block; height:3.5rem; width:6.2rem; padding-left:1.6rem}
+.zhai_ul li:first-child{ border-top:0.1rem solid #f2f2f2;}
+.zhai_ul li:last-child{ border-bottom:0.1rem solid #f2f2f2;}
+.zhair{ z-index:0;min-height:40rem}
+.zhrul{ padding-top:0.7rem}
+.zhrul li{ height:6rem;  margin-top:0.5rem; position:relative}
+.zhrul li .ztit{ width:8rem; float:left;}
+.zhrul li .ztit img{ width:8rem; height:6rem; border-radius:0.6rem}
+.zhrul li .znei{margin-left:9.2rem; border-bottom:.1rem solid #d9d9d9; height:4.8rem; padding-top:1.2rem; line-height:0}
+.zhrul li .tel{width:3rem; height:3rem; display:inline-block; position:absolute; right:3rem; top:1.2rem}
+.zhrul li .le{ padding-right:6.6rem; height:3.2rem; border-left:0.2rem  solid #e70012; display:inline-block; padding-left:1rem; float:left}
+.zhrul li .le h2{ font-size:1.6rem; color:#e70012;  line-height:1.6rem}
+.zhrul li .le span{ display:inline-block; background:url(../images/zmap.png) no-repeat left; height:1.2rem; line-height:1.2rem;padding-left:1rem; margin-top:0.5rem}
+
+
+.foot{ height:6.8rem; width:100%; position:fixed; bottom:0; border-bottom:1px solid #ddd; background:url(../images/footbg.png) repeat-x center top;z-index:9999; padding-top:0.2rem}
+.foot ul{ height:100%; display:table; width:100%}
+.foot ul li{ width:20%;height:100%; text-align:center; display:table-cell; vertical-align:middle; font-size:1.2rem; line-height:1.8rem; padding-top:1.6rem; color:#741414}
+.foot ul li:nth-child(3){ padding-top:0.6rem}
+.foot ul li a{ color:#e70012}
+.foot ul li span{ display:block; text-align:center; height:3.8rem; width:3.8rem; padding:0rem; border-radius:50%; line-height:3.8rem; text-align:center; font-size:2.5rem;margin:0 auto; border:0.2rem solid #e70012}
+.foot ul li span.hover{ background:#e70012;color:#fff}
+
+.foot ul li p{ text-align:center}
+.kong{ height:7rem}
+
+.lllb .sz_main{ background:#fff;  margin-top:1rem; padding-top:1rem}
+.llt{ font-size:1.8rem; color:#d32b2a; height:4rem;text-align:center}
+
+.jj{ margin-top:4rem; text-align:center}
+.jj h2{ background:#e70012; padding:0.4rem; display:inline-block; font-size:1.8rem; line-height:1.8rem}
+.jj span{ display:inline-block; padding:0.2rem 0.6rem; border:0.1rem solid #e5807f;color:#fff}
+
+.jj_main{ padding:1rem}
+.jj_main .text{ font-size:1.6rem; padding:1rem 3rem}
+.jj_tu{ text-align:center}

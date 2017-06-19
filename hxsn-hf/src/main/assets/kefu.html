@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	
+	$("#zhai li").click(function(){
+		$(this).addClass("hover").siblings().removeClass();
+		$("#zhai"+($(this).index()+1)).show().siblings(".zhair").hide();
+		});
+	
+	});
+
+</script>
+</head>
+
+<body class="dlbg">
+<div class="head">
+  <p>掌上农场</p>
+</div>
+<div class="dh">
+  <div class="zhaimain">
+   <div class="zhail">
+      <ul class="zhai_ul" id="zhai">
+        <li class="hover"><span>新鲜水果</span></li>
+        <li><span>时令蔬菜</span></li>
+        <li><span>五谷杂粮</span></li>
+        <li><span>家禽牲畜</span></li>
+        <li><span>加工产品</span></li>
+      </ul>
+    </div>
+ <div class="zhair" id="zhai1">
+      <ul class="zhrul">
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zhtu.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>大兴西瓜</h2>
+            <span>暖棚1号</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/cm.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>大棚草莓</h2>
+            <span>暖棚2号</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/pt.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>巨峰葡萄</h2>
+            <span>暖棚5号</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        
+      </ul>
+    </div>
+    <div class="zhair" id="zhai2" style="display:none">
+      <ul class="zhrul">
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zqc01.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>芹菜</h2>
+            <span>暖棚2号</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/xhs.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>西红柿</h2>
+            <span>暖棚5号111</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zhg.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>黄瓜</h2>
+            <span>暖棚5号</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zqz.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>茄子</h2>
+            <span>暖棚1号</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zlb.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>萝卜</h2>
+            <span>蔬菜区1区</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zch.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>菜花</h2>
+            <span>蔬菜区1区-01</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+      </ul>
+    </div>
+    <div class="zhair" id="zhai3" style="display:none">
+      <ul class="zhrul">
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/ym.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>玉米</h2>
+            <span>杂粮区1区</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zxm.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>小麦</h2>
+            <span>杂粮区2区</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/dadou.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>大豆</h2>
+            <span>杂粮区1区</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zhs.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>花生</h2>
+            <span>杂粮区3区</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+      
+      </ul>
+    </div>
+    <div class="zhair" id="zhai4" style="display:none">
+      <ul class="zhrul">
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zn.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>荷兰肉牛</h2>
+            <span>养殖区1区</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/zzhu.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>猪</h2>
+            <span>养殖区2区</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/cj.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>柴鸡</h2>
+            <span>养殖区3区</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+      
+      </ul>
+    </div>
+     <div class="zhair" id="zhai5" style="display:none">
+      <ul class="zhrul">
+        <li><a href="shipin.html">
+          <div class="ztit"><img src="images/jiu.jpg"></div>
+          <div class="znei"> <span class="le">
+            <h2>红酒</h2>
+            <span>加工区1区</span></span> <span class="right tel"><img src="images/tel.png"></span> </div>
+          </a></li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+ 
+<div class="foot">
+  <ul>
+    <li><a href="daohang.html"><span>游</span></a></li>
+    <li><a href="kefu.html"><span class="hover">摘</span></a></li>
+    <li><a href="index.html"><img src="images/dh03.png"></a></li>
+    <li><a href="sys.html"><span>溯</span></a></li>
+    <li><a href="faxian.html"><span>吾</span></a></li>
+  </ul>
+</div>
+<div class="kong"></div>
+</body>
+</html>

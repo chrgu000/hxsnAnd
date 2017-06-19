@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_light"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="填写回复内容"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:background="@color/sky_blue"/>
+
+
+    <EditText
+        android:id="@+id/edt_info"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:paddingLeft="10dp"
+        android:gravity="start"
+        android:textColor="@color/black_text_n"
+        android:paddingRight="5dp"
+        android:background="@color/white"
+        android:textSize="14sp"
+        android:textColorHint="@color/gray"
+        android:hint="问题回复"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/edt_info">
+
+        <TextView
+            android:id="@+id/txt_send"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+             android:layout_weight="1"
+            android:layout_marginRight="50dp"
+            android:background="@color/green_none"
+            android:textColor="@color/white"
+
+            android:gravity="center"
+            android:text="发送"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/txt_cancel"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@color/gray_dark"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="取消"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

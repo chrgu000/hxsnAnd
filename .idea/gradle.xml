@@ -10,6 +10,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/andbase" />
+            <option value="$PROJECT_DIR$/hxsn-hf" />
+            <option value="$PROJECT_DIR$/sn-iot-1.2" />
             <option value="$PROJECT_DIR$/sn-jwb-1.0" />
             <option value="$PROJECT_DIR$/sn-lfqx-1.1" />
             <option value="$PROJECT_DIR$/sn-ssk-1.1" />
@@ -21,6 +23,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/andbase" />
+            <option value="$PROJECT_DIR$/hxsn-hf" />
+            <option value="$PROJECT_DIR$/sn-iot-1.2" />
             <option value="$PROJECT_DIR$/sn-jwb-1.0" />
             <option value="$PROJECT_DIR$/sn-lfqx-1.1" />
             <option value="$PROJECT_DIR$/sn-ssk-1.1" />

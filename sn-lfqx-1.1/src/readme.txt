@@ -1,5 +1,9 @@
 
 
+sn-ssk-lfqx V1.1.3
+1.新增天气预报
+
+
 
 sn-ssk-lfqx V1.1.2
 1.曲线变漂亮了，用helloChart来实现，已集成到AndBase中

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    >
+    
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="0.00"
+                android:gravity="center_vertical"
+                android:background="#cccccc"
+                android:text="值班人员" />
+
+            <RelativeLayout
+                android:id="@+id/esq_NameOne"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/cs_headphoto" />
+
+                <TextView
+                    android:id="@+id/cs_name1_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/imageView2"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/imageView2"
+                    android:text="小张" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="22dp"
+                    android:text="9:30" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/cs_name1_tv"
+                    android:layout_below="@+id/textView9"
+                    android:text="在线" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="0.00"
+                android:background="#cccccc"
+               android:gravity="center_vertical"
+                android:text="全部" />
+            <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+
+            <RelativeLayout
+                android:id="@+id/esq_Nametwo"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/zuji"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/cs_headphoto" />
+
+                <TextView
+                    android:id="@+id/cs_name2_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/zuji"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/zuji"
+                    android:text="小王" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="14dp"
+                    android:text="昨天" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/zuji"
+                    android:layout_alignLeft="@+id/cs_name2_tv"
+                    android:text="在线" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/esq_Namethree"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/aobutme"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/cs_headphoto" />
+
+                <TextView
+                    android:id="@+id/cs_name3_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/aobutme"
+                    android:layout_marginLeft="14dp"
+                    android:layout_toRightOf="@+id/aobutme"
+                    android:text="小赵" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="16dp"
+                    android:text="9月8日" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/aobutme"
+                    android:layout_alignLeft="@+id/cs_name3_tv"
+                    android:text="不在线" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="0.00"
+                android:background="#cccccc"
+                 android:gravity="center_vertical"
+                android:text="意见建议" />
+             <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+            <RelativeLayout
+                android:id="@+id/esq_Namethrees"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0dp"
+                android:background="#FFFFFF" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentTop="true"
+                    android:background="#000000" />
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#000000" />
+
+                <ImageView
+                    android:id="@+id/esq_Namefour"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/cs_headphoto" />
+
+                <TextView
+                    android:id="@+id/cs_name4_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/esq_Namefour"
+                    android:layout_marginLeft="14dp"
+                    android:layout_toRightOf="@+id/esq_Namefour"
+                    android:text="李书兰" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="19dp"
+                    android:text="9月8日" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/esq_Namefour"
+                    android:layout_alignLeft="@+id/cs_name4_tv"
+                    android:text="在线" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+</FrameLayout>

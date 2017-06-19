@@ -20,7 +20,7 @@ import java.util.List;
  *  Created by jiely on 2016/6/28.
  */
 public class TApplication extends Application{
-    public static int versionType = Const.RELEASE_VERTION;  //0-text 1-debug, 2-release
+    public static int versionType = Const.TEST_VERTION;  //0-text 1-debug, 2-release
     public static Context context;
     public static Resources resources;
     public static List<Activity> activities;
@@ -52,8 +52,8 @@ public class TApplication extends Application{
         activities = new ArrayList<>();
         switch (versionType) {
             case Const.TEST_VERTION:
-                URL_STRING = "http://192.168.12.94:7990/ssk/sskapp/";
-                URL_NONGSH_STRING = "http://192.168.12.26:80/sskcms";
+                URL_STRING = "http://msc.fweb.cn:7700/aiot2/app/qixj/";
+                URL_NONGSH_STRING = "http://60.10.151.28:8980/sskcms";
                 break;
             case Const.TEST_VERTION1:
                 URL_STRING = "http://60.10.151.28:7990/ssk/sskapp/";
@@ -68,7 +68,6 @@ public class TApplication extends Application{
                 URL_NONGSH_STRING = "http://60.10.151.28:8980/sskcms";
                 break;
         }
-
 
     }
 }

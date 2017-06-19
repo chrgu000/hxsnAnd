@@ -39,13 +39,14 @@ import java.lang.reflect.Field;
 @SuppressLint("ValidFragment")
 public class Ssk1Fragment extends Fragment implements View.OnClickListener {
     private Context context;
-    private RelativeLayout layout1, layout2, layout4, layout5;//随时看五个顶部菜单
-    private ImageView img1, img2,  img4, img5;
-    private TextView txt1, txt2, txt4, txt5;
+    private RelativeLayout layout1, layout2, layout3,layout4, layout5;//随时看五个顶部菜单
+    private ImageView img1, img2, img3, img4, img5;
+    private TextView txt1, txt2, txt3,txt4, txt5;
+    private TextView txtSiteName;
     private int menuTopMode = 1,/*顶部菜单5个 实时数据-变化曲线-报警预警-历史数据-更多*/menuMidMode=1;//
 
 
-    private Fragment fragmentRealTime,fragmentCurve,fragmentHistory,fragmentMore;
+    private Fragment fragmentRealTime,fragmentWeather,fragmentCurve,fragmentHistory,fragmentMore;
     private FragmentManager fm;
     private FragmentTransaction transaction;
     private TextView txtWarning;
@@ -122,7 +123,7 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
         fragmentRealTime = new RealTimeFragment(context);
         fragmentCurve = new CurveFragment(context);
         fragmentHistory = new HistoryFragment(context);
-
+        fragmentWeather = new WeatherFragment(context);
 
         fm = getChildFragmentManager();
         transaction = fm.beginTransaction();
@@ -159,7 +160,7 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
     private void addListener() {
         layout1.setOnClickListener(this);
         layout2.setOnClickListener(this);
-       // layout3.setOnClickListener(this);
+        layout3.setOnClickListener(this);
         layout4.setOnClickListener(this);
         layout5.setOnClickListener(this);
 
@@ -177,6 +178,9 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
         layout2 = (RelativeLayout) view.findViewById(R.id.layout2);
         img2 = (ImageView) view.findViewById(R.id.img2);
         txt2 = (TextView) view.findViewById(R.id.txt2);
+        layout3 = (RelativeLayout) view.findViewById(R.id.layout3);
+        img3 = (ImageView) view.findViewById(R.id.img3);
+        txt3 = (TextView) view.findViewById(R.id.txt3);
         layout4 = (RelativeLayout) view.findViewById(R.id.layout4);
         img4 = (ImageView) view.findViewById(R.id.img4);
         txt4 = (TextView) view.findViewById(R.id.txt4);
@@ -186,7 +190,7 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
 
         txtWarning = (TextView) view.findViewById(R.id.txt_warning);
 
-        TextView txtSiteName = (TextView) view.findViewById(R.id.txt_siteName);
+        txtSiteName = (TextView) view.findViewById(R.id.txt_siteName);
         txtSiteName.setText(TApplication.curSiteInfo.getName());
     }
 
@@ -210,12 +214,24 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
                     txt1.setTextColor(getResources().getColor(R.color.green));
                 }
                 break;
-            case R.id.layout2://变化曲线
+            case R.id.layout2://天气预告
                 if (menuTopMode != 2) {
                     clearTopMenu();
+                    txtSiteName.setVisibility(View.GONE);
                     menuTopMode = 2;
-                    img2.setBackgroundResource(R.drawable.curve_s);
+                    img2.setBackgroundResource(R.drawable.qx_s);
                     txt2.setTextColor(getResources().getColor(R.color.green));
+                    transaction = fm.beginTransaction();
+                    transaction.replace(R.id.framelayout_ssk, fragmentWeather);
+                    transaction.commit();
+                }
+                break;
+            case R.id.layout3://变化曲线
+                if (menuTopMode != 3) {
+                    clearTopMenu();
+                    menuTopMode = 3;
+                    img3.setBackgroundResource(R.drawable.curve_s);
+                    txt3.setTextColor(getResources().getColor(R.color.green));
                     transaction = fm.beginTransaction();
                     transaction.replace(R.id.framelayout_ssk, fragmentCurve);
                     transaction.commit();
@@ -249,11 +265,14 @@ public class Ssk1Fragment extends Fragment implements View.OnClickListener {
     private void clearTopMenu() {
         img1.setBackgroundResource(R.drawable.detect_n);
         txt1.setTextColor(getResources().getColor(R.color.gray));
-        img2.setBackgroundResource(R.drawable.curve_n);
+        img2.setBackgroundResource(R.drawable.qx_n);
         txt2.setTextColor(getResources().getColor(R.color.gray));
+        img3.setBackgroundResource(R.drawable.curve_n);
+        txt3.setTextColor(getResources().getColor(R.color.gray));
         img4.setBackgroundResource(R.drawable.history_n);
         txt4.setTextColor(getResources().getColor(R.color.gray));
         img5.setBackgroundResource(R.drawable.more_n);
         txt5.setTextColor(getResources().getColor(R.color.gray));
+        txtSiteName.setVisibility(View.VISIBLE);
     }
 }

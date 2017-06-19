@@ -5,11 +5,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.andbase.library.util.AbToastUtil;
 import com.andbase.ssk.utils.PermissionUtils;
 import com.hxsn.ssklf.R;
 import com.hxsn.ssklf.fragment.Mine5Fragment;
@@ -256,28 +252,7 @@ public class HomeActivity extends Activity implements View.OnClickListener{
         rb5.setBackgroundResource(R.drawable.bottom5_n);
     }
 
-    //退出APP
-    public void exit(){
-        if (!isExit) {
-            isExit = true;
-            AbToastUtil.showToast(getApplicationContext(), "再按一次退出程序");
-            mHandler.sendEmptyMessageDelayed(0, 2000);
-        } else {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            startActivity(intent);
-            System.exit(0);
-        }
-    }
 
-    //处理退出的消息
-    Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            isExit = false;
-        }
-    };
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -296,7 +271,7 @@ public class HomeActivity extends Activity implements View.OnClickListener{
                 txtTitle.setText("随时看");
                 fragmentMode = 1;
             }else {//
-                exit();
+                onBackPressed();
             }
             return false;
         } else {

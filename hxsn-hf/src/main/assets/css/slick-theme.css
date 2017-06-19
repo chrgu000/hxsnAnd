@@ -1,0 +1,48 @@
+@charset 'UTF-8';
+/* Slider */
+.slick-loading .slick-list
+{
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
+}
+
+/* Icons */
+@font-face
+{
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url('./fonts/slick.eot');
+    src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
+}
+/* Arrows */
+.slick-prev:hover, .slick-next:hover{filter: alpha(opacity=50); opacity: 0.5;}
+.slick-prev, .slick-next { position: absolute; display: none; height: 44px; width: 44px; line-height: 0; font-size: 0; cursor: pointer; background: transparent; color: transparent; top:-14%; margin-top: -10px; padding: 0; border: none; outline: none;  }
+.slick-prev:focus, .slick-next:focus { outline: none; }
+.slick-prev.slick-disabled:before, .slick-next.slick-disabled:before { opacity: 0.25; }
+
+.slick-prev:before, .slick-next:before { /*font-family: "slick"; font-size: 20px; line-height: 1; color: white; opacity: 0.85; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;*/ }
+
+.slick-prev { right: 64px; background:url(../images/l.jpg) no-repeat; }
+.slick-prev:before { content: "\2190"; }
+
+.slick-next { right: 10px; background:url(../images/r.jpg) no-repeat; }
+.slick-next:before { content: "\2192"; }
+
+.slick-prev, .slick-next { position: absolute; display: none; height: 58px; width: 59px; line-height: 0; font-size: 0; cursor: pointer; background: transparent; color: transparent; top:30%; margin-top: -10px; padding: 0; border: none; outline: none; }
+.slick-prev { left: -28px; background:none; display:none; }
+.slick-prev:before { /*content: "\2190";*/ display:none;  }
+
+.slick-next { right: -28px; background:none; display:none; }
+.slick-next:before { /*content: "\2192"; */}
+
+
+/* Dots */
+.slick-slider { margin-bottom: 30px; }
+
+.slick-dots { position: absolute; bottom: -45px; list-style: none; display: block; text-align: center; padding: 0px; width: 100%; }
+.slick-dots li { position: relative; display: inline-block; height: 20px; width: 20px; margin: 0px 5px; padding: 0px; cursor: pointer; }
+.slick-dots li button { border: 0; background: transparent; display: block; height: 20px; width: 20px; outline: none; line-height: 0; font-size: 0; color: transparent; padding: 5px; cursor: pointer; outline: none; display:none;}
+.slick-dots li button:focus { outline: none; }
+.slick-dots li button:before { position: absolute; top: 0; left: 0; content: "\2022"; width: 20px; height: 20px; font-family: "slick"; font-size: 6px; line-height: 20px; text-align: center; color: black; opacity: 0.25; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.slick-dots li.slick-active button:before { opacity: 0.75; }

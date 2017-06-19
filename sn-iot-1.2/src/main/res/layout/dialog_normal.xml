@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@color/white_light"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/green_none"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:text="请输入手机号"
+        android:layout_marginBottom="20dp"/>
+
+    <EditText
+        android:id="@+id/edt_info"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:paddingRight="5dp"
+        android:background="@color/white"
+        android:textSize="14sp"
+        android:inputType="phone"
+        android:textColor="@color/black_text_n"
+        android:hint="请输入手机号"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txt_send"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@color/orange_red"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:text="发送"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txt_cancel"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@color/gray_dark"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="取消"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

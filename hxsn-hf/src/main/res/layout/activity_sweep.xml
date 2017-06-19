@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_back" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#aaaaaa"
+         >
+
+            <ImageView
+                android:id="@+id/sweep_code_IV"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/sweep_two_codes" />
+
+        <RelativeLayout
+            android:id="@+id/sweep_frame_RL"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/sweep_two_codeframe" >
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

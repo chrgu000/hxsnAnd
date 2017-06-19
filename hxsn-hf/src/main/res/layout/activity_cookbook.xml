@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+    <include layout="@layout/title_back" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:id="@+id/cookbook_bg3_RL"
+            android:layout_width="130dp"
+            android:layout_height="110dp"
+            android:layout_alignLeft="@+id/cookbook_bg1_RL"
+            android:layout_alignTop="@+id/cookbook_bg4_RL"
+            android:background="@drawable/cooklook_frame" >
+
+            <ImageView
+                android:id="@+id/cookbook_foods3_IV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/cooklook_food" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cookbook_bg2_RL"
+            android:layout_width="130dp"
+            android:layout_height="110dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/cooklook_frame" >
+
+            <ImageView
+                android:id="@+id/cookbook_foods2_IV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/cooklook_food" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cookbook_bg4_RL"
+            android:layout_width="130dp"
+            android:layout_height="110dp"
+            android:layout_alignLeft="@+id/cookbook_bg2_RL"
+            android:layout_centerVertical="true"
+            android:background="@drawable/cooklook_frame" >
+
+            <ImageView
+                android:id="@+id/cookbook_foods4_IV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/cooklook_food" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cookbook_bg1_RL"
+            android:layout_width="130dp"
+            android:layout_height="110dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/cookbook_bg2_RL"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/cooklook_frame" >
+
+            <ImageView
+                android:id="@+id/cookbook_foods1_IV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/cooklook_food" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView1"
+            android:layout_alignLeft="@+id/cookbook_bg3_RL"
+            android:layout_marginLeft="32dp"
+            android:text="9月30 18：40" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignRight="@+id/textView2"
+            android:text="2015年5月13日" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/cookbook_bg2_RL"
+            android:layout_below="@+id/cookbook_bg2_RL"
+            android:layout_marginLeft="16dp"
+            android:text="9月3日  18：30" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/cookbook_bg4_RL"
+            android:text="2015年5月13日" />
+
+    </RelativeLayout>
+
+</LinearLayout>

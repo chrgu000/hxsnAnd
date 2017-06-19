@@ -7,6 +7,7 @@ import com.hxsn.ssklf.model.SiteInfo;
 import com.hxsn.ssklf.model.SiteValue;
 import com.hxsn.ssklf.model.Threshold;
 import com.hxsn.ssklf.model.WarningInfo;
+import com.hxsn.ssklf.model.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,18 +43,74 @@ public class JsonUtil {
         return false;
     }
 
-    public static String getDescription(String jsonString){
+    /**
+     * param  jsonString
+     * return String    返回类型
+     * author：jiely
+     * Date：2015-2-5
+     * Title: getToken
+     * Description: 获取当前天气
+     */
+
+    private final static String[] weathers={"观测时间","气温","相对湿度","天气","风向风力"};
+    public static Weather getWeather(String jsonString){
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
-            if (jsonObject.toString() == null || jsonObject.toString().length() == 0) {
-                return null;
-            }
-            String desc = jsonObject.optString("description");
-            return desc;
+
+            Weather weather = new Weather();
+            String str = jsonObject.optString(weathers[0]);
+            weather.setCreateTime(str);
+            str = jsonObject.optString(weathers[1]);
+            weather.setTemperature(str);
+            str = jsonObject.optString(weathers[2]);
+            weather.setHumidity(str);
+            str = jsonObject.optString(weathers[3]);
+            weather.setName(str);
+            str = jsonObject.optString(weathers[4]);
+            weather.setWindy(str);
+            return weather;
+
         } catch (JSONException e) {
-           e.printStackTrace();
+            e.printStackTrace();
+            return null;
         }
-        return null;
+    }
+
+    private final static String[] weather7Days={"星期","天气","天气2","气温","气温2","风向风力"};
+    public static List<Weather> get7Weathers(String jsonString){
+        try {
+            JSONArray jsonArray = new JSONArray(jsonString);
+
+            List<Weather> weatherList = new ArrayList<>();
+
+            for(int i=0; i<jsonArray.length();i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                Weather weather = new Weather();
+                String str = jsonObject.optString(weather7Days[0]);
+                weather.setCreateTime(str);
+                str = jsonObject.optString(weather7Days[1]);
+                String str2 = jsonObject.optString(weather7Days[2]);
+                if(str.equals(str2)){
+                    weather.setName(str);
+                }else {
+                    weather.setName(str+"转"+str2);
+                }
+
+                str = jsonObject.optString(weather7Days[3]);
+                str2 = jsonObject.optString(weather7Days[4]);
+                weather.setTemperature(str+"-"+str2+"℃");
+
+                str = jsonObject.optString(weather7Days[5]);
+                weather.setWindy(str);
+                weatherList.add(weather);
+            }
+
+            return weatherList;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private static final String[] thresholdArray = {"upTemp","downTemp","upHumidity","downHumidity","upTemp15cm","downTemp15cm","upSunlight","downSunlight"};

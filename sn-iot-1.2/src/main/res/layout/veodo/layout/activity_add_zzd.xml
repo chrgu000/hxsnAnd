@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light_n"
+    tools:ignore="HardcodedText"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/in_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        layout="@layout/in_title"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="大棚名称:"/>
+
+        <EditText
+            android:id="@+id/edt_greenhouse_name"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="80dp"
+            android:background="@color/white"
+            android:gravity="left|center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/black_text_n"
+            android:textSize="16sp"
+            android:text=""/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="网关地址:"/>
+
+        <EditText
+            android:id="@+id/edt_dns_address"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="80dp"
+            android:background="@color/white"
+            android:gravity="left|center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/black_text_n"
+            android:textSize="16sp"
+            android:text=""/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="园区选择:"/>
+
+        <TextView
+            android:id="@+id/txt_select_home"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="80dp"
+            android:gravity="center"
+            android:textColor="@color/black_text_n"
+            android:background="@drawable/bg_text_green"
+            android:textSize="14sp"
+            android:text="点击选择"/>
+
+        <TextView
+            android:id="@+id/txt_create_home"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="260dp"
+            android:gravity="center"
+            android:textColor="@color/black_text_n"
+            android:background="@drawable/bg_text_green"
+            android:textSize="14sp"
+            android:text="创建园区"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:text="PLC选择:"/>
+
+        <TextView
+            android:id="@+id/txt_select_plc"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textColor="@color/black_text_n"
+            android:background="@drawable/bg_text_green"
+            android:textSize="14sp"
+            android:text="点击选择"/>
+
+    </RelativeLayout>
+
+
+
+
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="180dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="100dp"
+        android:text="添    加"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/sky_blue"/>
+
+
+</LinearLayout>

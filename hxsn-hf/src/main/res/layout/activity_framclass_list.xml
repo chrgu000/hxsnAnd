@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+   <include layout="@layout/title_back"/>
+    <RelativeLayout
+        android:padding="3dp"
+        android:id="@+id/framClass_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="23dp"
+            android:src="@drawable/farmitem" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView1"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/imageView1"
+            android:text="杂粮区" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView1"
+            android:layout_alignLeft="@+id/textView1"
+            android:text="规划种植绿豆、小米等杂粮作物"
+            android:textColor="#a1000000" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp" >
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout01"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="3dp" >
+
+            <ImageView
+                android:id="@+id/ImageView01"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="23dp"
+                android:src="@drawable/farmitem" />
+
+            <TextView
+                android:id="@+id/TextView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ImageView01"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/ImageView01"
+                android:text="冷棚区" />
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/ImageView01"
+                android:layout_alignLeft="@+id/TextView02"
+                android:text="8个冷棚生产"
+                android:textColor="#a1000000" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout03"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="3dp" >
+
+        <ImageView
+            android:id="@+id/ImageView03"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="23dp"
+            android:src="@drawable/farmitem" />
+
+        <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ImageView03"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/ImageView03"
+            android:text="暖棚区" />
+
+        <TextView
+            android:id="@+id/TextView06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ImageView03"
+            android:layout_alignLeft="@+id/TextView03"
+            android:text="5个120米暖室大棚"
+            android:textColor="#a1000000" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout04"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="3dp" >
+
+        <ImageView
+            android:id="@+id/ImageView04"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="23dp"
+            android:src="@drawable/farmitem" />
+
+        <TextView
+            android:id="@+id/TextView07"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ImageView04"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/ImageView04"
+            android:text="蔬菜区" />
+
+        <TextView
+            android:id="@+id/TextView08"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ImageView04"
+            android:layout_alignLeft="@+id/TextView07"
+            android:text="陆地蔬菜"
+            android:textColor="#a1000000" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout05"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="3dp" >
+
+        <ImageView
+            android:id="@+id/ImageView05"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="23dp"
+            android:src="@drawable/farmitem" />
+
+        <TextView
+            android:id="@+id/TextView09"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ImageView05"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/ImageView05"
+            android:text="果树区" />
+
+        <TextView
+            android:id="@+id/TextView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ImageView05"
+            android:layout_alignLeft="@+id/TextView09"
+            android:text="梨、苹果、桃、葡萄等"
+            android:textColor="#a1000000" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout02"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="3dp" >
+
+        <ImageView
+            android:id="@+id/ImageView02"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="23dp"
+            android:src="@drawable/farmitem" />
+
+        <TextView
+            android:id="@+id/TextView04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ImageView02"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/ImageView02"
+            android:text="养殖区" />
+
+        <TextView
+            android:id="@+id/TextView05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ImageView02"
+            android:layout_alignLeft="@+id/TextView04"
+            android:text="鸡、鸭、牛、羊等"
+            android:textColor="#a1000000" />
+    </RelativeLayout>
+
+</LinearLayout>

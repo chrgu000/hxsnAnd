@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+$("#yh").focus(function(){$(this).val("").css("color","#2b2b2b");}).blur(function(){
+	if($(this).val()=="")
+	{$(this).val("邮箱/手机号").css("color","#B7B4B5");}
+	});
+
+
+$("#mm").focus(function(){$(this).val("").css("color","#2b2b2b").attr("type","password");}).blur(function(){
+	if($(this).val()==""){$(this).val("密码").css("color","#B7B4B5").attr("type","text")}
+	
+	});
+})
+</script>
+</head>
+
+<body class="dlbg">
+
+<div class="dl">
+<div class="dlimg"><img src="images/dlbg.png" ></div>
+</div>
+<div class="dlmain">
+
+<h2>请输入用户信息登录</h2>
+<input type="text" value="邮箱/手机号"  class="name" id="yh"/>
+<input  type="text" value="密码"  class="name" id="mm"/>
+<div class="dl_but">
+<span class="dl left"><a href="daohang.html"><button>登录</button></a></span>
+<span class="zc left"><button>忘记密码</button></span>
+
+</div>
+</div>
+
+</body>
+</html>

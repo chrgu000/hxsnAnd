@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        
+         <include
+            
+            android:id="@+id/main_title"
+            layout="@layout/main_title" />
+        <FrameLayout
+            android:id="@+id/main_fragment"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/main_title"
+            android:layout_above="@+id/main_menuBar"
+           >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/main_menuBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true" >
+
+            <include layout="@layout/main_menubar" />
+        </FrameLayout>
+
+    </RelativeLayout>
+        
+</FrameLayout>

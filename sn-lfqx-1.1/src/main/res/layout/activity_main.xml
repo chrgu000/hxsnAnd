@@ -1,48 +1,428 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_light"
     tools:ignore="HardcodedText">
 
     <RelativeLayout
         android:id="@+id/rl_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/langf">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/loading"/>
 
         <TextView
-            android:id="@+id/txt_test"
-            android:layout_width="120dp"
+            android:id="@+id/txt_select"
+            android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_alignParentRight="true"
             android:gravity="center"
-            android:textColor="@color/black_text_n"
-            android:text="视频监控"
-            android:visibility="gone"/>
+            android:layout_alignParentRight="true"
+            android:textColor="@color/orange_red"
+            android:textSize="16sp"
+            android:text="选择区县"/>
 
         <TextView
-            android:id="@+id/txt_come_in"
+            android:id="@+id/txt_time"
             android:layout_width="220dp"
-            android:layout_height="80dp"
-            android:layout_marginBottom="30dp"
-            android:layout_alignParentBottom="true"
+            android:layout_height="50dp"
             android:gravity="center"
             android:layout_centerHorizontal="true"
             android:textColor="@color/black_text_n"
-            android:text=""/>
+            android:textSize="13sp"
+            android:text="2017.05.06 17点"/>
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="35dp"
+            android:textColor="@color/white"
+            android:textSize="33sp"
+            android:text="阴"/>
+
+        <TextView
+            android:id="@+id/txt_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:text="25.5℃"/>
+
+        <TextView
+            android:id="@+id/txt_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="125dp"
+            android:layout_marginLeft="35dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="偏东风1-2级"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="175dp"
+            android:layout_marginLeft="25dp"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:text="空气湿度："
+            android:id="@+id/textView" />
+
+        <TextView
+            android:id="@+id/txt_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="165dp"
+            android:layout_marginLeft="135dp"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:text="50"/>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="220dp"
+            android:background="@color/white_light"/>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/line">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txt_week1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="今天"/>
+
+                <TextView
+                    android:id="@+id/txt_weather1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="阴转晴"/>
+
+                <TextView
+                    android:id="@+id/txt_temp1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="12-23℃"/>
+
+                <TextView
+                    android:id="@+id/txt_windy1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="偏东风1-2级"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/txt_week2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="今天"/>
+
+                <TextView
+                    android:id="@+id/txt_weather2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="阴转晴"/>
+
+                <TextView
+                    android:id="@+id/txt_temp2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="12-23℃"/>
+
+                <TextView
+                    android:id="@+id/txt_windy2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="偏东风1-2级"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/txt_week3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="今天"/>
+
+                <TextView
+                    android:id="@+id/txt_weather3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="阴转晴"/>
+
+                <TextView
+                    android:id="@+id/txt_temp3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="12-23℃"/>
+
+                <TextView
+                    android:id="@+id/txt_windy3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="偏东风1-2级"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/txt_week4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="今天"/>
+
+                <TextView
+                    android:id="@+id/txt_weather4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="阴转晴"/>
+
+                <TextView
+                    android:id="@+id/txt_temp4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="12-23℃"/>
+
+                <TextView
+                    android:id="@+id/txt_windy4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="偏东风1-2级"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/txt_week5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="今天"/>
+
+                <TextView
+                    android:id="@+id/txt_weather5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="阴转晴"/>
+
+                <TextView
+                    android:id="@+id/txt_temp5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="12-23℃"/>
+
+                <TextView
+                    android:id="@+id/txt_windy5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="偏东风1-2级"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/txt_week6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="今天"/>
+
+                <TextView
+                    android:id="@+id/txt_weather6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="阴转晴"/>
+
+                <TextView
+                    android:id="@+id/txt_temp6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="12-23℃"/>
+
+                <TextView
+                    android:id="@+id/txt_windy6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="偏东风1-2级"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/txt_week7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="今天"/>
+
+                <TextView
+                    android:id="@+id/txt_weather7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="阴转晴"/>
+
+                <TextView
+                    android:id="@+id/txt_temp7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="12-23℃"/>
+
+                <TextView
+                    android:id="@+id/txt_windy7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:text="偏东风1-2级"/>
+
+            </TableRow>
+        </TableLayout>
+
+
+        <TextView
+            android:id="@+id/txt_in1"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_text_white"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="立即进入"/>
+
     </RelativeLayout>
 
-    <WebView
-        android:id="@+id/webView"
+    <RelativeLayout
+        android:id="@+id/rl_default"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:background="@drawable/loading"
+        android:visibility="gone">
 
+        <TextView
+            android:id="@+id/txt_in2"
+            android:layout_width="155dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/bg_text_white"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:textSize="20sp"/>
+    </RelativeLayout>
 
-
-</RelativeLayout>
+</FrameLayout>

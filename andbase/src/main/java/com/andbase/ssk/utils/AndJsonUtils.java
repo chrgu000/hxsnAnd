@@ -293,6 +293,9 @@ public class AndJsonUtils {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONObject jsonVersion = jsonObject.optJSONObject("result");
+            if(jsonVersion == null){
+                return appVersion;
+            }
             String createDate = jsonVersion.optString(params[0]);
             appVersion.setCreateDateString(createDate);
             String description = jsonVersion.optString(params[1]);

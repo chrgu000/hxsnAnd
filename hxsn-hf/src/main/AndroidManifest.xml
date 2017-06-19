@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hxsn.hf">
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="com.hxsn.hf.FristWelcomeActivity"
+            >
+        </activity>
+        <activity android:name="com.hxsn.hf.login.LoginActivity"/>
+
+        <activity android:name="com.hxsn.hf.MainActivity"/>
+
+        <activity android:name="com.hxsn.hf.navigation.FramClassListActivity"/>
+        <activity android:name="com.hxsn.hf.navigation.FramItemActivity"/>
+        <activity android:name="com.hxsn.hf.navigation.FramListActivity"/>
+        <activity android:name="com.hxsn.hf.navigation.CameraListActivity"/>
+        <activity android:name="com.hxsn.hf.discovery.CookBook_listActivity"/>
+        <activity android:name="com.hxsn.hf.login.TestDpsdkCoreActivity"/>
+
+        <activity
+            android:screenOrientation="landscape"
+            android:name="com.hxsn.hf.navigation.RealPlayActivity"/>
+
+        <activity android:name="com.hxsn.hf.navigation.OperateSoundTalk"/>
+
+        <activity android:name="com.hxsn.hf.navigation.XiaoxiActivity"/>
+
+        <activity android:name="com.hxsn.hf.discovery.CookBookActivity" />
+        <activity
+            android:name="com.hxsn.hf.navigation.NewRealPlayActivity"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name="com.hxsn.hf.MainWebActivity" />
+
+        <!--下面会创建一个应用私有的com.cnblogs.tianxia:message的独立进程-->
+        <service android:name="com.hxsn.hf.navigation.messageservice" android:label="消息推送" android:process=".message" />
+
+
+        <activity android:name="com.hxsn.hf.discovery.SweepActivity"/>
+        <activity android:name="com.hxsn.hf.discovery.SwingActivity"/>
+        <activity android:name="com.hxsn.hf.discovery.FoodintroduceListCookbookActivity"/>
+        <activity android:name="com.hxsn.hf.discovery.Fram_order_listActivity"/>
+        <activity android:name="com.hxsn.hf.discovery.Fram_Dynamic_listActivity"/>
+    </application>
+
+</manifest>

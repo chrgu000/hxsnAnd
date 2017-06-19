@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+
+	$(".dhtanch").find(".close").mouseover(function(){$(".dhtanch").find(".closebg").show(400);});
+	$(".dhtanch").find(".close").mouseleave(function(){$(".dhtanch").find(".closebg").hide(400);});
+	$(".dhtanch").find(".close").click(function(){$(".dhtanch").hide()});
+		
+	
+	});
+</script>
+<style type="text/css">
+	body, html,#map {width: 100%;height: 100%;overflow: hidden;margin:0;}
+
+div span span {display:none;}
+.anchorBL a img{display:none;}
+#myp{border:1px #000;width:100px;height:100px;}
+	</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+</head>
+
+<body>
+<div class="head"><p>掌上农场</p><span class="headswitch"><a href="zydaohang.html">B</a></span></div>
+<div id="map" ></div>
+<script type="text/javascript">
+var tileLayer = new BMap.TileLayer();
+tileLayer.getTilesUrl = function(tileCoord, zoom) {
+    var x = tileCoord.x;
+    var y = tileCoord.y;
+    return 'tiles/' + zoom + '/tile' + x + '_' + y + '.png';
+}
+var MyMap = new BMap.MapType('MyMap', tileLayer, {minZoom: 3, maxZoom: 6});
+var map = new BMap.Map('map', {mapType: MyMap});
+//map.addControl(new BMap.NavigationControl());
+map.centerAndZoom(new BMap.Point(147.118287, 22.922792), 4);
+map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+//map.setDefaultCursor("crosshair"); 
+var markisshow=false;
+
+
+var point = new BMap.Point(152.711065,52.638476); // 创建点坐标     
+
+var myIcon = new BMap.Icon("sxt.png", new BMap.Size(39, 25), {  
+				offset: new BMap.Size(0, 0), // 指定定位位置  
+				imageOffset: new BMap.Size(0, 0 ) // 设置图片偏移  
+			});  
+var marker=new BMap.Marker(point,{icon:myIcon});  
+		
+//var marker = new BMap.Marker(new BMap.Point(152.711065,52.638476)); // 创建点
+
+	var polygon = new BMap.Polygon([
+		new BMap.Point(148.700455,40.983163),
+		new BMap.Point(172.616941,40.983163),
+		new BMap.Point(172.616941,33.739011),
+		new BMap.Point(148.700455,33.739011)
+	], {strokeColor:"none", strokeWeight:1, strokeOpacity:0.9});  //创建多边形
+	polygon.setFillOpacity(0.5); 
+
+	var polygon2 = new BMap.Polygon([
+		new BMap.Point(148.66366,60.793894),
+		new BMap.Point(156.35373,60.793894),
+		new BMap.Point(156.35373,49.892532),
+		new BMap.Point(148.66366,49.892532)
+	], {strokeColor:"none", strokeWeight:1, strokeOpacity:0.1});  //创建多边形
+	polygon2.setFillOpacity(0.1); 
+
+
+	
+
+
+	/* 地图点击事件先屏蔽*/
+	function showInfo(e){
+		//alert(e.point.lng + ", " + e.point.lat);
+		
+		if (e.point.lng>=148.66366 && e.point.lng <= 156.35373 && e.point.lat>=49.892532 && e.point.lat <= 60.793894){
+			$("#niu").show();
+		}
+		
+		if (e.point.lng>=148.700455 && e.point.lng <= 172.616941 && e.point.lat>=33.739011 && e.point.lat <= 40.983163){
+			//alert("点击蔬菜地块");
+			$("#dhtanch").show();
+		}
+		
+	}
+	map.addEventListener("click", showInfo);
+	
+
+
+	polygon.addEventListener("click",attribute);
+	function attribute(){
+		alert("点击蔬菜地块");
+	}
+
+	polygon2.addEventListener("click",attribute2);
+	function attribute2(){
+		alert("点击牛舍地块");
+	}
+
+	marker.addEventListener("click",marke);
+	function marke(){
+		//alert("点击摄像头");
+		window.location.href="shipin.html"
+	}
+
+
+	function position(){
+	  // 默认停靠位置和偏移量
+	  this.defaultAnchor = BMAP_ANCHOR_BOTTOM_RIGHT;
+	  this.defaultOffset = new BMap.Size(10, 10);
+	}
+
+	position.prototype = new BMap.Control();
+	position.prototype.initialize = function(map){
+	// 创建一个DOM元素
+	var div = document.createElement("div");
+ 	var newspan = document.createElement("img");//创建img对象
+	//设置img对象css样式
+            newspan.style.right=0;
+            newspan.cssFloat='right';
+             newspan.style.right=0;
+            newspan.style.top="31px";
+            newspan.style.cursor="pointer";
+            newspan.src = 'images/wz.png';
+
+	var A = document.createElement("A");  
+	A.setAttribute("href","jj.html"); 
+	A.appendChild(newspan);
+
+	div.appendChild(A);
+	div.style.border = "1px solid gray";
+	div.style.backgroundColor = "white";
+	map.getContainer().appendChild(div);
+	// 将DOM元素返回
+		return div;
+	}
+
+
+
+	// 创建控件
+var myp = new position();
+// 添加到地图当中
+map.addControl(myp);
+map.addEventListener("tilesloaded",showmarker);
+function showmarker(){
+	if (map.getZoom()>=5){
+		if (!markisshow){
+			markisshow=true;
+			map.addOverlay(marker);    //增加点
+		}
+	}else{
+		if (markisshow){
+			markisshow=false;
+			map.removeOverlay(marker);    //移除点
+		}
+	}
+}
+
+
+map.addOverlay(polygon);           //增加多边形蔬菜
+map.addOverlay(polygon2);           //增加多边形牛舍
+</script>
+
+<!--
+
+
+<div class="dh">
+<div class="bjtu" id="ls">粮食区
+<div class="yqwz"><a href="#">园区位置</a></div>
+
+
+</div>
+<div class="dhtanch" id="dhtanch">
+<div class="tanchmain">
+<div class="close"><img src="images/clo.png"></div>
+<ul class="dhul">
+<li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/qc.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-01</h2>
+          <p>芹菜</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+      <li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/lj.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-02</h2>
+          <p>辣椒</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+      <li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/qz.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-03</h2>
+          <p>茄子</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+    <li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/xhs.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-03</h2>
+          <p>番茄</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+     <li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/lb.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-03</h2>
+          <p>胡萝卜</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+</ul>
+</div>
+</div>
+</div>
+-->
+<div class="dhtanch" id="niu">
+<div class="tanchmain">
+<div class="close"><img src="images/clo.png"></div>
+<ul class="dhul">
+<li> <a href="lsll.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/nt01.jpg"></dt>
+        <dd>
+          <h2>养殖1区-01</h2>
+          <p>荷兰肉牛</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+      <li> <a href="lsll.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/nt02.jpg"></dt>
+        <dd>
+          <h2>养殖1区-02</h2>
+          <p>西门塔尔牛</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+      <li> <a href="lsll.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/nt03.jpg"></dt>
+        <dd>
+          <h2>养殖1区-03</h2>
+          <p>利木赞牛</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+    
+</ul>
+</div>
+</div>
+<div class="dhtanch" id="dhtanch">
+<div class="tanchmain">
+<div class="close"><img src="images/clo.png"></div>
+<ul class="dhul">
+<li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/qc.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-01</h2>
+          <p>芹菜</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+      <li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/lj.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-02</h2>
+          <p>辣椒</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+      <li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/qz.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-03</h2>
+          <p>茄子</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+    <li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/xhs.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-03</h2>
+          <p>番茄</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+     <li> <a href="shumiao.html" class="zs">
+      <dl>
+        <dt class="left"><img src="images/lb.jpg"></dt>
+        <dd>
+          <h2>蔬菜东1区-03</h2>
+          <p>胡萝卜</p>
+        </dd>
+      </dl>
+      </a>
+     </li>
+</ul>
+</div>
+</div>
+<div class="foot">
+<ul>
+<li><a href="daohang.html"><span class="hover">游</span></a></li>
+<li><a href="kefu.html"><span>摘</span></a></li>
+<li><a href="index.html"><img src="images/dh03.png"></a></li>
+<li><a href="sys.html"><span>溯</span></a></li>
+<li><a href="faxian.html"><span>吾</span></a></li>
+</ul>
+
+</div>
+<div class="kong"></div>
+</body>
+</html>

@@ -31,7 +31,7 @@ import com.hxsn.zzd.R;
 import com.hxsn.zzd.videogo.activity.CaptureActivity;
 import com.videogo.util.LogUtil;
 
-import java.util.Map;
+import java.util.Hashtable;
 
 
 final class DecodeHandler extends Handler {
@@ -42,7 +42,7 @@ final class DecodeHandler extends Handler {
   private final MultiFormatReader multiFormatReader;
   private boolean running = true;
 
-  DecodeHandler(CaptureActivity activity, Map<DecodeHintType,Object> hints) {
+  DecodeHandler(CaptureActivity activity, Hashtable<DecodeHintType,Object> hints) {
     multiFormatReader = new MultiFormatReader();
     multiFormatReader.setHints(hints);
     this.activity = activity;
