@@ -10,7 +10,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/langf">
 
-
         <TextView
             android:id="@+id/txt_select"
             android:layout_width="100dp"
